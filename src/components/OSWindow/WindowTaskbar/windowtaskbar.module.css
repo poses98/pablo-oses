@@ -1,0 +1,42 @@
+.container{
+    color: #ffffff;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px 10px;
+    min-height:15px ;
+    font-size: 0.8em;
+}
+
+.windowHeader{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.windowTitle{
+    margin-left: 5px;
+}
+
+.windowActions{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.windowButton{
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.windowButton:hover { 
+    background-color: #b00020;
+
+}
+

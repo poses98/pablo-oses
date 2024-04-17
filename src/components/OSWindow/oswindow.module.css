@@ -1,0 +1,16 @@
+.container{
+    width: 60%;
+    min-height: 400px;
+    position: absolute;
+    top:15%;
+    left: 20%;
+    z-index: 4;
+    background-color: #292929;
+}
+
+.windowContent{
+    margin:0.25%;
+    margin-top: 0;
+    width: 99.5%;
+    background-color: #363636db;
+}
