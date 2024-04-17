@@ -1,0 +1,10 @@
+.container {
+    height: 100vh;
+    width: 100%;
+    background: rgb(153,153,153) repeat;
+    background: -moz-linear-gradient(0deg, rgba(153,153,153,1) 0%, rgba(221,221,221,1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(153,153,153,1) 0%, rgba(221,221,221,1) 100%);
+    background: linear-gradient(0deg, rgba(153,153,153,1) 0%, rgba(221,221,221,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#999999",endColorstr="#dddddd",GradientType=1);
+    user-select: none;
+}

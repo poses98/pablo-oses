@@ -1,0 +1,32 @@
+.container{
+    position: fixed;
+    bottom: 0;
+    min-height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    background-color: rgb(28, 28, 28);
+    padding: 0 10px 0 0;
+}
+
+.homeButton, .taskBarIcons{
+    color: #fafafa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.homeButton{
+    font-size: large;
+    width: 40px;
+}
+
+.homeButton:hover{
+    background-color: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+}
+
+.taskBarIcons{
+
+}
