@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 import styles from './taskbar.module.css';
+import { Roboto_Mono } from 'next/font/google';
+
+const robotoMono = Roboto_Mono({ subsets: ['latin'] });
 
 export default function TaskBar() {
   const date = new Date();
@@ -23,7 +26,9 @@ export default function TaskBar() {
         <p>P</p>
       </div>
       <div className={styles.taskBarIcons}>
-        <p>{`${hour}:${minutes}:${seconds}`}</p>
+        <p
+          className={robotoMono.className}
+        >{`${hour}:${minutes}:${seconds}`}</p>
       </div>
     </div>
   );
