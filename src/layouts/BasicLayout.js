@@ -7,10 +7,16 @@ const inter = Inter({ subsets: ['latin'] });
 
 export default function BasicLayout({ children }) {
   const [innerHeight, setInnerHeight] = useState('100vh');
+
   useEffect(() => {
-    setInnerHeight(`${window.innerHeight}px`);
-    console.log(innerHeight);
+    const handleResize = () => {
+      setInnerHeight(`${window.innerHeight}px`);
+    };
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
+
   return (
     <div
       className={`${styles.container} ${inter.className}`}
