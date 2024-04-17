@@ -2,6 +2,7 @@
     width: 60%;
     min-height: 400px;
     position: absolute;
+    max-height: 100vh;
     top:15%;
     left: 20%;
     z-index: 4;
@@ -12,4 +13,12 @@
     margin:0.25%;
     margin-top: 0;
     width: 99.5%;
+}
+
+@media only screen and (max-width: 600px) {
+ .container{
+    width: 95%;
+    left: 2.5% ;
+    top:10%;
+ }   
 }
