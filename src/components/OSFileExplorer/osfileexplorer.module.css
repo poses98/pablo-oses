@@ -24,18 +24,16 @@
     margin-top: 5px;
     display: flex;
     flex-direction: row;
+    overflow: scroll;
 }
 
 .explorerIndex{
     width: 30%;
     border-right: 1px solid #dbdbdb1f;  
-    background-color: #363636db;
     height: 100%;
 }
 
 .explorerShowcase{
     width: 70%;
-    background-color: #363636db;
-    height: 100%;
 }
 

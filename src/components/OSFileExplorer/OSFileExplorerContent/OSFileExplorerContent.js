@@ -1,4 +1,4 @@
-import OSIcon from '../OSIcon/OSIcon';
+import OSIcon from '../../OSIcon/OSIcon';
 import styles from './osfileexplorercontent.module.css';
 
 export default function OSFileExplorerContent() {

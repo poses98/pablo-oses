@@ -1,13 +1,38 @@
 import { useState, useEffect } from 'react';
-
 import OSDesktop from '@/components/OSDesktop/OSDesktop';
 import BasicLayout from '@/layouts/BasicLayout';
 import OSWindow from '@/components/OSWindow/OSWindow';
 
 export default function Home() {
   const [windows, setWindows] = useState([]);
+  const [personalProjects, setPersonalProjects] = useState(null);
+  const [clientProjects, setClientProjects] = useState(null);
+  const [misc, setMisc] = useState(null);
 
-  const iconPlaceholder = [
+  useEffect(() => {
+    try {
+      fetch('/api/personal-projects')
+        .then((res) => res.json())
+        .then((personalProjects) => {
+          setPersonalProjects(JSON.stringify(personalProjects));
+          console.log(personalProjects);
+        });
+      fetch('/api/client-projects')
+        .then((res) => res.json())
+        .then((clientProjects) => {
+          setClientProjects(clientProjects);
+        });
+      fetch('/api/misc')
+        .then((res) => res.json())
+        .then((misc) => {
+          setMisc(JSON.stringify(misc));
+        });
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
+
+  const nodePlaceholder = [
     { name: 'Terminal', type: 'terminal', icon: '/img/icons/terminal.svg' },
     { name: 'WhoAmI', type: 'text', icon: '/img/icons/text.svg' },
     {
@@ -36,10 +61,6 @@ export default function Home() {
     setWindows(windows.filter((window, index) => index !== id));
   };
 
-  useEffect(() => {
-    console.log(windows);
-  }, [windows]);
-
   return (
     <BasicLayout>
       {windows.map((window, index) => (
@@ -51,7 +72,7 @@ export default function Home() {
           handleClose={() => handleWindowClose(window.id)}
         />
       ))}
-      <OSDesktop icons={iconPlaceholder} onIconClick={spawnWindow} />
+      <OSDesktop icons={nodePlaceholder} onIconClick={spawnWindow} />
     </BasicLayout>
   );
 }

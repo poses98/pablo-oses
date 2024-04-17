@@ -3,7 +3,7 @@ import WindowTaskbar from './WindowTaskbar/WindowTaskbar';
 import styles from './oswindow.module.css';
 import OSFileExplorer from '../OSFileExplorer/OSFileExplorer';
 
-export default function OSWindow({ name, type, handleClose }) {
+export default function OSWindow({ name, type, route, handleClose }) {
   const [windowContentHeight, setWindowContentHeight] = useState(0);
   const windowRef = useRef();
   const windowHeaderRef = useRef();
@@ -26,7 +26,7 @@ export default function OSWindow({ name, type, handleClose }) {
         className={styles.windowContent}
         style={{ height: windowContentHeight }}
       >
-        {type === 'folder' && <OSFileExplorer />}
+        {type === 'folder' && <OSFileExplorer route={route} />}
       </div>
     </div>
   );
