@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import WindowTaskbar from './WindowTaskbar/WindowTaskbar';
 import styles from './oswindow.module.css';
+import OSFileExplorer from '../OSFileExplorer/OSFileExplorer';
 
 export default function OSWindow({ name, type, handleClose }) {
   const [windowContentHeight, setWindowContentHeight] = useState(0);
@@ -13,7 +14,6 @@ export default function OSWindow({ name, type, handleClose }) {
         windowRef.current.offsetHeight - windowHeaderRef.current.offsetHeight;
       setWindowContentHeight(availableContentHeight);
     }
-
     return () => {};
   }, [windowRef]);
 
@@ -25,7 +25,9 @@ export default function OSWindow({ name, type, handleClose }) {
       <div
         className={styles.windowContent}
         style={{ height: windowContentHeight }}
-      ></div>
+      >
+        {type === 'folder' && <OSFileExplorer />}
+      </div>
     </div>
   );
 }

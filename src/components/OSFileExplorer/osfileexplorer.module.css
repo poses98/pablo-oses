@@ -1,0 +1,41 @@
+.container{
+    height: 100%;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.explorerRouteContainer{
+
+}
+
+.explorerRouteField{
+    width: 100%;
+    background-color: #292929;
+    border: #dbdbdb59 solid 1px;
+    color: #dbdbdb;
+    padding: 3px;
+    font-size: 0.7em;
+}
+
+.explorerContentContainer{
+    width: 100%;
+    height: 100%;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+}
+
+.explorerIndex{
+    width: 30%;
+    border-right: 1px solid #dbdbdb1f;  
+    background-color: #363636db;
+    height: 100%;
+}
+
+.explorerShowcase{
+    width: 70%;
+    background-color: #363636db;
+    height: 100%;
+}
+
