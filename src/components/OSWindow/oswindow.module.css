@@ -17,8 +17,12 @@
 
 @media only screen and (max-width: 600px) {
  .container{
-    width: 95%;
-    left: 2.5% ;
-    top:10%;
+    width: 85%;
+    margin-left: 5px;
+    left: inherit;
+    top: inherit;
+    position: fixed;
+    bottom: 10vh;
+    max-height: 50vh;
  }   
 }
