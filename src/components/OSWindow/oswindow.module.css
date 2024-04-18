@@ -5,7 +5,7 @@
     max-height: 100vh;
     top:15%;
     left: 20%;
-    z-index: 4;
+    z-index: 8;
     background-color: #292929;
 }
 
@@ -18,7 +18,7 @@
 
 @media only screen and (max-width: 600px) {
  .container{
-    width: 85%;
+    width: 95%;
     margin-left: 5px;
     left: inherit;
     top: inherit;

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { iconProvider } from '@/utils/iconProvider';
 
 export default function WindowTaskbar({ name, type, handleClose }) {
-  const [windowIcon, setWindowIcon] = useState('');
+  const [windowIcon, setWindowIcon] = useState(null);
   useEffect(() => {
     setWindowIcon(iconProvider(type));
   }, [type]);
@@ -12,7 +12,10 @@ export default function WindowTaskbar({ name, type, handleClose }) {
   return (
     <div className={styles.container}>
       <div className={styles.windowHeader}>
-        <Image width={17} height={17} src={windowIcon} alt={'icon'} />
+        {windowIcon && (
+          <Image width={17} height={17} src={windowIcon} alt={'icon'} />
+        )}
+
         <p className={styles.windowTitle}>{name}</p>
       </div>
       <div className={styles.windowActions}>

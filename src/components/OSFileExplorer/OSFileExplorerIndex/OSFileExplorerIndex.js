@@ -6,20 +6,16 @@ import { iconProvider } from '@/utils/iconProvider';
 const RenderTree = ({ node, level = 0, route }) => {
   const indent = 20;
   if (node.type === 'folder') {
-    console.log(node.route);
-    console.log(route);
-
+    let sameRoute = route === node.route;
     return (
       <div
         className={styles.indexItemContainer}
         style={{ paddingLeft: `${level * indent}px` }}
       >
         <div
-          style={{
-            border:
-              route === node.route ? '1px rgba(81, 186, 255, 0.4) solid' : '0',
-          }}
-          className={styles.indexItem}
+          className={`${styles.indexItem} ${
+            sameRoute ? styles.sameRoute : styles.indexItem
+          }`}
         >
           <Image
             width={15}

@@ -31,18 +31,16 @@
     width: 30%;
     border-right: 1px solid #dbdbdb1f;  
     height: 100%;
+    z-index: 3;
+    overflow-x: scroll;
+    
 }
 
 .explorerShowcase{
     width: 70%;
+    z-index: 4;
 }
 
 @media only screen and (max-width: 600px) {
-    .explorerIndex{
-        display: none;
-        border: 0;
-    }
-    .explorerShowcase{
-        width: 98%;
-    }
+    
 }
