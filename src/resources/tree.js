@@ -5,6 +5,15 @@ export const tree = [
     route: 'client-projects',
     content: [
       {
+        name: 'Wedding RSVP',
+        date: 'July 2021',
+        icon: '/img/icons/wedding.jpg',
+        description: '',
+        techStack: ['Django'],
+        deployment: ['Heroku'],
+        url: 'none',
+      },
+      {
         name: 'ElPolloPaulino',
         date: 'February 2023',
         icon: '/img/icons/paulino.png',
@@ -38,15 +47,6 @@ export const tree = [
     type: 'folder',
     route: 'personal-projects',
     content: [
-      {
-        name: 'Wedding RSVP',
-        date: 'July 2021',
-        icon: '/img/icons/wedding.jpg',
-        description: '',
-        techStack: ['Django'],
-        deployment: ['Heroku'],
-        url: 'none',
-      },
       {
         name: 'RouteForecast',
         date: 'August 2023',
