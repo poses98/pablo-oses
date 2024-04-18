@@ -1,31 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import OSDesktop from '@/components/OSDesktop/OSDesktop';
 import BasicLayout from '@/layouts/BasicLayout';
 import OSWindow from '@/components/OSWindow/OSWindow';
 import { tree } from '@/resources/tree';
-import PowerOnOff from '@/components/PowerOnOff/PowerOnOff';
+import { useWindows } from '@/hooks/useWindows';
 
 export default function Home() {
-  const [windows, setWindows] = useState([]);
-  const [started, setStarted] = useState(false);
-
-  const spawnWindow = (node) => {
-    const windowContent = {
-      name: node.name,
-      type: node.type,
-      route: node.route,
-      content: node.content,
-    };
-    if (windows.length < 8) {
-      setWindows([...windows, { id: windows.length, ...windowContent }]);
-    } else {
-      alert('Max window number');
-    }
-  };
-
-  const handleWindowClose = (id) => {
-    setWindows(windows.filter((window, index) => index !== id));
-  };
+  const { windows, spawnWindow, handleWindowClose } = useWindows();
 
   return (
     <>
