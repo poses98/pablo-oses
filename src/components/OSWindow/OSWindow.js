@@ -3,8 +3,17 @@ import WindowTaskbar from './WindowTaskbar/WindowTaskbar';
 import styles from './oswindow.module.css';
 import OSFileExplorer from '../OSFileExplorer/OSFileExplorer';
 import OSNotepad from '../OSNotepad/OSNotepad';
+import { useWindowsContext } from '@/providers/WindowsProvider';
 
-export default function OSWindow({ name, type, route, content, handleClose }) {
+export default function OSWindow({
+  name,
+  type,
+  route,
+  content,
+  id,
+  handleClose,
+}) {
+  const { handleWindowFocus } = useWindowsContext();
   const [windowContentHeight, setWindowContentHeight] = useState(0);
   const windowRef = useRef();
   const windowHeaderRef = useRef();
@@ -19,7 +28,11 @@ export default function OSWindow({ name, type, route, content, handleClose }) {
   }, [windowRef]);
 
   return (
-    <div className={styles.container} ref={windowRef}>
+    <div
+      className={styles.container}
+      ref={windowRef}
+      onMouseEnter={() => handleWindowFocus(id)}
+    >
       <div ref={windowHeaderRef}>
         <WindowTaskbar name={name} type={type} handleClose={handleClose} />
       </div>

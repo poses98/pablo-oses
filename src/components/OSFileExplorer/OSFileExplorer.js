@@ -2,7 +2,7 @@ import OSFileExplorerContent from './OSFileExplorerContent/OSFileExplorerContent
 import OSFileExplorerIndex from './OSFileExplorerIndex/OSFileExplorerIndex';
 import styles from './osfileexplorer.module.css';
 
-export default function OSFileExplorer({ route, content }) {
+export default function OSFileExplorer({ route, content, windowId }) {
   return (
     <div className={styles.container}>
       <div className={styles.explorerRouteContainer}>

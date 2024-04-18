@@ -2,9 +2,12 @@ import Image from 'next/image';
 import styles from './osfileexplorerindex.module.css';
 import { tree } from '@/resources/tree';
 import { iconProvider } from '@/utils/iconProvider';
-/**TODO Render route or 'program' when index clicked */
+import { useWindowsContext } from '@/providers/WindowsProvider';
+
 const RenderTree = ({ node, level = 0, route }) => {
+  const { handleWindowContentChange } = useWindowsContext();
   const indent = 20;
+
   if (node.type === 'folder') {
     let sameRoute = route === node.route;
     return (
@@ -13,6 +16,7 @@ const RenderTree = ({ node, level = 0, route }) => {
         style={{ paddingLeft: `${level * indent}px` }}
       >
         <div
+          onClick={() => handleWindowContentChange(node)}
           className={`${styles.indexItem} ${
             sameRoute ? styles.sameRoute : styles.indexItem
           }`}

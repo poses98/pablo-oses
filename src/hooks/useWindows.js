@@ -1,7 +1,14 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 export function useWindows() {
   const [windows, setWindows] = useState([]);
+  const [activeWindowId, setActiveWindowId] = useState(0);
+
+  const [nextId, setNextId] = useState(0); // Add this line
+
+  useEffect(() => {
+    console.log(activeWindowId);
+  }, [activeWindowId]);
 
   const spawnWindow = useCallback(
     (node) => {
@@ -14,37 +21,56 @@ export function useWindows() {
       if (windows.length < 8) {
         setWindows((prevWindows) => [
           ...prevWindows,
-          { id: prevWindows.length, ...windowContent },
+          { id: nextId, ...windowContent },
         ]);
+        setActiveWindowId(nextId);
+        setNextId(nextId + 1); // And this line
       } else {
         alert('Max window number');
       }
     },
-    [windows]
+    [windows, nextId] // Update this line
   );
 
   const handleWindowClose = useCallback((id) => {
     setWindows((prevWindows) =>
-      prevWindows.filter((window, index) => index !== id)
+      prevWindows.filter((window, index) => window.id !== id)
     );
   }, []);
 
-  const handleWindowContentChange = useCallback((node, id) => {
-    setWindows((prevWindows) =>
-      prevWindows.map((window) => {
-        if (window.id === id) {
-          return {
-            ...window,
-            name: node.name,
-            type: node.type,
-            route: node.route,
-            content: node.content,
-          };
-        }
-        return window;
-      })
-    );
-  }, []);
+  const handleWindowContentChange = useCallback(
+    (node) => {
+      console.log(activeWindowId);
+      setWindows((prevWindows) =>
+        prevWindows.map((window) => {
+          if (window.id === activeWindowId) {
+            return {
+              ...window,
+              name: node.name,
+              type: node.type,
+              route: node.route,
+              content: node.content,
+            };
+          }
+          return window;
+        })
+      );
+    },
+    [activeWindowId, setWindows]
+  );
 
-  return { windows, spawnWindow, handleWindowClose, handleWindowContentChange };
+  const handleWindowFocus = useCallback(
+    (id) => {
+      setActiveWindowId(id);
+    },
+    [setActiveWindowId]
+  );
+
+  return {
+    windows,
+    spawnWindow,
+    handleWindowClose,
+    handleWindowContentChange,
+    handleWindowFocus,
+  };
 }
