@@ -3,3 +3,15 @@
     color: #fafafa;
     font-size: 0.7em;
 }
+
+.indexItem{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.indexItem:hover{
+    background-color: rgba(81, 186, 255, 0.2);
+    cursor: pointer;
+}

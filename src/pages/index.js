@@ -6,13 +6,6 @@ import { tree } from '@/resources/tree';
 
 export default function Home() {
   const [windows, setWindows] = useState([]);
-  const [personalProjects, setPersonalProjects] = useState(null);
-  const [clientProjects, setClientProjects] = useState(null);
-  const [misc, setMisc] = useState(null);
-
-  console.log(tree);
-
-  useEffect(() => {}, []);
 
   const spawnWindow = (node) => {
     const windowContent = {
@@ -23,7 +16,6 @@ export default function Home() {
     };
     if (windows.length < 8) {
       setWindows([...windows, { id: windows.length, ...windowContent }]);
-      console.log({ id: windows.length, ...windowContent });
     } else {
       alert('Max window number');
     }
