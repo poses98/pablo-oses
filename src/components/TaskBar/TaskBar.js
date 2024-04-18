@@ -5,10 +5,10 @@ import { Roboto_Mono } from 'next/font/google';
 const robotoMono = Roboto_Mono({ subsets: ['latin'] });
 
 export default function TaskBar() {
-  const date = new Date();
-  const [hour, setHour] = useState(date.getHours());
-  const [minutes, setMinutes] = useState(date.getMinutes());
-  const [seconds, setSeconds] = useState(date.getSeconds());
+  const [hourSet, setHourSet] = useState(false);
+  const [hour, setHour] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -16,7 +16,9 @@ export default function TaskBar() {
       setHour(String(date.getHours()).padStart(2, '0'));
       setMinutes(String(date.getMinutes()).padStart(2, '0'));
       setSeconds(String(date.getSeconds()).padStart(2, '0'));
+      setHourSet(true);
     }, 1000);
+
     return () => clearInterval(interval);
   }, []);
 
@@ -26,9 +28,11 @@ export default function TaskBar() {
         <p>P</p>
       </div>
       <div className={styles.taskBarIcons}>
-        <p
-          className={robotoMono.className}
-        >{`${hour}:${minutes}:${seconds}`}</p>
+        {hourSet && (
+          <p
+            className={robotoMono.className}
+          >{`${hour}:${minutes}:${seconds}`}</p>
+        )}
       </div>
     </div>
   );

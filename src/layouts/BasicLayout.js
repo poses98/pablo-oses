@@ -18,7 +18,7 @@ export default function BasicLayout({ children }) {
   }, []);
 
   return (
-    <div
+    <main
       className={`${styles.container} ${inter.className}`}
       style={{ height: innerHeight }}
     >
@@ -29,6 +29,6 @@ export default function BasicLayout({ children }) {
       {children}
 
       <TaskBar />
-    </div>
+    </main>
   );
 }
