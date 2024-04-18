@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import WindowTaskbar from './WindowTaskbar/WindowTaskbar';
 import styles from './oswindow.module.css';
 import OSFileExplorer from '../OSFileExplorer/OSFileExplorer';
+import OSNotepad from '../OSNotepad/OSNotepad';
 
 export default function OSWindow({ name, type, route, content, handleClose }) {
   const [windowContentHeight, setWindowContentHeight] = useState(0);
@@ -29,6 +30,7 @@ export default function OSWindow({ name, type, route, content, handleClose }) {
         {type === 'folder' && (
           <OSFileExplorer route={route} content={content} />
         )}
+        {type === 'text' && <OSNotepad content={content} />}
       </div>
     </div>
   );
