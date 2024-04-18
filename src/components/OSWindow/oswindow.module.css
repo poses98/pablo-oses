@@ -9,6 +9,11 @@
     background-color: #292929;
 }
 
+.activeWindow{
+    border: 1.3px dashed #fafafa;
+    z-index: 10;
+}
+
 .windowContent{
     margin:0.25%;
     margin-top: 0;

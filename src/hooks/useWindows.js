@@ -3,12 +3,7 @@ import { useState, useCallback, useEffect } from 'react';
 export function useWindows() {
   const [windows, setWindows] = useState([]);
   const [activeWindowId, setActiveWindowId] = useState(0);
-
-  const [nextId, setNextId] = useState(0); // Add this line
-
-  useEffect(() => {
-    console.log(activeWindowId);
-  }, [activeWindowId]);
+  const [nextId, setNextId] = useState(0);
 
   const spawnWindow = useCallback(
     (node) => {
@@ -24,12 +19,12 @@ export function useWindows() {
           { id: nextId, ...windowContent },
         ]);
         setActiveWindowId(nextId);
-        setNextId(nextId + 1); // And this line
+        setNextId(nextId + 1);
       } else {
         alert('Max window number');
       }
     },
-    [windows, nextId] // Update this line
+    [windows, nextId]
   );
 
   const handleWindowClose = useCallback((id) => {
@@ -68,6 +63,7 @@ export function useWindows() {
 
   return {
     windows,
+    activeWindowId,
     spawnWindow,
     handleWindowClose,
     handleWindowContentChange,

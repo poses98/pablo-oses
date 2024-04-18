@@ -13,7 +13,7 @@ export default function OSWindow({
   id,
   handleClose,
 }) {
-  const { handleWindowFocus } = useWindowsContext();
+  const { handleWindowFocus, activeWindowId } = useWindowsContext();
   const [windowContentHeight, setWindowContentHeight] = useState(0);
   const windowRef = useRef();
   const windowHeaderRef = useRef();
@@ -22,6 +22,7 @@ export default function OSWindow({
     if (windowRef.current && windowHeaderRef.current) {
       const availableContentHeight =
         windowRef.current.offsetHeight - windowHeaderRef.current.offsetHeight;
+
       setWindowContentHeight(availableContentHeight);
     }
     return () => {};
@@ -29,9 +30,11 @@ export default function OSWindow({
 
   return (
     <div
-      className={styles.container}
+      className={`${styles.container} ${
+        activeWindowId === id ? styles.activeWindow : ''
+      }`}
       ref={windowRef}
-      onMouseEnter={() => handleWindowFocus(id)}
+      onClick={() => handleWindowFocus(id)}
     >
       <div ref={windowHeaderRef}>
         <WindowTaskbar name={name} type={type} handleClose={handleClose} />
