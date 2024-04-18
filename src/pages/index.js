@@ -3,9 +3,11 @@ import OSDesktop from '@/components/OSDesktop/OSDesktop';
 import BasicLayout from '@/layouts/BasicLayout';
 import OSWindow from '@/components/OSWindow/OSWindow';
 import { tree } from '@/resources/tree';
+import PowerOnOff from '@/components/PowerOnOff/PowerOnOff';
 
 export default function Home() {
   const [windows, setWindows] = useState([]);
+  const [started, setStarted] = useState(false);
 
   const spawnWindow = (node) => {
     const windowContent = {
@@ -26,18 +28,20 @@ export default function Home() {
   };
 
   return (
-    <BasicLayout>
-      {windows.map((window, index) => (
-        <OSWindow
-          key={index}
-          name={window.name}
-          type={window.type}
-          route={window.route ? window.route : null}
-          content={window.content}
-          handleClose={() => handleWindowClose(window.id)}
-        />
-      ))}
-      <OSDesktop icons={tree} onIconClick={spawnWindow} />
-    </BasicLayout>
+    <>
+      <BasicLayout>
+        {windows.map((window, index) => (
+          <OSWindow
+            key={index}
+            name={window.name}
+            type={window.type}
+            route={window.route ? window.route : null}
+            content={window.content}
+            handleClose={() => handleWindowClose(window.id)}
+          />
+        ))}
+        <OSDesktop icons={tree} onIconClick={spawnWindow} />
+      </BasicLayout>
+    </>
   );
 }
