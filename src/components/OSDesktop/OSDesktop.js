@@ -9,10 +9,8 @@ export default function OSDesktop({ icons, onIconClick }) {
           <OSIcon
             key={index}
             name={element.name}
-            icon={element.icon}
-            onClick={() =>
-              onIconClick(element.name, element.type, element.route)
-            }
+            type={element.type}
+            onClick={() => onIconClick(element)}
           />
         );
       })}

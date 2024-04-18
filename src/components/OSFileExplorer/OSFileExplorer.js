@@ -1,7 +1,7 @@
 import OSFileExplorerContent from './OSFileExplorerContent/OSFileExplorerContent';
 import styles from './osfileexplorer.module.css';
 
-export default function OSFileExplorer({ route }) {
+export default function OSFileExplorer({ route, content }) {
   return (
     <div className={styles.container}>
       <div className={styles.explorerRouteContainer}>
@@ -14,7 +14,7 @@ export default function OSFileExplorer({ route }) {
       <div className={styles.explorerContentContainer}>
         <div className={styles.explorerIndex}>TODO</div>
         <div className={styles.explorerShowcase}>
-          <OSFileExplorerContent />
+          <OSFileExplorerContent content={content} />
         </div>
       </div>
     </div>
