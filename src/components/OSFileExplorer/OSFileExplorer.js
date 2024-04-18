@@ -1,4 +1,5 @@
 import OSFileExplorerContent from './OSFileExplorerContent/OSFileExplorerContent';
+import OSFileExplorerIndex from './OSFileExplorerIndex/OSFileExplorerIndex';
 import styles from './osfileexplorer.module.css';
 
 export default function OSFileExplorer({ route, content }) {
@@ -7,12 +8,15 @@ export default function OSFileExplorer({ route, content }) {
       <div className={styles.explorerRouteContainer}>
         <input
           type="text"
-          value={route}
+          value={`/${route}`}
           className={styles.explorerRouteField}
+          disabled
         />
       </div>
       <div className={styles.explorerContentContainer}>
-        <div className={styles.explorerIndex}>TODO</div>
+        <div className={styles.explorerIndex}>
+          <OSFileExplorerIndex />
+        </div>
         <div className={styles.explorerShowcase}>
           <OSFileExplorerContent content={content} />
         </div>

@@ -1,24 +1,12 @@
 import Image from 'next/image';
 import styles from './windowtaskbar.module.css';
 import { useEffect, useState } from 'react';
+import { iconProvider } from '@/utils/iconProvider';
 
 export default function WindowTaskbar({ name, type, handleClose }) {
-  const [windowIcon, setWindowIcon] = useState('/img/icons/close.svg');
+  const [windowIcon, setWindowIcon] = useState('');
   useEffect(() => {
-    switch (type) {
-      case 'folder':
-        setWindowIcon('/img/icons/folder.svg');
-        break;
-      case 'terminal':
-        setWindowIcon('/img/icons/terminal_white.svg');
-        break;
-      case 'text':
-        setWindowIcon('/img/icons/text.svg');
-        break;
-      default:
-        setWindowIcon('/img/icons/close.svg');
-        break;
-    }
+    setWindowIcon(iconProvider(type));
   }, [type]);
 
   return (
