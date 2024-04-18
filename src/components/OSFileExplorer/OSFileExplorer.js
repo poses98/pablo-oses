@@ -15,7 +15,7 @@ export default function OSFileExplorer({ route, content }) {
       </div>
       <div className={styles.explorerContentContainer}>
         <div className={styles.explorerIndex}>
-          <OSFileExplorerIndex />
+          <OSFileExplorerIndex route={route} />
         </div>
         <div className={styles.explorerShowcase}>
           <OSFileExplorerContent content={content} />

@@ -68,6 +68,18 @@ export const tree = [
     ],
   },
   {
+    name: 'Contact Me',
+    type: 'contact',
+    content: 'Lorem ipsum dolor sit amet.',
+    route: 'contact',
+  },
+  {
+    name: 'Curriculum Vitae',
+    type: 'pdf',
+    content: 'Lorem ipsum dolor sit amet.',
+    route: 'curriculum-vitae',
+  },
+  {
     name: 'Who Am I',
     type: 'text',
     content: 'Lorem ipsum dolor sit amet.',

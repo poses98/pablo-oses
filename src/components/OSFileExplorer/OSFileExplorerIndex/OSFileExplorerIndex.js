@@ -2,17 +2,25 @@ import Image from 'next/image';
 import styles from './osfileexplorerindex.module.css';
 import { tree } from '@/resources/tree';
 import { iconProvider } from '@/utils/iconProvider';
-
+/**TODO Render route or 'program' when index clicked */
 const RenderTree = ({ node, level = 0, route }) => {
   const indent = 20;
-
   if (node.type === 'folder') {
+    console.log(node.route);
+    console.log(route);
+
     return (
       <div
         className={styles.indexItemContainer}
         style={{ paddingLeft: `${level * indent}px` }}
       >
-        <div className={styles.indexItem}>
+        <div
+          style={{
+            border:
+              route === node.route ? '1px rgba(81, 186, 255, 0.4) solid' : '0',
+          }}
+          className={styles.indexItem}
+        >
           <Image
             width={15}
             height={15}
@@ -31,7 +39,11 @@ const RenderTree = ({ node, level = 0, route }) => {
         </ul>
       </div>
     );
-  } else if (node.type === 'text') {
+  } else if (
+    node.type === 'text' ||
+    node.type === 'contact' ||
+    node.type === 'pdf'
+  ) {
     return (
       <div style={{ paddingLeft: `${level * indent}px` }}>
         <div className={styles.indexItem}>
@@ -47,7 +59,6 @@ const RenderTree = ({ node, level = 0, route }) => {
       </div>
     );
   } else {
-    console.log(node);
     return (
       <div style={{ paddingLeft: `${level * indent}px` }}>
         <div className={styles.indexItem}>

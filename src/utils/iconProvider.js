@@ -10,6 +10,12 @@ export const iconProvider = (type) => {
     case 'text':
       icon = '/img/icons/text.svg';
       break;
+    case 'contact':
+      icon = '/img/icons/email.svg';
+      break;
+    case 'pdf':
+      icon = '/img/icons/pdf.svg';
+      break;
     default:
       icon = '/img/icons/close.svg';
       break;
