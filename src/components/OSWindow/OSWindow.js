@@ -42,12 +42,8 @@ export default function OSWindow({
 
       // Derivate linear to +x -y depending on windows.length
       const newPosition = {
-        x:
-          centerPosition.x +
-          windows.length * windowHeaderRef.current.offsetHeight,
-        y:
-          centerPosition.y +
-          windows.length * windowHeaderRef.current.offsetHeight,
+        x: centerPosition.x + id * windowHeaderRef.current.offsetHeight,
+        y: centerPosition.y + id * windowHeaderRef.current.offsetHeight,
       };
 
       // Set the window position

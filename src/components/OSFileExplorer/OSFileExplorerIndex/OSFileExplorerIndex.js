@@ -28,7 +28,7 @@ const RenderTree = ({ node, level = 0, route }) => {
             alt="X"
             style={{ marginRight: '5px' }}
           />
-          <p>{node.name}</p>
+          <p className={styles.indexTitle}>{node.name}</p>
         </div>
         <ul>
           {node.content.map((item, index) => (
@@ -54,7 +54,7 @@ const RenderTree = ({ node, level = 0, route }) => {
             alt="X"
             style={{ marginRight: '5px' }}
           />
-          <p>{node.name}</p>
+          <p className={styles.indexTitle}>{node.name}</p>
         </div>
       </div>
     );
@@ -69,7 +69,7 @@ const RenderTree = ({ node, level = 0, route }) => {
             alt="X"
             style={{ marginRight: '5px' }}
           />
-          <p>{node.name}</p>
+          <p className={styles.indexTitle}>{node.name}</p>
         </div>
       </div>
     );

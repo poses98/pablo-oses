@@ -11,6 +11,13 @@
     margin: 5px 0;
 }
 
+.indexTitle{
+    white-space: nowrap;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .indexItem:hover, .sameRoute{
     background-color: rgba(81, 186, 255, 0.2);
     cursor: pointer;
