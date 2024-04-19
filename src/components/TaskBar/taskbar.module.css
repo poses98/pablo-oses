@@ -30,6 +30,11 @@
     flex-direction: row;
 }
 
+.selectedItem{
+    background-color: rgba(81, 186, 255, 0.4);
+
+}
+
 .tabItem{
     cursor: pointer;
     width: fit-content;

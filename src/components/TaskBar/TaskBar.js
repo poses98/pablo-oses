@@ -8,7 +8,7 @@ import Image from 'next/image';
 const robotoMono = Roboto_Mono({ subsets: ['latin'] });
 
 export default function TaskBar() {
-  const { windows, setActiveWindowId } = useWindowsContext();
+  const { windows, setActiveWindowId, activeWindowId } = useWindowsContext();
   const [hourSet, setHourSet] = useState(false);
   const [hour, setHour] = useState(0);
   const [minutes, setMinutes] = useState(0);
@@ -35,7 +35,9 @@ export default function TaskBar() {
         {windows.map((window, index) => {
           return (
             <div
-              className={styles.tabItem}
+              className={`${styles.tabItem} ${
+                window.id === activeWindowId ? styles.selectedItem : ''
+              }`}
               key={index}
               onClick={() => setActiveWindowId(window.id)}
             >
@@ -45,7 +47,7 @@ export default function TaskBar() {
                 height={30}
                 alt={'tabIcon'}
               />
-              <p className={styles.tabItemText}>{window.name}</p>
+              <p className={`${styles.tabItemText}`}>{window.name}</p>
             </div>
           );
         })}
