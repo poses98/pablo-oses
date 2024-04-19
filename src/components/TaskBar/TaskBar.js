@@ -4,6 +4,7 @@ import { Roboto_Mono } from 'next/font/google';
 import { useWindowsContext } from '@/providers/WindowsProvider';
 import { iconProvider } from '@/utils/iconProvider';
 import Image from 'next/image';
+import ContextualMenu from './ContextualMenu/ContextualMenu';
 
 const robotoMono = Roboto_Mono({ subsets: ['latin'] });
 
@@ -27,38 +28,40 @@ export default function TaskBar() {
   }, []);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.homeButton}>
-        <p>P</p>
+    <>
+      <div className={styles.container}>
+        <div className={styles.homeButton}>
+          <p>P</p>
+        </div>
+        <div className={styles.tabBar}>
+          {windows.map((window, index) => {
+            return (
+              <div
+                className={`${styles.tabItem} ${
+                  window.id === activeWindowId ? styles.selectedItem : ''
+                }`}
+                key={index}
+                onClick={() => setActiveWindowId(window.id)}
+              >
+                <Image
+                  src={iconProvider(window.type)}
+                  width={30}
+                  height={30}
+                  alt={'tabIcon'}
+                />
+                <p className={`${styles.tabItemText}`}>{window.name}</p>
+              </div>
+            );
+          })}
+        </div>
+        <div className={styles.taskBarIcons}>
+          {hourSet && (
+            <p
+              className={robotoMono.className}
+            >{`${hour}:${minutes}:${seconds}`}</p>
+          )}
+        </div>
       </div>
-      <div className={styles.tabBar}>
-        {windows.map((window, index) => {
-          return (
-            <div
-              className={`${styles.tabItem} ${
-                window.id === activeWindowId ? styles.selectedItem : ''
-              }`}
-              key={index}
-              onClick={() => setActiveWindowId(window.id)}
-            >
-              <Image
-                src={iconProvider(window.type)}
-                width={30}
-                height={30}
-                alt={'tabIcon'}
-              />
-              <p className={`${styles.tabItemText}`}>{window.name}</p>
-            </div>
-          );
-        })}
-      </div>
-      <div className={styles.taskBarIcons}>
-        {hourSet && (
-          <p
-            className={robotoMono.className}
-          >{`${hour}:${minutes}:${seconds}`}</p>
-        )}
-      </div>
-    </div>
+    </>
   );
 }
