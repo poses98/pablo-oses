@@ -65,6 +65,7 @@ export function useWindows() {
     windows,
     activeWindowId,
     spawnWindow,
+    setActiveWindowId,
     handleWindowClose,
     handleWindowContentChange,
     handleWindowFocus,

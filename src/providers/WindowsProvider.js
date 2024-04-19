@@ -11,6 +11,7 @@ export function WindowsProvider({ children }) {
     handleWindowContentChange,
     handleWindowFocus,
     handleWindowClose,
+    setActiveWindowId,
   } = useWindows();
   return (
     <WindowsContext.Provider
@@ -21,6 +22,7 @@ export function WindowsProvider({ children }) {
         handleWindowContentChange,
         handleWindowFocus,
         handleWindowClose,
+        setActiveWindowId,
       }}
     >
       {children}

@@ -23,11 +23,32 @@
     width: 40px;
 }
 
+.tabBar{
+    width: 100%;
+    margin: 0 15px;
+    display: flex;
+    flex-direction: row;
+}
+
+.tabItem{
+    cursor: pointer;
+    width: fit-content;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 0.7em;
+    color: #fafafa;
+}
+
+.tabItemText{
+    margin-left: 5px;
+}
+
+.tabItem:hover{
+    background-color: rgba(81, 186, 255, 0.2);
+}
 .homeButton:hover{
     background-color: rgba(255, 255, 255, 0.2);
     cursor: pointer;
-}
-
-.taskBarIcons{
-
 }
