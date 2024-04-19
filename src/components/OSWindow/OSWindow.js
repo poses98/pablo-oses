@@ -13,7 +13,7 @@ export default function OSWindow({
   id,
   handleClose,
 }) {
-  const { handleWindowFocus, activeWindowId } = useWindowsContext();
+  const { handleWindowFocus, activeWindowId, windows } = useWindowsContext();
   const [windowContentHeight, setWindowContentHeight] = useState(0);
   const windowRef = useRef();
   const windowHeaderRef = useRef();
@@ -22,8 +22,37 @@ export default function OSWindow({
     if (windowRef.current && windowHeaderRef.current) {
       const availableContentHeight =
         windowRef.current.offsetHeight - windowHeaderRef.current.offsetHeight;
-
       setWindowContentHeight(availableContentHeight);
+
+      // Get the viewport width and height
+      const vw = Math.max(
+        document.documentElement.clientWidth || 0,
+        window.innerWidth || 0
+      );
+      const vh = Math.max(
+        document.documentElement.clientHeight || 0,
+        window.innerHeight || 0
+      );
+
+      // Calculate the center position
+      const centerPosition = {
+        x: vw / 2.5 - windowRef.current.offsetWidth / 2,
+        y: vh / 2.5 - windowRef.current.offsetHeight / 2,
+      };
+
+      // Derivate linear to +x -y depending on windows.length
+      const newPosition = {
+        x:
+          centerPosition.x +
+          windows.length * windowHeaderRef.current.offsetHeight,
+        y:
+          centerPosition.y +
+          windows.length * windowHeaderRef.current.offsetHeight,
+      };
+
+      // Set the window position
+      windowRef.current.style.left = `${newPosition.x}px`;
+      windowRef.current.style.top = `${newPosition.y}px`;
     }
     return () => {};
   }, [windowRef]);
