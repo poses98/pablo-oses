@@ -4,6 +4,7 @@ export function useWindows() {
   const [windows, setWindows] = useState([]);
   const [activeWindowId, setActiveWindowId] = useState(0);
   const [nextId, setNextId] = useState(0);
+  const [openedBrowser, setOpenedBrowser] = useState(null);
 
   const spawnWindow = useCallback(
     (node) => {
@@ -20,6 +21,9 @@ export function useWindows() {
         ]);
         setActiveWindowId(nextId);
         setNextId(nextId + 1);
+        if (windowContent.type === 'browser') {
+          setOpenedBrowser({ id: nextId, ...windowContent });
+        }
       } else {
         alert('Max window number');
       }

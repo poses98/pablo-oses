@@ -24,7 +24,6 @@ export default function OSWindow({
         windowRef.current.offsetHeight - windowHeaderRef.current.offsetHeight;
       setWindowContentHeight(availableContentHeight);
 
-      // Get the viewport width and height
       const vw = Math.max(
         document.documentElement.clientWidth || 0,
         window.innerWidth || 0
@@ -34,13 +33,11 @@ export default function OSWindow({
         window.innerHeight || 0
       );
 
-      // Calculate the center position
       const centerPosition = {
         x: vw / 2.5 - windowRef.current.offsetWidth / 2,
         y: vh / 2.5 - windowRef.current.offsetHeight / 2,
       };
 
-      // Derivate linear to +x -y depending on windows.length
       const newPosition = {
         x: centerPosition.x + id * windowHeaderRef.current.offsetHeight,
         y: centerPosition.y + id * windowHeaderRef.current.offsetHeight,
