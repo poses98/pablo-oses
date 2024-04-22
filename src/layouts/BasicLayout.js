@@ -23,11 +23,12 @@ export default function BasicLayout({ children }) {
       <Head>
         <meta
           name="description"
-          content="Transformamos su hogar en un ecosistema inteligente que se adapta a su estilo de vida y mejora su comodidad y seguridad."
+          content="Explore Pablo Osés' software projects showcased in a unique OS Desktop styled web portfolio."
         />
-        <meta name="author" content={name} />
+
+        <meta name="author" content={'Pablo Osés - Portfolio'} />
         <meta property="og:image" content={'/img/og_image.jpg'} />
-        <meta name="og:title" content={siteTitle} />
+        <meta name="og:title" content={'Portfolio Pablo Osés'} />
         <meta name="twitter:card" content="summary_large_image" />
         <link
           rel="apple-touch-icon"
