@@ -4,7 +4,6 @@
     width: 100%;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
     padding: 7px 10px;
     min-height:15px ;
     font-size: 0.8em;
@@ -38,5 +37,11 @@
 .windowButton:hover { 
     background-color: #b00020;
 
+}
+
+.browserTabBar{
+    display: flex;
+    flex-direction: row;
+    background-color: #292929;
 }
 

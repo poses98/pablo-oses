@@ -21,15 +21,14 @@ export function useWindows() {
           type: 'browser',
           content: [{ id: 0, ...windowContent }],
         };
-        if (!openedBrowser) {
+        if (openedBrowser === null) {
           setOpenedBrowser(nextId);
-          console.log('olee');
           setWindows((prevWindows) => [...prevWindows, browserItem]);
           setActiveWindowId(nextId);
           setNextId(nextId + 1);
+          console.log(openedBrowser);
         } else {
           const tabId = Math.floor(Math.random() * 1000);
-
           setWindows((prevWindow) =>
             prevWindow.map((win) => {
               if (win.id === openedBrowser) {
@@ -41,7 +40,6 @@ export function useWindows() {
               return win;
             })
           );
-          console.log(windows);
         }
       } else if (windows.length < 8) {
         setWindows((prevWindows) => [
