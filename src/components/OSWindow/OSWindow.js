@@ -4,6 +4,7 @@ import styles from './oswindow.module.css';
 import OSFileExplorer from '../OSFileExplorer/OSFileExplorer';
 import OSNotepad from '../OSNotepad/OSNotepad';
 import { useWindowsContext } from '@/providers/WindowsProvider';
+import OSBrowser from '../OSBrowser/OSBrowser';
 
 export default function OSWindow({
   name,
@@ -71,6 +72,7 @@ export default function OSWindow({
           <OSFileExplorer route={route} content={content} />
         )}
         {type === 'text' && <OSNotepad content={content} />}
+        {type === 'browser' && <OSBrowser />}
       </div>
     </div>
   );

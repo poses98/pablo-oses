@@ -16,6 +16,9 @@ export const iconProvider = (type) => {
     case 'pdf':
       icon = '/img/icons/pdf.svg';
       break;
+    case 'browser':
+      icon = '/img/icons/firefox.svg';
+      break;
     default:
       icon = '/img/icons/close.svg';
       break;
