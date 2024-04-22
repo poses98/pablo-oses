@@ -46,9 +46,11 @@ export default function OSWindow({
         y: centerPosition.y + id * windowHeaderRef.current.offsetHeight,
       };
 
-      // Set the window position
-      windowRef.current.style.left = `${newPosition.x}px`;
       windowRef.current.style.top = `${newPosition.y}px`;
+      if (vw > 600) {
+        // Set the window position
+        windowRef.current.style.left = `${newPosition.x}px`;
+      }
     }
     return () => {};
   }, [windowRef]);
