@@ -1,6 +1,6 @@
 .container {
     height: 100% ;
-    overflow: scroll;
+    overflow: hidden;
     background-color: #292929;
 
     align-items: center;
@@ -59,4 +59,9 @@
 
 .closeTabIcon:hover{
     color: #9c9c9c;
+}
+
+.browserContent{
+    overflow: scroll;
+    width: 100%;
 }

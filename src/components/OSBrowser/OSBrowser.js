@@ -1,17 +1,29 @@
+import { useEffect, useState } from 'react';
 import { useWindowsContext } from '@/providers/WindowsProvider';
-import styles from './osbrowser.module.css';
-import { useEffect } from 'react';
-import { IoMdClose } from 'react-icons/io';
 import Image from 'next/image';
+import OSPdfRenderer from '../OSPdfRenderer/OSPdfRenderer';
+import OSProjectRenderer from '../OSProjectRenderer/OSProjectRenderer';
+import { IoMdClose } from 'react-icons/io';
 import { iconProvider } from '@/utils/iconProvider';
+import styles from './osbrowser.module.css';
 
 export default function OSBrowser() {
   const { openedBrowser, windows, handleBrowserActiveTabChange } =
     useWindowsContext();
 
+  const [activeTab, setActiveTab] = useState({});
+
   useEffect(() => {
-    console.log(windows.find((w) => w.id === openedBrowser));
+    const activeBrowser = windows.find((w) => w.id === openedBrowser);
+    const activeTab = activeBrowser.content.filter(
+      (tab) => tab.id === activeBrowser.activeTabId
+    );
+    setActiveTab(activeTab[0]);
   }, [windows, openedBrowser]);
+
+  useEffect(() => {
+    console.log(activeTab);
+  }, [activeTab]);
 
   return (
     <div className={styles.container}>
@@ -44,6 +56,14 @@ export default function OSBrowser() {
               </div>
             );
           })}
+      </div>
+      <div className={styles.browserContent}>
+        {activeTab.type === 'pdf' && (
+          <OSPdfRenderer route={activeTab.content} />
+        )}
+        {activeTab.type === 'project' && (
+          <OSProjectRenderer route={activeTab.content} />
+        )}
       </div>
     </div>
   );

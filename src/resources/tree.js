@@ -76,7 +76,7 @@ export const tree = [
   {
     name: 'Curriculum Vitae',
     type: 'pdf',
-    content: '**Lorem** ipsum dolor sit amet.',
+    content: '/pdf/curriculumvitae.pdf',
     route: 'curriculum-vitae',
   },
   {
