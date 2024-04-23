@@ -41,6 +41,7 @@ export function useWindows() {
               return win;
             })
           );
+          setActiveWindowId(openedBrowser);
         }
       } else if (windows.length < 8) {
         setWindows((prevWindows) => [
