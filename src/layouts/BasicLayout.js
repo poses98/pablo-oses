@@ -20,6 +20,9 @@ export default function BasicLayout({ children }) {
 
   return (
     <>
+      <Head>
+        <title>Pablo Osés - Portfolio</title>
+      </Head>
       <main
         className={`${styles.container} ${inter.className}`}
         style={{ height: innerHeight }}

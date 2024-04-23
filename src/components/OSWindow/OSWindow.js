@@ -51,7 +51,7 @@ export default function OSWindow({
       }
     }
     return () => {};
-  }, [windowRef]);
+  }, [windowRef, id]);
 
   return (
     <div

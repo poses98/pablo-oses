@@ -91,7 +91,6 @@ export default function Document() {
             __html: `history.scrollRestoration = "manual"`,
           }}
         />
-        <title>Pablo Osés</title>
       </Head>
       <body>
         <Main />
