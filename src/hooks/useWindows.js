@@ -1,10 +1,9 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 
 export function useWindows() {
   const [windows, setWindows] = useState([]);
   const [activeWindowId, setActiveWindowId] = useState(0);
   const [nextId, setNextId] = useState(0);
-
   const [openedBrowser, setOpenedBrowser] = useState(null);
 
   const spawnWindow = useCallback(
@@ -19,14 +18,15 @@ export function useWindows() {
         const browserItem = {
           id: nextId,
           type: 'browser',
+          name: 'Browser',
           content: [{ id: 0, ...windowContent }],
+          activeTabId: 0,
         };
         if (openedBrowser === null) {
           setOpenedBrowser(nextId);
           setWindows((prevWindows) => [...prevWindows, browserItem]);
           setActiveWindowId(nextId);
           setNextId(nextId + 1);
-          console.log(openedBrowser);
         } else {
           const tabId = Math.floor(Math.random() * 1000);
           setWindows((prevWindow) =>
@@ -35,6 +35,7 @@ export function useWindows() {
                 return {
                   ...win,
                   content: [...win.content, { id: tabId, ...windowContent }],
+                  activeTabId: tabId,
                 };
               }
               return win;
@@ -86,6 +87,23 @@ export function useWindows() {
     [activeWindowId, setWindows]
   );
 
+  const handleBrowserActiveTabChange = useCallback(
+    (id) => {
+      setWindows((prevWindows) =>
+        prevWindows.map((window) => {
+          if (window.id === openedBrowser) {
+            return {
+              ...window,
+              activeTabId: id,
+            };
+          }
+          return window;
+        })
+      );
+    },
+    [setWindows, openedBrowser]
+  );
+
   const handleWindowFocus = useCallback(
     (id) => {
       setActiveWindowId(id);
@@ -102,5 +120,6 @@ export function useWindows() {
     handleWindowClose,
     handleWindowContentChange,
     handleWindowFocus,
+    handleBrowserActiveTabChange,
   };
 }

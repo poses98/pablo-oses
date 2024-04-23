@@ -13,6 +13,7 @@ export function WindowsProvider({ children }) {
     handleWindowClose,
     setActiveWindowId,
     openedBrowser,
+    handleBrowserActiveTabChange,
   } = useWindows();
   return (
     <WindowsContext.Provider
@@ -25,6 +26,7 @@ export function WindowsProvider({ children }) {
         handleWindowClose,
         setActiveWindowId,
         openedBrowser,
+        handleBrowserActiveTabChange,
       }}
     >
       {children}

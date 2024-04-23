@@ -39,9 +39,5 @@
 
 }
 
-.browserTabBar{
-    display: flex;
-    flex-direction: row;
-    background-color: #292929;
-}
+
 
