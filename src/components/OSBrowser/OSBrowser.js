@@ -1,11 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useWindowsContext } from '@/providers/WindowsProvider';
 import Image from 'next/image';
-import OSPdfRenderer from '../OSPdfRenderer/OSPdfRenderer';
 import OSProjectRenderer from '../OSProjectRenderer/OSProjectRenderer';
 import { IoMdClose } from 'react-icons/io';
 import { iconProvider } from '@/utils/iconProvider';
 import styles from './osbrowser.module.css';
+
+import dynamic from 'next/dynamic';
+
+const OSPdfRenderer = dynamic(() => import('../OSPdfRenderer/OSPdfRenderer'), {
+  ssr: false,
+});
 
 export default function OSBrowser() {
   const { openedBrowser, windows, handleBrowserActiveTabChange } =
