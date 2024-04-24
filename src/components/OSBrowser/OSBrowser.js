@@ -7,6 +7,7 @@ import { iconProvider } from '@/utils/iconProvider';
 import styles from './osbrowser.module.css';
 
 import dynamic from 'next/dynamic';
+import PDFToolbar from '../PDFToolbar/PDFToolbar';
 
 const OSPdfRenderer = dynamic(() => import('../OSPdfRenderer/OSPdfRenderer'), {
   ssr: false,
@@ -62,9 +63,12 @@ export default function OSBrowser() {
             );
           })}
       </div>
+      {activeTab.type === 'pdf' && <PDFToolbar />}
       <div className={styles.browserContent}>
         {activeTab.type === 'pdf' && (
-          <OSPdfRenderer route={activeTab.content} />
+          <>
+            <OSPdfRenderer route={activeTab.content} />
+          </>
         )}
         {activeTab.type === 'project' && (
           <OSProjectRenderer route={activeTab.content} />
