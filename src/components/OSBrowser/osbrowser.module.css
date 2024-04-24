@@ -28,9 +28,15 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    max-width: 20%;
+    min-width: min-content;
     width: 15%;
     cursor: pointer;
+}
+
+.browserTabInfo{
+    display: flex;
+    flex-direction: row;
+
 }
 
 .browserTab:hover{
@@ -38,7 +44,8 @@
 
 }
 
-.browserTab p {
+.browserTabInfo p {
+    margin-left: 2px;
     overflow:hidden; 
     white-space:nowrap; 
     text-overflow: ellipsis;
@@ -52,9 +59,7 @@
     z-index: 5;
 }
 
-.closeTabIcon{
 
-}
 
 .closeTabIcon:hover{
     color: #9c9c9c;
