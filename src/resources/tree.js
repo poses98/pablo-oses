@@ -19,7 +19,7 @@ export const tree = [
         date: 'February 2023',
         icon: '/img/icons/paulino.png',
         type: 'project',
-        content: '',
+        content: '/projects/elpollopaulino.md',
         techStack: ['MongoDB', 'Express', 'React', 'Node'],
         deployment: ['Heroku', 'Netlify'],
         url: 'https://www.elpollopaulino.com',

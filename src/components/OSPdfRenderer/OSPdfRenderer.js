@@ -2,7 +2,7 @@ import styles from './ospdfrenderer.module.css';
 
 export default function OSPdfRenderer({ route }) {
   return (
-    <embed
+    <iframe
       style={{
         width: '100%',
         height: '100%',
