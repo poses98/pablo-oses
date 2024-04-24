@@ -1,16 +1,19 @@
 import OSIcon from '../OSIcon/OSIcon';
 import styles from './osdesktop.module.css';
+import { useWindowsContext } from '@/providers/WindowsProvider';
+import { tree } from '@/resources/tree';
 
-export default function OSDesktop({ icons, onIconClick }) {
+export default function OSDesktop({ icons }) {
+  const { spawnWindow } = useWindowsContext();
   return (
     <div className={styles.container}>
-      {icons.map((element, index) => {
+      {tree.map((element, index) => {
         return (
           <OSIcon
             key={index}
             name={element.name}
             type={element.type}
-            onClick={() => onIconClick(element)}
+            onClick={() => spawnWindow(element)}
           />
         );
       })}
