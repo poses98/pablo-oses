@@ -63,7 +63,7 @@ export default function OSBrowser({ windowContentHeight }) {
       </div>
       <div
         className={styles.browserContent}
-        style={{ height: `${windowContentHeight}px` }}
+        style={{ height: `${windowContentHeight - 40}px` }}
       >
         {activeTab.type === 'pdf' && (
           <>
