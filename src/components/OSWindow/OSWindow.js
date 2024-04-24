@@ -21,10 +21,6 @@ export default function OSWindow({
 
   useEffect(() => {
     if (windowRef.current && windowHeaderRef.current) {
-      const availableContentHeight =
-        windowRef.current.offsetHeight - windowHeaderRef.current.offsetHeight;
-      setWindowContentHeight(availableContentHeight);
-
       const vw = Math.max(
         document.documentElement.clientWidth || 0,
         window.innerWidth || 0
@@ -43,15 +39,25 @@ export default function OSWindow({
         x: centerPosition.x + id * windowHeaderRef.current.offsetHeight,
         y: centerPosition.y + id * windowHeaderRef.current.offsetHeight,
       };
-
-      windowRef.current.style.top = `${newPosition.y}px`;
-      if (vw > 600) {
-        // Set the window position
-        windowRef.current.style.left = `${newPosition.x}px`;
+      if (type !== 'browser') {
+        windowRef.current.style.top = `${newPosition.y}px`;
+        if (vw > 600) {
+          // Set the window position
+          windowRef.current.style.left = `${newPosition.x}px`;
+        }
+      } else if (type === 'browser') {
+        windowRef.current.style.height = `${vh - 40}px`;
+        windowRef.current.style.width = `${vw}px`;
+        windowRef.current.style.top = 0;
+        windowRef.current.style.left = 0;
       }
+
+      const availableContentHeight =
+        windowRef.current.offsetHeight - windowHeaderRef.current.offsetHeight;
+      setWindowContentHeight(availableContentHeight);
     }
     return () => {};
-  }, [windowRef, id]);
+  }, [windowRef, id, type]);
 
   return (
     <div

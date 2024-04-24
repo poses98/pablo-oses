@@ -1,13 +1,13 @@
 .container{
     width: 60%;
-    min-height: 400px;
     position: absolute;
     max-height: 100vh;
     top:15%;
     left: 20%;
     z-index: 8;
-    background-color: #292929f1;
+    background-color: #292929;
 }
+
 
 .activeWindow{
     border: 1.3px dashed #fafafa;
@@ -23,12 +23,10 @@
 
 @media only screen and (max-width: 600px) {
  .container{
-    width: 95%;
-    margin-left: 2.5%;
+    width: 100%;
     left: inherit;
     top: inherit;
     position: fixed;
-    bottom: 10vh;
-    max-height: 50vh;
+    
  }   
 }
