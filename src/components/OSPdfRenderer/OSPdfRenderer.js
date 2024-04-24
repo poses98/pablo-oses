@@ -5,7 +5,7 @@ import { pdfjs } from 'react-pdf';
 import 'react-pdf/dist/Page/TextLayer.css';
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  '/pdf.worker.min.js',
+  '../../../public/pdf.worker.min.js',
   import.meta.url
 ).toString();
 
