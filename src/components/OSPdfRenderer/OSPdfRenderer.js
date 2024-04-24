@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 import { pdfjs } from 'react-pdf';
 import 'react-pdf/dist/Page/TextLayer.css';
 
-pdfjs.GlobalWorkerOptions.workerSrc = '/js/pdf.worker.min.js';
+pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.js';
 
 const Document = dynamic(
   () => import('react-pdf').then((module) => module.Document),
