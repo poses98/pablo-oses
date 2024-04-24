@@ -1,10 +1,8 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { pdfjs } from 'react-pdf';
 import 'react-pdf/dist/Page/TextLayer.css';
-
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
 const Document = dynamic(
   () => import('react-pdf').then((module) => module.Document),
@@ -17,6 +15,10 @@ const Page = dynamic(() => import('react-pdf').then((module) => module.Page), {
 export default function OSPdfRenderer({ route }) {
   const [numPages, setNumPages] = useState();
   const [pageNumber, setPageNumber] = useState(1);
+
+  useEffect(() => {
+    pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
+  });
 
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);

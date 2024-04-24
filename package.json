@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postinstall": "bun ./postinstall.js",
+    "post-build":"node ./postinstall.js",
     "start": "next start",
     "lint": "next lint"
   },
