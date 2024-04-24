@@ -1,7 +1,9 @@
 import OSIcon from '../../OSIcon/OSIcon';
 import styles from './osfileexplorercontent.module.css';
+import { useWindowsContext } from '@/providers/WindowsProvider';
 
 export default function OSFileExplorerContent({ content }) {
+  const { spawnWindow } = useWindowsContext();
   return (
     <div className={styles.container}>
       {content.map((e, index) => {
@@ -12,7 +14,7 @@ export default function OSFileExplorerContent({ content }) {
               icon={e.icon}
               name={e.name}
               onClick={() => {
-                console.log(`clicked ${e.name}`);
+                spawnWindow(e);
               }}
             />
           </div>

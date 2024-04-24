@@ -14,7 +14,7 @@ export default function OSWindow({
   id,
   handleClose,
 }) {
-  const { handleWindowFocus, activeWindowId, windows } = useWindowsContext();
+  const { handleWindowFocus, activeWindowId } = useWindowsContext();
   const [windowContentHeight, setWindowContentHeight] = useState(0);
   const windowRef = useRef();
   const windowHeaderRef = useRef();
