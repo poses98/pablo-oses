@@ -1,8 +1,8 @@
 export const tree = [
   {
-    name: 'Client Projects',
+    name: 'Web Applications',
     type: 'folder',
-    route: 'client-projects',
+    route: 'web-applications',
     content: [
       {
         name: 'Wedding RSVP',
@@ -44,13 +44,6 @@ export const tree = [
         deployment: ['Shopify'],
         url: 'https://www.tropycalcbd.com',
       },
-    ],
-  },
-  {
-    name: 'Personal Projects',
-    type: 'folder',
-    route: 'personal-projects',
-    content: [
       {
         name: 'RouteForecast',
         date: 'August 2023',
@@ -73,6 +66,7 @@ export const tree = [
       },
     ],
   },
+
   {
     name: 'Curriculum Vitae',
     type: 'pdf',
