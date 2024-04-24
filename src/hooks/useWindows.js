@@ -13,6 +13,7 @@ export function useWindows() {
         type: node.type,
         route: node.route,
         content: node.content,
+        icon: node.icon,
       };
       if (node.type === 'pdf' || node.type === 'project') {
         const browserItem = {
