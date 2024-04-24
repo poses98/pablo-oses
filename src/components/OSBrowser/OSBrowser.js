@@ -48,13 +48,15 @@ export default function OSBrowser({ windowContentHeight }) {
                 }`}
                 onClick={() => handleBrowserActiveTabChange(tab.id)}
               >
-                <Image
-                  src={iconProvider(tab.type)}
-                  width={17}
-                  height={17}
-                  alt={tab.type}
-                />
-                <p>{tab.name}</p>
+                <div className={styles.browserTabInfo}>
+                  <Image
+                    src={iconProvider(tab.type)}
+                    width={17}
+                    height={17}
+                    alt={tab.type}
+                  />
+                  <p>{tab.name}</p>
+                </div>
                 <IoMdClose
                   style={{ minWidth: '20px' }}
                   className={styles.closeTabIcon}
