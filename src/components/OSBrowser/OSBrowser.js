@@ -27,10 +27,6 @@ export default function OSBrowser({ windowContentHeight }) {
     setActiveTab(activeTab[0]);
   }, [windows, openedBrowser]);
 
-  useEffect(() => {
-    console.log(activeTab);
-  }, [activeTab]);
-
   return (
     <div className={styles.container}>
       <div className={styles.browserTabBar}>
@@ -50,7 +46,7 @@ export default function OSBrowser({ windowContentHeight }) {
               >
                 <div className={styles.browserTabInfo}>
                   <Image
-                    src={iconProvider(tab.type)}
+                    src={tab.icon || iconProvider(tab.type)}
                     width={17}
                     height={17}
                     alt={tab.type}
