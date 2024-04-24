@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "post-build":"node ./postinstall.js",
+    "build": "next build && node ./postinstall.js",
+    "post-build":"",
     "start": "next start",
     "lint": "next lint"
   },
