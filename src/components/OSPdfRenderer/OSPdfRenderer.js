@@ -4,7 +4,6 @@ import dynamic from 'next/dynamic';
 import styles from './ospdfrenderer.module.css';
 import { pdfjs } from 'react-pdf';
 import 'react-pdf/dist/Page/TextLayer.css';
-import PDFToolbar from '../PDFToolbar/PDFToolbar';
 
 const Document = dynamic(
   () => import('react-pdf').then((module) => module.Document),
@@ -27,19 +26,13 @@ export default function OSPdfRenderer({ route }) {
   }
 
   return (
-    <div>
-      <Document
-        file={route}
-        className={styles.container}
-        onLoadSuccess={onDocumentLoadSuccess}
-      >
-        <Page
-          className={styles.pdfFile}
-          style={{ heigth: '10px' }}
-          pageNumber={1}
-          renderAnnotationLayer={false}
-        />
-      </Document>
-    </div>
+    <embed
+      style={{
+        width: '100%',
+        height: '100%',
+      }}
+      type="application/pdf"
+      src={route}
+    />
   );
 }

@@ -13,7 +13,7 @@ const OSPdfRenderer = dynamic(() => import('../OSPdfRenderer/OSPdfRenderer'), {
   ssr: false,
 });
 
-export default function OSBrowser() {
+export default function OSBrowser({ windowContentHeight }) {
   const { openedBrowser, windows, handleBrowserActiveTabChange } =
     useWindowsContext();
 
@@ -63,8 +63,10 @@ export default function OSBrowser() {
             );
           })}
       </div>
-      {activeTab.type === 'pdf' && <PDFToolbar />}
-      <div className={styles.browserContent}>
+      <div
+        className={styles.browserContent}
+        style={{ height: `${windowContentHeight}px` }}
+      >
         {activeTab.type === 'pdf' && (
           <>
             <OSPdfRenderer route={activeTab.content} />

@@ -78,7 +78,9 @@ export default function OSWindow({
           <OSFileExplorer route={route} content={content} />
         )}
         {type === 'text' && <OSNotepad content={content} />}
-        {type === 'browser' && <OSBrowser />}
+        {type === 'browser' && (
+          <OSBrowser windowContentHeight={windowContentHeight} />
+        )}
       </div>
     </div>
   );

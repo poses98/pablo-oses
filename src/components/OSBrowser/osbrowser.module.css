@@ -2,7 +2,6 @@
     height: 100% ;
     overflow: hidden;
     background-color: #292929;
-
     align-items: center;
     display: flex;
     flex-direction:column
@@ -62,6 +61,5 @@
 }
 
 .browserContent{
-    overflow: scroll;
     width: 100%;
 }

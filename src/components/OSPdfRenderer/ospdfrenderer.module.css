@@ -1,7 +1,21 @@
+.container {
+    width: 100%;
+    background-color: transparent;
 
-
-.pdfFile{
-    width: 70%;
-    margin: auto;
-    z-index: 1;
-}
+  }
+  
+  .pdfFile {
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+  }
+  
+  @media screen and (min-width: 600px) {
+    .pdfFile {
+      width: 100%;
+    }
+  }
+  
