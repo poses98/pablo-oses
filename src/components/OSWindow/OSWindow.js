@@ -126,7 +126,6 @@ export default function OSWindow({
       className={`${styles.container} ${
         activeWindowId === id ? styles.activeWindow : ''
       }`}
-      style={{ display: customWindow.minimize ? 'block' : 'block' }}
       ref={windowRef}
       onClick={() => handleWindowFocus(id)}
     >

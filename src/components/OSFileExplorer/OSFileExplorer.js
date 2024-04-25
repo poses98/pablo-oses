@@ -27,14 +27,17 @@ export default function OSFileExplorer({
           disabled
         />
       </div>
-      <div
-        className={styles.explorerContentContainer}
-        style={{ overflow: animated ? 'hidden' : 'scroll' }}
-      >
-        <div className={styles.explorerIndex}>
+      <div className={styles.explorerContentContainer}>
+        <div
+          className={styles.explorerIndex}
+          style={{ overflow: animated ? 'hidden' : 'scroll' }}
+        >
           <OSFileExplorerIndex route={route} />
         </div>
-        <div className={styles.explorerShowcase}>
+        <div
+          className={styles.explorerShowcase}
+          style={{ overflow: animated ? 'hidden' : 'scroll' }}
+        >
           <OSFileExplorerContent content={content} />
         </div>
       </div>
