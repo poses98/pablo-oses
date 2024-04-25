@@ -35,7 +35,7 @@ export default function BasicLayout({ children }) {
       >
         <div className={styles.backgroundLettering}>
           <h1>Pablo Osés Andía</h1>
-          <h2>Full-Stack developer</h2>
+          <h2>Full-Stack Developer</h2>
         </div>
         {children}
 
