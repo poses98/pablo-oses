@@ -36,7 +36,11 @@ export default function OSWindow({
       let x, y, width, height, opacity;
 
       if (type !== 'browser' && !customWindow.maximize) {
-        width = initialWindow.width || `${windowRef.current.offsetWidth}px`;
+        if (vw <= 600) {
+          width = '100vw';
+        } else {
+          width = initialWindow.width || `${windowRef.current.offsetWidth}px`;
+        }
         height = initialWindow.height || `${windowRef.current.offsetHeight}px`;
         x =
           initialWindow.x ||
