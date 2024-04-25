@@ -33,7 +33,7 @@ export default function OSWindow({
         window.innerHeight || 0
       );
 
-      let x, y, width, height;
+      let x, y, width, height, opacity;
 
       if (type !== 'browser' && !customWindow.maximize) {
         width = initialWindow.width || `${windowRef.current.offsetWidth}px`;
@@ -62,25 +62,23 @@ export default function OSWindow({
       }
 
       if (customWindow.minimize) {
-        // Shrink to the bottom left of the page
         y = `${vh}px`;
         x = '0';
         width = '0px';
         height = '0px';
+        opacity = '0';
       } else if (customWindow.maximize) {
-        // Maximize to full screen
         y = '0';
         x = '0';
         width = `${vw}px`;
         height = `${vh - 40}px`;
       } else if (prevCustomWindow.minimize && !customWindow.minimize) {
-        // Restore from minimized state
         y = initialWindow.y;
         x = initialWindow.x;
         width = initialWindow.width;
         height = initialWindow.height;
+        opacity = '1';
       } else if (prevCustomWindow.maximize && !customWindow.maximize) {
-        // Restore from maximized state
         y = initialWindow.y;
         x = initialWindow.x;
         width = initialWindow.width;
@@ -93,6 +91,7 @@ export default function OSWindow({
         width,
         height,
         transition: 'all 0.2s ease-in-out',
+        opacity,
       });
       customWindow.animated = true;
       setTimeout(() => {
