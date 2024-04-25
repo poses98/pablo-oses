@@ -139,3 +139,15 @@ a {
   justify-content: space-between;
   margin: 10px 0;
 }
+
+@media (max-width: 700px) {
+  .tech-card{
+    width: 80%;
+    margin: 30px 10%;
+
+  }
+
+  .tech-showcase{
+    flex-direction: column;
+  }
+}
