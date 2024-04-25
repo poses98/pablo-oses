@@ -22,6 +22,12 @@ export default function BasicLayout({ children }) {
     <>
       <Head>
         <title>Pablo Osés - Portfolio</title>
+        <meta property="og:image" content={'/og_image.jpg'} />
+        <meta name="og:title" content="Pablo Osés - Portfolio" />
+        <meta
+          name="description"
+          content="Welcome to the my portfolio, I am a dedicated Full Stack Developer with a passion for problem-solving and software development. Explore an interactive OS-desktop-like interface showcasing a collection of diverse development projects, each demonstrating a unique blend of creativity and functionality. Dive in to discover the depth of my coding skills and my commitment to efficient, effective design."
+        />
       </Head>
       <main
         className={`${styles.container} ${inter.className}`}
