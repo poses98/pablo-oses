@@ -11,7 +11,7 @@ export default function ContextualMenu() {
           height={30}
           alt="linkedin icon"
         />
-        <p>Texto</p>
+        <p>Let{`&apos;`}s connect in LinkedIn</p>
       </div>
     </div>
   );

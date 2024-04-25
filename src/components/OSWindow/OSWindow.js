@@ -72,6 +72,7 @@ export default function OSWindow({
         x = '0';
         width = `${vw}px`;
         height = `${vh - 40}px`;
+        opacity = '1';
       } else if (prevCustomWindow.minimize && !customWindow.minimize) {
         y = initialWindow.y;
         x = initialWindow.x;
@@ -83,6 +84,7 @@ export default function OSWindow({
         x = initialWindow.x;
         width = initialWindow.width;
         height = initialWindow.height;
+        opacity = '1';
       }
 
       Object.assign(windowRef.current.style, {
