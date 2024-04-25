@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import WindowTaskbar from './WindowTaskbar/WindowTaskbar';
 import styles from './oswindow.module.css';
 import OSFileExplorer from '../OSFileExplorer/OSFileExplorer';
@@ -16,11 +16,13 @@ export default function OSWindow({
   customWindow,
 }) {
   const { handleWindowFocus, activeWindowId, windows } = useWindowsContext();
+  const [prevCustomWindow, setPrevCustomWindow] = useState(customWindow);
   const [windowContentHeight, setWindowContentHeight] = useState(0);
+  const [initialWindow, setInitialWindow] = useState({ width: 0, height: 0 });
   const windowRef = useRef();
   const windowHeaderRef = useRef();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (windowRef.current && windowHeaderRef.current) {
       const vw = Math.max(
         document.documentElement.clientWidth || 0,
@@ -31,41 +33,99 @@ export default function OSWindow({
         window.innerHeight || 0
       );
 
-      const centerPosition = {
-        x: vw / 2.5 - windowRef.current.offsetWidth / 2,
-        y: vh / 2.5 - windowRef.current.offsetHeight / 2,
-      };
+      let x, y, width, height;
 
-      const newPosition = {
-        x: centerPosition.x + id * windowHeaderRef.current.offsetHeight,
-        y: centerPosition.y + id * windowHeaderRef.current.offsetHeight,
-      };
-      if (type !== 'browser') {
-        windowRef.current.style.top = `${newPosition.y}px`;
-        if (vw > 600) {
-          // Set the window position
-          windowRef.current.style.left = `${newPosition.x}px`;
-        }
-      } else if (type === 'browser') {
-        windowRef.current.style.height = `${vh - 40}px`;
-        windowRef.current.style.width = `${vw}px`;
-        windowRef.current.style.top = 0;
-        windowRef.current.style.left = 0;
+      if (type !== 'browser' && !customWindow.maximize) {
+        width = initialWindow.width || `${windowRef.current.offsetWidth}px`;
+        height = initialWindow.height || `${windowRef.current.offsetHeight}px`;
+        x =
+          initialWindow.x ||
+          `${
+            vw / 2.5 -
+            parseInt(width) / 2 +
+            (id % 6) * windowHeaderRef.current.offsetHeight
+          }px`;
+        y =
+          initialWindow.y ||
+          `${
+            vh / 2.5 -
+            parseInt(height) / 2 +
+            (id % 6) * windowHeaderRef.current.offsetHeight
+          }px`;
+
+        setInitialWindow({ width, height, x, y });
+      } else if (type === 'browser' || customWindow.maximize) {
+        x = '0';
+        y = '0';
+        width = `${vw}px`;
+        height = `${vh - 40}px`;
       }
 
-      const availableContentHeight =
-        windowRef.current.offsetHeight - windowHeaderRef.current.offsetHeight;
-      setWindowContentHeight(availableContentHeight);
+      if (customWindow.minimize) {
+        // Shrink to the bottom left of the page
+        y = `${vh}px`;
+        x = '0';
+        width = '0px';
+        height = '0px';
+      } else if (customWindow.maximize) {
+        // Maximize to full screen
+        y = '0';
+        x = '0';
+        width = `${vw}px`;
+        height = `${vh - 40}px`;
+      } else if (prevCustomWindow.minimize && !customWindow.minimize) {
+        // Restore from minimized state
+        y = initialWindow.y;
+        x = initialWindow.x;
+        width = initialWindow.width;
+        height = initialWindow.height;
+      } else if (prevCustomWindow.maximize && !customWindow.maximize) {
+        // Restore from maximized state
+        y = initialWindow.y;
+        x = initialWindow.x;
+        width = initialWindow.width;
+        height = initialWindow.height;
+      }
+
+      Object.assign(windowRef.current.style, {
+        top: y,
+        left: vw > 600 ? x : undefined,
+        width,
+        height,
+        transition: 'all 0.2s ease-in-out',
+      });
+      customWindow.animated = true;
+      setTimeout(() => {
+        const availableContentHeight =
+          windowRef.current.offsetHeight - windowHeaderRef.current.offsetHeight;
+        setWindowContentHeight(availableContentHeight);
+        customWindow.animated = false;
+      }, 200);
     }
     return () => {};
-  }, [windowRef, id, type]);
+  }, [
+    windowRef,
+    id,
+    type,
+    customWindow,
+    initialWindow.width,
+    initialWindow.height,
+    prevCustomWindow.maximize,
+    initialWindow.x,
+    initialWindow.y,
+    prevCustomWindow.minimize,
+  ]);
+
+  useEffect(() => {
+    setPrevCustomWindow(customWindow);
+  }, [customWindow]);
 
   return (
     <div
       className={`${styles.container} ${
         activeWindowId === id ? styles.activeWindow : ''
       }`}
-      style={{ display: customWindow.minimize ? 'none' : 'block' }}
+      style={{ display: customWindow.minimize ? 'block' : 'block' }}
       ref={windowRef}
       onClick={() => handleWindowFocus(id)}
     >
@@ -79,12 +139,22 @@ export default function OSWindow({
       </div>
       <div
         className={styles.windowContent}
-        style={{ height: windowContentHeight }}
+        style={{ height: `${windowContentHeight}px` }}
       >
         {type === 'folder' && (
-          <OSFileExplorer route={route} content={content} />
+          <OSFileExplorer
+            route={route}
+            content={content}
+            windowContentHeight={windowContentHeight}
+            animated={customWindow.animated}
+          />
         )}
-        {type === 'text' && <OSNotepad content={content} />}
+        {type === 'text' && (
+          <OSNotepad
+            content={content}
+            windowContentHeight={windowContentHeight}
+          />
+        )}
         {type === 'browser' && (
           <OSBrowser windowContentHeight={windowContentHeight} />
         )}

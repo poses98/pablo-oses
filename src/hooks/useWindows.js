@@ -23,6 +23,7 @@ export function useWindows() {
         route: node.route,
         content: node.content,
         icon: node.icon,
+        maximize: false,
       };
       if (node.type === 'pdf' || node.type === 'project') {
         const browserItem = {
@@ -31,6 +32,7 @@ export function useWindows() {
           name: 'Browser',
           content: [{ id: 0, ...windowContent }],
           activeTabId: 0,
+          maximize: true,
         };
         if (openedBrowser === null) {
           setOpenedBrowser(nextId);
@@ -53,18 +55,16 @@ export function useWindows() {
           );
           setActiveWindowId(openedBrowser);
         }
-      } else if (windows.length < 8) {
+      } else {
         setWindows((prevWindows) => [
           ...prevWindows,
           { id: nextId, ...windowContent },
         ]);
         setActiveWindowId(nextId);
         setNextId(nextId + 1);
-      } else {
-        alert('Max window number');
       }
     },
-    [windows, nextId]
+    [nextId, openedBrowser]
   );
 
   const handleWindowClose = useCallback((id) => {
@@ -115,8 +115,7 @@ export function useWindows() {
         if (window.id === id) {
           return {
             ...window,
-            minimize: false,
-            maximize: true,
+            maximize: !window.maximize,
           };
         }
         return window;
