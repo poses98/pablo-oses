@@ -81,6 +81,49 @@ export function useWindows() {
     });
   }, []);
 
+  const handleTabClose = useCallback(
+    (id) => {
+      setWindows((prevWindow) =>
+        prevWindow.map((win) => {
+          if (win.id === openedBrowser) {
+            const newContent = win.content.filter(
+              (contentItem) => contentItem.id !== id
+            );
+            let newActiveTabId = win.activeTabId;
+            // If the closed tab was the active one, change activeTabId
+            if (win.activeTabId === id) {
+              // Find the index of the closed tab
+              const closedTabIndex = win.content.findIndex(
+                (contentItem) => contentItem.id === id
+              );
+
+              console.log(win.content[closedTabIndex - 1].id);
+              // If it's not the first tab, set activeTabId to the previous one
+              if (closedTabIndex > 0) {
+                handleBrowserActiveTabChange(
+                  win.content[closedTabIndex - 1].id
+                );
+              }
+              // If it's the first tab and there are more tabs, set activeTabId to the next one
+              else if (win.content.length > 1) {
+                handleBrowserActiveTabChange(
+                  win.content[closedTabIndex + 1].id
+                );
+              }
+            }
+
+            return {
+              ...win,
+              content: newContent,
+            };
+          }
+          return win;
+        })
+      );
+    },
+    [openedBrowser]
+  );
+
   const handleWindowMinimize = useCallback((id) => {
     setWindows((prevWindows) => {
       console.log('Previous windows:', prevWindows);
@@ -191,5 +234,6 @@ export function useWindows() {
     handleWindowMaximize,
     handleWindowDeMinimize,
     handleBrowserFocus,
+    handleTabClose,
   };
 }

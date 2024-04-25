@@ -14,8 +14,12 @@ const OSPdfRenderer = dynamic(() => import('../OSPdfRenderer/OSPdfRenderer'), {
 });
 
 export default function OSBrowser({ windowContentHeight }) {
-  const { openedBrowser, windows, handleBrowserActiveTabChange } =
-    useWindowsContext();
+  const {
+    openedBrowser,
+    windows,
+    handleBrowserActiveTabChange,
+    handleTabClose,
+  } = useWindowsContext();
 
   const [activeTab, setActiveTab] = useState({});
 
@@ -30,47 +34,51 @@ export default function OSBrowser({ windowContentHeight }) {
   return (
     <div className={styles.container}>
       <div className={styles.browserTabBar}>
-        {windows
-          .find((w) => w.id === openedBrowser)
-          .content.map((tab) => {
-            return (
-              <div
-                key={tab.id}
-                className={`${styles.browserTab} ${
-                  windows.find((w) => w.id === openedBrowser).activeTabId ===
-                  tab.id
-                    ? styles.activeTab
-                    : ''
-                }`}
-                onClick={() => handleBrowserActiveTabChange(tab.id)}
-              >
-                <div className={styles.browserTabInfo}>
-                  <Image
-                    src={tab.icon || iconProvider(tab.type)}
-                    width={17}
-                    height={17}
-                    alt={tab.type}
+        {windows !== undefined &&
+          windows
+            ?.find((w) => w.id === openedBrowser)
+            .content.map((tab) => {
+              return (
+                <div
+                  key={tab.id}
+                  className={`${styles.browserTab} ${
+                    windows.find((w) => w.id === openedBrowser).activeTabId ===
+                    tab.id
+                      ? styles.activeTab
+                      : ''
+                  }`}
+                  onClick={() => handleBrowserActiveTabChange(tab.id)}
+                >
+                  <div className={styles.browserTabInfo}>
+                    <Image
+                      src={tab.icon || iconProvider(tab.type)}
+                      width={17}
+                      height={17}
+                      alt={tab.type}
+                    />
+                    <p>{tab.name}</p>
+                  </div>
+                  <IoMdClose
+                    style={{ minWidth: '20px' }}
+                    className={styles.closeTabIcon}
+                    onClick={() => {
+                      handleTabClose(tab.id);
+                    }}
                   />
-                  <p>{tab.name}</p>
                 </div>
-                <IoMdClose
-                  style={{ minWidth: '20px' }}
-                  className={styles.closeTabIcon}
-                />
-              </div>
-            );
-          })}
+              );
+            })}
       </div>
       <div
         className={styles.browserContent}
         style={{ height: `${windowContentHeight - 40}px` }}
       >
-        {activeTab.type === 'pdf' && (
+        {activeTab?.type === 'pdf' && (
           <>
             <OSPdfRenderer route={activeTab.content} />
           </>
         )}
-        {activeTab.type === 'project' && (
+        {activeTab?.type === 'project' && (
           <OSProjectRenderer route={activeTab.content} />
         )}
       </div>
