@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import styles from './osmarkdown.module.css';
+import rehypeRaw from 'rehype-raw';
 
 export default function OSMarkdown({ content, route }) {
   const [contentText, setContentText] = useState(content);
@@ -25,7 +26,7 @@ export default function OSMarkdown({ content, route }) {
 
   return (
     <div className={styles.container}>
-      <ReactMarkdown>{contentText}</ReactMarkdown>
+      <ReactMarkdown rehypePlugins={[rehypeRaw]}>{contentText}</ReactMarkdown>
     </div>
   );
 }

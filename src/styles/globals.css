@@ -109,3 +109,33 @@ a {
     color-scheme: dark;
   }
 }
+
+.logoContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  width: 100%;
+}
+
+.tech-card{
+  width: 30%;
+  max-width: 400px;
+  border: 1px rgb(184, 184, 184) solid;
+  -webkit-box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.432);
+  box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.432);
+  border-radius: 5px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tech-showcase{
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  justify-content: space-between;
+  margin: 10px 0;
+}

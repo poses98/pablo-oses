@@ -13,7 +13,6 @@
 
 
 .activeWindow{
-    border: 1.3px dashed #fafafa;
     z-index: 10;
 }
 

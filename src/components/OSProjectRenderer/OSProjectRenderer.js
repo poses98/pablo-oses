@@ -1,4 +1,5 @@
 import OSMarkdown from '../OSMarkdown/OSMarkdown';
+import styles from './osprojectrenderer.module.css';
 
 export default function OSProjectRenderer({ route }) {
   return (
@@ -10,7 +11,9 @@ export default function OSProjectRenderer({ route }) {
         overflow: 'scroll',
       }}
     >
-      <OSMarkdown route={route} />
+      <div className={styles.container}>
+        <OSMarkdown route={route} />
+      </div>
     </div>
   );
 }
