@@ -9,9 +9,7 @@ export function useWindows() {
 
   useEffect(() => {
     handleBrowserActiveTabChange(activeBrowserTab);
-    return () => {
-      console.log('unmount');
-    };
+    return () => {};
   }, [activeBrowserTab]);
 
   const spawnWindow = useCallback(
@@ -82,10 +80,8 @@ export function useWindows() {
 
   const handleWindowMinimize = useCallback((id) => {
     setWindows((prevWindows) => {
-      console.log('Previous windows:', prevWindows);
       return prevWindows.map((window) => {
         if (window.id === id) {
-          console.log('Found matching window. Setting minimize to true.');
           setActiveWindowId(100);
           return {
             ...window,
