@@ -1,6 +1,6 @@
 <link href="./project.css" rel="stylesheet"></link>
 <div class="logoContainer">
-    <img src="/img/icons/routeforecast.png" alt="Logo RouteForecast" style="width:100px;height:100px"> 
+    <img src="/img/icons/routeforecast.jpg" alt="Logo RouteForecast" style="width:100px;height:100px"> 
     <h1>RouteForecast</h1>
 </div>
 <br/>
@@ -77,7 +77,7 @@ The result was a **fast**, **secure**, and **user-friendly** web app that met al
 <br/>
 <br/>
 
-<div style="display:flex;flex-direction:row;width:100%;justify-content:space-evenly;align-items:center">
+<div class="image-showcase">
     <img src="/img/routeforecast/landing.png" alt="Landing Page RouteForecast" style="width:200px;height:360px;vertical-align:middle">
     <img src="/img/routeforecast/route.png" alt="Route Page RouteForecast" style="width:200px;height:360px;vertical-align:middle">
     <img src="/img/routeforecast/weather.png" alt="Weather Page RouteForecast" style="width:200px;height:360px;vertical-align:middle">

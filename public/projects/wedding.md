@@ -1,6 +1,6 @@
 <link href="./project.css" rel="stylesheet"></link>
 <div class="logoContainer">
-    <img src="/img/icons/rsvp.png" alt="Logo RSVP Wedding Invitations" style="width:100px;height:100px"> 
+    <img src="/img/icons/wedding.jpg" alt="Logo RSVP Wedding Invitations" style="width:100px;height:100px"> 
     <h1>RSVP Wedding Invitations</h1>
 </div>
 <br/>
@@ -27,7 +27,7 @@ The challenge was to create a **fast**, **secure** web app that would not only p
 
 <br/>
 
-I decided to use the **Django framework** (Python) for this project.
+I decided to use the **Django framework** for this project.
 
 Here's how I utilized the technology:
 
