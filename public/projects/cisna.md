@@ -65,7 +65,7 @@ The result was a **fast**, **secure**, and **user-friendly** web app that met al
 <br/>
 <br/>
 
-<div style="display:flex;flex-direction:row;width:100%;justify-content:space-evenly;align-items:center">
+<div class="image-showcase">
     <img src="/img/cisna/landing.png" alt="Landing Page CISNA SmartHome" style="width:200px;height:360px;vertical-align:middle">
     <img src="/img/cisna/house.png" alt="House Page CISNA SmartHome" style="width:200px;height:360px;vertical-align:middle">
     <img src="/img/cisna/yubii.png" alt="Yubii Page CISNA SmartHome" style="width:200px;height:360px;vertical-align:middle">

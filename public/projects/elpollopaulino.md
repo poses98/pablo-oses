@@ -84,7 +84,7 @@ The result was a **fast**, **secure**, and **user-friendly** web app that met al
 <br/>
 <br/>
 
-<div style="display:flex;flex-direction:row;width:100%;justify-content:space-evenly;align-items:center">
+<div class="image-showcase">
     <img src="/img/paulino/paulino-landing.png" alt="Landing Page El Pollo Paulino" style="width:200px;height:360px;vertical-align:middle">
     <img src="/img/paulino/paulino-order.png" alt="Order Page El Pollo Paulino" style="width:200px;height:360px;vertical-align:middle">
     <img src="/img/paulino/paulino-login.png" alt="Logo El Pollo Paulino" style="width:200px;height:360px;vertical-align:middle">
