@@ -38,11 +38,13 @@ Here's how I utilized the technology:
 
 ### Next.js
 
-<img src="/img/tech/nextjs.svg" alt="Next.js" style="width:50%;height:50px;margin:15px 0;">
+<img src="/img/tech/next-js.svg" alt="Next.js" style="width:50%;height:50px;margin:15px 0;">
 <br/>
+
 Next.js allowed me to create an **interactive** and **responsive** UI that works flawlessly on all devices. This ensured that the customers of the company had a seamless experience whether they accessed the website on a desktop, tablet, or mobile device.
 <br/>
 <br/>
+
 </li>
 </ul>
 
