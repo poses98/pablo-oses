@@ -5,15 +5,14 @@ export function useWindows() {
   const [activeWindowId, setActiveWindowId] = useState(0);
   const [nextId, setNextId] = useState(0);
   const [openedBrowser, setOpenedBrowser] = useState(null);
+  const [activeBrowserTab, setActiveBrowserTab] = useState(-1);
 
   useEffect(() => {
-    console.log('Active Window Changed');
-    console.log(activeWindowId);
-
+    handleBrowserActiveTabChange(activeBrowserTab);
     return () => {
       console.log('unmount');
     };
-  }, [activeWindowId]);
+  }, [activeBrowserTab]);
 
   const spawnWindow = useCallback(
     (node) => {
@@ -80,49 +79,6 @@ export function useWindows() {
       return newWindows;
     });
   }, []);
-
-  const handleTabClose = useCallback(
-    (id) => {
-      setWindows((prevWindow) =>
-        prevWindow.map((win) => {
-          if (win.id === openedBrowser) {
-            const newContent = win.content.filter(
-              (contentItem) => contentItem.id !== id
-            );
-            let newActiveTabId = win.activeTabId;
-            // If the closed tab was the active one, change activeTabId
-            if (win.activeTabId === id) {
-              // Find the index of the closed tab
-              const closedTabIndex = win.content.findIndex(
-                (contentItem) => contentItem.id === id
-              );
-
-              console.log(win.content[closedTabIndex - 1].id);
-              // If it's not the first tab, set activeTabId to the previous one
-              if (closedTabIndex > 0) {
-                handleBrowserActiveTabChange(
-                  win.content[closedTabIndex - 1].id
-                );
-              }
-              // If it's the first tab and there are more tabs, set activeTabId to the next one
-              else if (win.content.length > 1) {
-                handleBrowserActiveTabChange(
-                  win.content[closedTabIndex + 1].id
-                );
-              }
-            }
-
-            return {
-              ...win,
-              content: newContent,
-            };
-          }
-          return win;
-        })
-      );
-    },
-    [openedBrowser]
-  );
 
   const handleWindowMinimize = useCallback((id) => {
     setWindows((prevWindows) => {
@@ -204,6 +160,48 @@ export function useWindows() {
       );
     },
     [setWindows, openedBrowser]
+  );
+
+  const handleTabClose = useCallback(
+    (id) => {
+      let nextTab = -1;
+      setWindows((prevWindow) =>
+        prevWindow.map((win) => {
+          if (win.id === openedBrowser) {
+            const newContent = win.content.filter(
+              (contentItem) => contentItem.id !== id
+            );
+            let newActiveTabId = win.activeTabId;
+            // If the closed tab was the active one, change activeTabId
+
+            // Find the index of the closed tab
+            const closedTabIndex = win.content.findIndex(
+              (contentItem) => contentItem.id === id
+            );
+
+            // If it's not the first tab, set activeTabId to the previous one
+            if (closedTabIndex > 0 && win.content.length > 1) {
+              nextTab = win.content[closedTabIndex - 1].id;
+            }
+            // If it's the first tab and there are more tabs, set activeTabId to the next one
+            else if (win.content.length > 1) {
+              nextTab = win.content[closedTabIndex + 1].id;
+            } else if (win.content.length === 1) {
+              nextTab = win.content[0].id;
+            }
+            setActiveBrowserTab(nextTab);
+
+            return {
+              ...win,
+              content: newContent,
+              activeTabId: nextTab,
+            };
+          }
+          return win;
+        })
+      );
+    },
+    [openedBrowser, handleBrowserActiveTabChange]
   );
 
   const handleBrowserFocus = useCallback(() => {
