@@ -9,7 +9,8 @@ import ContextualMenu from './ContextualMenu/ContextualMenu';
 const robotoMono = Roboto_Mono({ subsets: ['latin'] });
 
 export default function TaskBar() {
-  const { windows, setActiveWindowId, activeWindowId } = useWindowsContext();
+  const { windows, setActiveWindowId, activeWindowId, handleWindowDeMinimize } =
+    useWindowsContext();
   const [hourSet, setHourSet] = useState(false);
   const [hour, setHour] = useState(0);
   const [minutes, setMinutes] = useState(0);
@@ -38,10 +39,15 @@ export default function TaskBar() {
             return (
               <div
                 className={`${styles.tabItem} ${
-                  window.id === activeWindowId ? styles.selectedItem : ''
+                  window.id === activeWindowId && !window.minimize
+                    ? styles.selectedItem
+                    : ''
                 }`}
                 key={index}
-                onClick={() => setActiveWindowId(window.id)}
+                onClick={() => {
+                  setActiveWindowId(window.id);
+                  handleWindowDeMinimize(window.id);
+                }}
               >
                 <Image
                   src={iconProvider(window.type)}

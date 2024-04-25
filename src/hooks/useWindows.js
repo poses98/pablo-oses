@@ -1,10 +1,19 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 export function useWindows() {
   const [windows, setWindows] = useState([]);
   const [activeWindowId, setActiveWindowId] = useState(0);
   const [nextId, setNextId] = useState(0);
   const [openedBrowser, setOpenedBrowser] = useState(null);
+
+  useEffect(() => {
+    console.log('Active Window Changed');
+    console.log(activeWindowId);
+
+    return () => {
+      console.log('unmount');
+    };
+  }, [activeWindowId]);
 
   const spawnWindow = useCallback(
     (node) => {
@@ -69,6 +78,52 @@ export function useWindows() {
     });
   }, []);
 
+  const handleWindowMinimize = useCallback((id) => {
+    setWindows((prevWindows) => {
+      console.log('Previous windows:', prevWindows);
+      return prevWindows.map((window) => {
+        if (window.id === id) {
+          console.log('Found matching window. Setting minimize to true.');
+          setActiveWindowId(100);
+          return {
+            ...window,
+            minimize: true,
+          };
+        }
+        return window;
+      });
+    });
+  }, []);
+
+  const handleWindowDeMinimize = useCallback((id) => {
+    setWindows((prevWindows) =>
+      prevWindows.map((window) => {
+        if (window.id === id) {
+          return {
+            ...window,
+            minimize: false,
+          };
+        }
+        return window;
+      })
+    );
+  }, []);
+
+  const handleWindowMaximize = useCallback((id) => {
+    setWindows((prevWindows) =>
+      prevWindows.map((window) => {
+        if (window.id === id) {
+          return {
+            ...window,
+            minimize: false,
+            maximize: true,
+          };
+        }
+        return window;
+      })
+    );
+  }, []);
+
   const handleWindowContentChange = useCallback(
     (node) => {
       setWindows((prevWindows) =>
@@ -123,5 +178,8 @@ export function useWindows() {
     handleWindowContentChange,
     handleWindowFocus,
     handleBrowserActiveTabChange,
+    handleWindowMinimize,
+    handleWindowMaximize,
+    handleWindowDeMinimize,
   };
 }

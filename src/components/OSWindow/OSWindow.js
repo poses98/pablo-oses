@@ -13,8 +13,9 @@ export default function OSWindow({
   content,
   id,
   handleClose,
+  customWindow,
 }) {
-  const { handleWindowFocus, activeWindowId } = useWindowsContext();
+  const { handleWindowFocus, activeWindowId, windows } = useWindowsContext();
   const [windowContentHeight, setWindowContentHeight] = useState(0);
   const windowRef = useRef();
   const windowHeaderRef = useRef();
@@ -64,11 +65,17 @@ export default function OSWindow({
       className={`${styles.container} ${
         activeWindowId === id ? styles.activeWindow : ''
       }`}
+      style={{ display: customWindow.minimize ? 'none' : 'block' }}
       ref={windowRef}
       onClick={() => handleWindowFocus(id)}
     >
       <div ref={windowHeaderRef}>
-        <WindowTaskbar name={name} type={type} handleClose={handleClose} />
+        <WindowTaskbar
+          name={name}
+          type={type}
+          handleClose={handleClose}
+          id={id}
+        />
       </div>
       <div
         className={styles.windowContent}

@@ -14,6 +14,9 @@ export function WindowsProvider({ children }) {
     setActiveWindowId,
     openedBrowser,
     handleBrowserActiveTabChange,
+    handleWindowMinimize,
+    handleWindowMaximize,
+    handleWindowDeMinimize,
   } = useWindows();
   return (
     <WindowsContext.Provider
@@ -27,6 +30,9 @@ export function WindowsProvider({ children }) {
         setActiveWindowId,
         openedBrowser,
         handleBrowserActiveTabChange,
+        handleWindowMinimize,
+        handleWindowMaximize,
+        handleWindowDeMinimize,
       }}
     >
       {children}
