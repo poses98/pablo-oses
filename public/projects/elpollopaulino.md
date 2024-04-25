@@ -1,4 +1,6 @@
-# Building a Web System for a New Store
+# El Pollo Paulino
+
+## Building a Web System for a New Store
 
 While studying software engineering, I was approached by two friends who were on the verge of opening a new store. They needed a web system for their store and trusted me to build it for them.
 
