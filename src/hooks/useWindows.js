@@ -37,7 +37,10 @@ export function useWindows() {
         if (openedBrowser === null) {
           setOpenedBrowser(nextId);
           setWindows((prevWindows) => [...prevWindows, browserItem]);
-          setActiveWindowId(nextId);
+          // Timeout to setActiveWindow avoiding window click active window setting
+          setTimeout(() => {
+            setActiveWindowId(nextId);
+          }, 1);
           setNextId(nextId + 1);
         } else {
           const tabId = Math.floor(Math.random() * 1000);
@@ -53,7 +56,7 @@ export function useWindows() {
               return win;
             })
           );
-          setActiveWindowId(openedBrowser);
+          handleBrowserFocus();
         }
       } else {
         setWindows((prevWindows) => [
@@ -160,6 +163,13 @@ export function useWindows() {
     [setWindows, openedBrowser]
   );
 
+  const handleBrowserFocus = useCallback(() => {
+    setTimeout(() => {
+      setActiveWindowId(openedBrowser);
+      handleWindowDeMinimize(openedBrowser);
+    }, 50);
+  }, [openedBrowser, handleWindowDeMinimize]);
+
   const handleWindowFocus = useCallback(
     (id) => {
       setActiveWindowId(id);
@@ -180,5 +190,6 @@ export function useWindows() {
     handleWindowMinimize,
     handleWindowMaximize,
     handleWindowDeMinimize,
+    handleBrowserFocus,
   };
 }

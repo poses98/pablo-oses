@@ -17,6 +17,7 @@ export function WindowsProvider({ children }) {
     handleWindowMinimize,
     handleWindowMaximize,
     handleWindowDeMinimize,
+    handleBrowserFocus,
   } = useWindows();
   return (
     <WindowsContext.Provider
@@ -33,6 +34,7 @@ export function WindowsProvider({ children }) {
         handleWindowMinimize,
         handleWindowMaximize,
         handleWindowDeMinimize,
+        handleBrowserFocus,
       }}
     >
       {children}
