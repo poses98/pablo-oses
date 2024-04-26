@@ -4,15 +4,15 @@ import ImageShowcase from './ImageShowcase/ImageShowcase';
 import ProjectHeader from './ProjectHeader/ProjectHeader';
 import ProjectParagraph from './ProjectParagraph/ProjectParagraph';
 import SectionHeader from './SectionHeader/SectionHeader';
-import StackCard from './StackCard/StackCard';
 import SubsectionHeader from './SubsectionHeader/SubsectionHeader';
+import TechStack from './TechStack/TechStack';
 
 const components = {
   ProjectHeader,
   SectionHeader,
   Paragraph: ProjectParagraph,
-  ImageShowcase,
-  StackCard,
+  TechStack,
+  ProjectImages: ImageShowcase,
   SubsectionHeader,
 };
 
@@ -24,7 +24,6 @@ export default function OSProjectRenderer({ contentTree, style }) {
         height: '100%',
         padding: '30px',
         overflow: 'scroll',
-        color,
       }}
     >
       <div className={styles.container}>
