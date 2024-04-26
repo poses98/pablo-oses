@@ -1,16 +1,14 @@
-.container{
+.container {
     color: #fafafa;
-    display: flex;
-    flex-direction: row;
-    height: fit-content;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 20px;
     width: 100%;
     padding: 20px;
     font-size: 0.7em;
-    flex-wrap: wrap;
 }
 
-.elementContainer{
-    margin-right: 5px;
+.elementContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
