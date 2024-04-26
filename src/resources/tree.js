@@ -19,7 +19,29 @@ export const tree = [
         date: 'February 2023',
         icon: '/img/icons/paulino.png',
         type: 'project',
-        content: '/projects/elpollopaulino.md',
+        content: [
+          {
+            type: 'ProjectHeader',
+            text: 'El Pollo Paulino',
+            logo: '/img/icons/paulino.png',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'Building a Web System for a Takeout Restaurant',
+          },
+          {
+            type: 'Paragraph',
+            text: 'While studying software engineering, I was approached by two friends who were on the verge of opening a new grilled chicken store. They needed a web system for their restaurant and trusted me to build it for them.',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'The Challenge',
+          },
+          {
+            type: 'Paragraph',
+            text: 'The challenge was to create a **fast** and **secure** web app that would not only provide an exceptional user experience but also allow them to change prices and also capable of sending commercial emails and allowing the user to order online.',
+          },
+        ],
         techStack: ['MongoDB', 'Express', 'React', 'Node'],
         deployment: ['Heroku', 'Netlify'],
         url: 'https://www.elpollopaulino.com',

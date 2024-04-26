@@ -21,6 +21,7 @@ export function useWindows() {
         content: node.content,
         icon: node.icon,
         maximize: false,
+        style: node.style,
       };
       if (node.type === 'pdf' || node.type === 'project') {
         const browserItem = {

@@ -79,7 +79,11 @@ export default function OSBrowser({ windowContentHeight }) {
           </>
         )}
         {activeTab?.type === 'project' && (
-          <OSProjectRenderer route={activeTab.content} />
+          <OSProjectRenderer
+            contentTree={activeTab.content}
+            style={activeTab.style}
+            activeTab={activeTab}
+          />
         )}
       </div>
     </div>
