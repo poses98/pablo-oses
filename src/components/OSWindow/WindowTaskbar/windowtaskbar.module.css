@@ -1,49 +1,46 @@
-.container{
-    color: #ffffff;
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    align-items: center;
-    padding: 7px 10px;
-    min-height:15px ;
-    font-size: 0.8em;
+.container {
+  color: #ffffff;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  padding: 7px 10px;
+  min-height: 15px;
+  font-size: 0.8em;
 }
 
-.windowHeader{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+.windowHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
-.windowTitle{
-    margin-left: 5px;
+.windowTitle {
+  margin-left: 5px;
 }
 
-.windowActions{
-    position: absolute;
-    display: flex;
-    flex-direction: row;
-    right: 0;
-    top: 0;
+.windowActions {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  right: 0;
+  top: 0;
 }
 
-.windowCloseButton,.windowButton{
-    width: 30px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+.windowCloseButton,
+.windowButton {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
-.windowCloseButton:hover { 
-    background-color: #b00020;
-
+.windowCloseButton:hover {
+  background-color: #b00020;
 }
 
-.windowButton:hover{
-    background-color: #383838;
+.windowButton:hover {
+  background-color: #383838;
 }
-
-
-

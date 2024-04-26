@@ -1,10 +1,9 @@
-.container{
-    width: 100%;
-    margin-top: 20px;
-    margin-bottom: 5px;
+.container {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 5px;
 }
 
-.container h4{
-    color: #464646;
-
+.container h4 {
+  color: #464646;
 }

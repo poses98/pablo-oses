@@ -1,67 +1,66 @@
-.container{
-    position: fixed;
-    bottom: 0;
-    min-height: 40px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-    background-color: rgb(28, 28, 28);
-    padding: 0 10px 0 0;
-    z-index: 15;
+.container {
+  position: fixed;
+  bottom: 0;
+  min-height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  background-color: rgb(28, 28, 28);
+  padding: 0 10px 0 0;
+  z-index: 15;
 }
 
-.homeButton, .taskBarIcons{
-    color: #fafafa;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.homeButton,
+.taskBarIcons {
+  color: #fafafa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.homeButton{
-    font-size: large;
-    width: 40px;
+.homeButton {
+  font-size: large;
+  width: 40px;
 }
 
 .tabBar::-webkit-scrollbar {
-        display: none;
-      }
-      
-
-.tabBar{
-    width: 100%;
-    margin: 0 15px;
-    display: flex;
-    flex-direction: row;
-    overflow-x: scroll;
-    -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  display: none;
 }
 
-.selectedItem{
-    background-color: rgba(81, 186, 255, 0.4);
-
+.tabBar {
+  width: 100%;
+  margin: 0 15px;
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
-.tabItem{
-    cursor: pointer;
-    width: fit-content;
-    padding: 5px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    font-size: 0.7em;
-    color: #fafafa;
+.selectedItem {
+  background-color: rgba(81, 186, 255, 0.4);
 }
 
-.tabItemText{
-    margin-left: 5px;
+.tabItem {
+  cursor: pointer;
+  width: fit-content;
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 0.7em;
+  color: #fafafa;
 }
 
-.tabItem:hover{
-    background-color: rgba(81, 186, 255, 0.2);
+.tabItemText {
+  margin-left: 5px;
 }
-.homeButton:hover{
-    background-color: rgba(255, 255, 255, 0.2);
-    cursor: pointer;
+
+.tabItem:hover {
+  background-color: rgba(81, 186, 255, 0.2);
+}
+.homeButton:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
 }

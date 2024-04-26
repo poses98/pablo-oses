@@ -1,30 +1,29 @@
-
-.content{
-    color: #fafafa;
-    font-size: 0.7em;
+.content {
+  color: #fafafa;
+  font-size: 0.7em;
 }
 
-.indexItem{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: 5px 0;
+.indexItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 5px 0;
 }
 
-.indexTitle{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.indexTitle {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.indexItem:hover, .sameRoute{
-    background-color: rgba(81, 186, 255, 0.2);
-    cursor: pointer;
+.indexItem:hover,
+.sameRoute {
+  background-color: rgba(81, 186, 255, 0.2);
+  cursor: pointer;
 }
-
 
 @media only screen and (max-width: 600px) {
-    .indexItem{
-        margin: 0;
-    }
+  .indexItem {
+    margin: 0;
+  }
 }

@@ -1,16 +1,16 @@
 .container {
-    height: 100% ;
-    overflow: scroll;
-    background-color: #fff;
-    padding: 20px;
-    line-height: 2.5em;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
+  height: 100%;
+  overflow: scroll;
+  background-color: #fff;
+  padding: 20px;
+  line-height: 2.5em;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
-.contactButton { 
-    margin-top: 20px;
-    padding: 10px;
-    cursor: pointer;
+.contactButton {
+  margin-top: 20px;
+  padding: 10px;
+  cursor: pointer;
 }

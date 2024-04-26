@@ -1,21 +1,21 @@
-.container{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-    padding-top: 5px;
-    height: 110px;
-    margin-bottom: 10px;
-    width: 90px;
-    cursor: pointer;
-    z-index: 6;
+.container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  padding-top: 5px;
+  height: 110px;
+  margin-bottom: 10px;
+  width: 90px;
+  cursor: pointer;
+  z-index: 6;
 }
 
-.container:hover{
-    background-color: rgba(81, 186, 255, 0.2);
-    border-radius: 5px;
+.container:hover {
+  background-color: rgba(81, 186, 255, 0.2);
+  border-radius: 5px;
 }
 
-.iconName{
-    font-size: 0.9em;
+.iconName {
+  font-size: 0.9em;
 }

@@ -1,42 +1,45 @@
 .container {
-    width: 100%;
-   position: relative;
-background-image: linear-gradient(to left top, rgba(18,194,233,1) 0%, rgba(196,113,237,1) 50%, rgba(246,79,89,1) 100%);
-background-size: auto;
-background-position: 0% 0%;
-background-repeat: repeat;
-background-color: rgba(0,0,0,0);
-    overflow: hidden;
-    user-select: none;
+  width: 100%;
+  position: relative;
+  background-image: linear-gradient(
+    to left top,
+    rgba(18, 194, 233, 1) 0%,
+    rgba(196, 113, 237, 1) 50%,
+    rgba(246, 79, 89, 1) 100%
+  );
+  background-size: auto;
+  background-position: 0% 0%;
+  background-repeat: repeat;
+  background-color: rgba(0, 0, 0, 0);
+  overflow: hidden;
+  user-select: none;
 }
 
-
-.backgroundLettering{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
-    opacity: 0.8;
+.backgroundLettering {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0.8;
 }
 
-
-.backgroundLettering h1, .backgroundLettering h2 {
-    text-align: center;
+.backgroundLettering h1,
+.backgroundLettering h2 {
+  text-align: center;
 }
-.backgroundLettering h1{
-    font-size: 3em;
-    font-weight: bolder;
-}
-
-.backgroundLettering h2{
-    font-size: 2.5em;
-    font-weight: 300;
+.backgroundLettering h1 {
+  font-size: 3em;
+  font-weight: bolder;
 }
 
+.backgroundLettering h2 {
+  font-size: 2.5em;
+  font-weight: 300;
+}

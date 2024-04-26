@@ -1,41 +1,37 @@
-.container{
-    width: 40%;
-    position: absolute;
-    max-height: 100vh;
-    min-height: 400px;
-    top:15%;
-    left: 20%;
-    z-index: 8;
-    background-color: #292929;
-    -webkit-box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.678);
-    box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.678)
+.container {
+  width: 40%;
+  position: absolute;
+  max-height: 100vh;
+  min-height: 400px;
+  top: 15%;
+  left: 20%;
+  z-index: 8;
+  background-color: #292929;
+  -webkit-box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.678);
+  box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.678);
 }
 
-
-.activeWindow{
-    z-index: 10;
+.activeWindow {
+  z-index: 10;
 }
 
-.windowContent{
-    margin:0.25%;
-    margin-top: 0;
-    width: 99.5%;
-    
+.windowContent {
+  margin: 0.25%;
+  margin-top: 0;
+  width: 99.5%;
 }
 
 @media only screen and (max-width: 600px) {
- .container{
+  .container {
     width: 100%;
     left: inherit;
     top: inherit;
     position: fixed;
-    
- }   
+  }
 }
 
 @media only screen and (max-width: 1024px) {
-    .container{
-       width: 60%;
-       
-    }   
-   }
+  .container {
+    width: 60%;
+  }
+}

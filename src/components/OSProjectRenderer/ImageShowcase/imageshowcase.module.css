@@ -1,15 +1,15 @@
-.container{
-    display: flex;
-    width: 100%;
-    overflow-x: scroll;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    margin: 25px 0;
+.container {
+  display: flex;
+  width: 100%;
+  overflow-x: scroll;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 25px 0;
 }
 
-@media (max-width: 700px){
-    .container{
-        justify-content: space-between;
-    }
+@media (max-width: 700px) {
+  .container {
+    justify-content: space-between;
+  }
 }

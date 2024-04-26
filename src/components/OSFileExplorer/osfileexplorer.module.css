@@ -1,46 +1,43 @@
-.container{
-    height: 100%;
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
+.container {
+  height: 100%;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
 }
 
-.explorerRouteContainer{
-
+.explorerRouteContainer {
 }
 
-.explorerRouteField{
-    width: 100%;
-    background-color: #292929;
-    border: #dbdbdb59 solid 1px;
-    color: #dbdbdb;
-    padding: 3px;
-    font-size: 0.7em;
+.explorerRouteField {
+  width: 100%;
+  background-color: #292929;
+  border: #dbdbdb59 solid 1px;
+  color: #dbdbdb;
+  padding: 3px;
+  font-size: 0.7em;
 }
 
-.explorerContentContainer{
-    width: 100%;
-    height: 100%;
-    margin-top: 5px;
-    display: flex;
-    flex-direction: row;
-    overflow: hidden;
+.explorerContentContainer {
+  width: 100%;
+  height: 100%;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
 }
 
-.explorerIndex{
-    width: 30%;
-    border-right: 1px solid #dbdbdb1f;  
-    height: 100%;
-    z-index: 3;
-    overflow-x: scroll;
-    
+.explorerIndex {
+  width: 30%;
+  border-right: 1px solid #dbdbdb1f;
+  height: 100%;
+  z-index: 3;
+  overflow-x: scroll;
 }
 
-.explorerShowcase{
-    width: 70%;
-    z-index: 4;
+.explorerShowcase {
+  width: 70%;
+  z-index: 4;
 }
 
 @media only screen and (max-width: 600px) {
-    
 }
