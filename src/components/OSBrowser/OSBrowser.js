@@ -7,7 +7,6 @@ import { iconProvider } from '@/utils/iconProvider';
 import styles from './osbrowser.module.css';
 
 import dynamic from 'next/dynamic';
-import PDFToolbar from '../PDFToolbar/PDFToolbar';
 
 const OSPdfRenderer = dynamic(() => import('../OSPdfRenderer/OSPdfRenderer'), {
   ssr: false,
