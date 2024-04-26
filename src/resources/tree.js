@@ -505,29 +505,6 @@ export const tree = [
             text: 'The outcome was a dynamic, interactive, and user-friendly web portfolio that effectively showcased my skills and projects. The portfolio’s unique desktop OS design and interactive windows provided an engaging user experience.',
           },
           {
-            type: 'ProjectImages',
-            images: [
-              {
-                src: '/img/portfolio/landing.png',
-                width: 200,
-                height: 360,
-                alt: 'Portfolio Landing Page',
-              },
-              {
-                src: '/img/portfolio/window.png',
-                width: 200,
-                height: 360,
-                alt: 'Portfolio Window',
-              },
-              {
-                src: '/img/portfolio/browser.png',
-                width: 200,
-                height: 360,
-                alt: 'Portfolio Browser',
-              },
-            ],
-          },
-          {
             type: 'Paragraph',
             text: 'This project was an enriching experience for me and I’m proud of the result. It was a joy to build a platform that effectively showcases my work and skills.',
           },
