@@ -16,11 +16,7 @@ const components = {
   SubsectionHeader,
 };
 
-export default function OSProjectRenderer({ contentTree, style, activeTab }) {
-  useEffect(() => {
-    console.log(activeTab);
-  }, [activeTab]);
-
+export default function OSProjectRenderer({ contentTree, style }) {
   return (
     <div
       style={{
