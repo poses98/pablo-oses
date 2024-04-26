@@ -8,7 +8,9 @@ export default function OSNotepad({ content }) {
   return (
     <div className={`${styles.container} ${robotoMono.className}`}>
       <OSMarkdown content={content} />
-      <button className={styles.contactButton}>Contact Me</button>
+      <a href="https://linkedin.com/in/poses98" target="_blank">
+        <button className={styles.contactButton}>Contact Me</button>
+      </a>
     </div>
   );
 }
