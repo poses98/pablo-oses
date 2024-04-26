@@ -174,6 +174,7 @@ export const tree = [
             type: 'Paragraph',
             text: "This project was a great learning experience for me and I'm proud of the result. It was a pleasure to help my friends with their new venture and see the app contribute to the store's success.",
           },
+          { type: 'Link', url: 'https://www.elpollopaulino.com' },
         ],
         techStack: ['MongoDB', 'Express', 'React', 'Node'],
         deployment: ['Heroku', 'Netlify'],
@@ -268,6 +269,7 @@ export const tree = [
             type: 'Paragraph',
             text: "This project was a great learning experience for me and I'm proud of the result. It was a pleasure to help CISNA SmartHome with their new venture and see the app contribute to the company's success.",
           },
+          { type: 'Link', url: 'https://cisnahome.es' },
         ],
         techStack: ['Next.js'],
         deployment: ['Vercel'],
@@ -338,6 +340,10 @@ export const tree = [
           {
             type: 'Paragraph',
             text: 'It was a pleasure to help <a href="https://tropycalcbd.com">Tropycal CBD</a> with their new venture and see the store contribute to the company\'s success.',
+          },
+          {
+            type: 'Link',
+            url: 'https://tropycalcbd.com',
           },
         ],
         techStack: ['Shopify'],
@@ -438,6 +444,10 @@ export const tree = [
             type: 'Paragraph',
             text: "This project was a great learning experience for me and I'm proud of the result. It was a pleasure to develop RouteForecast and see the app contribute to the success of fellow riders.",
           },
+          {
+            type: 'Link',
+            url: 'https://routeforecast.app',
+          },
         ],
         techStack: ['MongoDB', 'Express', 'React', 'Node'],
         deployment: ['Heroku', 'Netlify'],
@@ -507,6 +517,10 @@ export const tree = [
           {
             type: 'Paragraph',
             text: 'This project was an enriching experience for me and I’m proud of the result. It was a joy to build a platform that effectively showcases my work and skills.',
+          },
+          {
+            type: 'Link',
+            url: 'https://pablooses.com',
           },
         ],
       },

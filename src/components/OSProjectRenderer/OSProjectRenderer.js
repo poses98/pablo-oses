@@ -6,6 +6,7 @@ import ProjectParagraph from './ProjectParagraph/ProjectParagraph';
 import SectionHeader from './SectionHeader/SectionHeader';
 import SubsectionHeader from './SubsectionHeader/SubsectionHeader';
 import TechStack from './TechStack/TechStack';
+import ActionButton from './ActionButton/ActionButton';
 
 const components = {
   ProjectHeader,
@@ -14,6 +15,7 @@ const components = {
   TechStack,
   ProjectImages: ImageShowcase,
   SubsectionHeader,
+  Link: ActionButton,
 };
 
 export default function OSProjectRenderer({ contentTree, style }) {
