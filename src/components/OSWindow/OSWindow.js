@@ -101,10 +101,13 @@ export default function OSWindow({
       });
       customWindow.animated = true;
       setTimeout(() => {
-        const availableContentHeight =
-          windowRef.current.offsetHeight - windowHeaderRef.current.offsetHeight;
-        setWindowContentHeight(availableContentHeight);
-        customWindow.animated = false;
+        if (windowRef.current && windowHeaderRef.current) {
+          const availableContentHeight =
+            windowRef.current.offsetHeight -
+            windowHeaderRef.current.offsetHeight;
+          setWindowContentHeight(availableContentHeight);
+          customWindow.animated = false;
+        }
       }, 200);
     }
     return () => {};

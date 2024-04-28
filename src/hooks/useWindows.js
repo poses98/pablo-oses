@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, use } from 'react';
 
 export function useWindows() {
   const [windows, setWindows] = useState([]);
@@ -11,6 +11,20 @@ export function useWindows() {
     handleBrowserActiveTabChange(activeBrowserTab);
     return () => {};
   }, [activeBrowserTab]);
+
+  useEffect(() => {
+    if (openedBrowser)
+      windows.forEach((window) => {
+        if (window.id === openedBrowser) {
+          if (window.content.length === 0) {
+            handleWindowClose(openedBrowser);
+            setOpenedBrowser(null);
+          } else {
+            setActiveBrowserTab(window.activeTabId);
+          }
+        }
+      });
+  }, [windows, openedBrowser]);
 
   const spawnWindow = useCallback(
     (node) => {
