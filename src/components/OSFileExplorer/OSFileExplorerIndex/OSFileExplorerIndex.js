@@ -5,8 +5,12 @@ import { iconProvider } from '@/utils/iconProvider';
 import { useWindowsContext } from '@/providers/WindowsProvider';
 
 const RenderTree = ({ node, level = 0, route }) => {
-  const { handleWindowContentChange } = useWindowsContext();
+  const { handleWindowContentChange, spawnWindow } = useWindowsContext();
   const indent = 20;
+
+  const handleOnClick = (node) => {
+    spawnWindow(node);
+  };
 
   if (node.type === 'folder') {
     let sameRoute = route === node.route;
@@ -46,7 +50,7 @@ const RenderTree = ({ node, level = 0, route }) => {
   ) {
     return (
       <div style={{ paddingLeft: `${level * indent}px` }}>
-        <div className={styles.indexItem}>
+        <div className={styles.indexItem} onClick={() => spawnWindow(node)}>
           <Image
             width={15}
             height={15}
@@ -61,7 +65,7 @@ const RenderTree = ({ node, level = 0, route }) => {
   } else {
     return (
       <div style={{ paddingLeft: `${level * indent}px` }}>
-        <div className={styles.indexItem}>
+        <div className={styles.indexItem} onClick={() => spawnWindow(node)}>
           <Image
             width={15}
             height={15}
