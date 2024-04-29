@@ -7,25 +7,6 @@ export function useWindows() {
   const [openedBrowser, setOpenedBrowser] = useState(null);
   const [activeBrowserTab, setActiveBrowserTab] = useState(-1);
 
-  useEffect(() => {
-    handleBrowserActiveTabChange(activeBrowserTab);
-    return () => {};
-  }, [activeBrowserTab]);
-
-  useEffect(() => {
-    if (openedBrowser)
-      windows.forEach((window) => {
-        if (window.id === openedBrowser) {
-          if (window.content.length === 0) {
-            handleWindowClose(openedBrowser);
-            setOpenedBrowser(null);
-          } else {
-            setActiveBrowserTab(window.activeTabId);
-          }
-        }
-      });
-  }, [windows, openedBrowser]);
-
   const spawnWindow = useCallback(
     (node) => {
       const windowContent = {
@@ -228,6 +209,11 @@ export function useWindows() {
     },
     [setActiveWindowId]
   );
+
+  useEffect(() => {
+    handleBrowserActiveTabChange(activeBrowserTab);
+    return () => {};
+  }, [activeBrowserTab, handleBrowserActiveTabChange]);
 
   return {
     windows,

@@ -93,7 +93,7 @@ export default function OSWindow({
 
       Object.assign(windowRef.current.style, {
         top: y,
-        left: vw > 600 ? x : undefined,
+        left: vw > 600 ? x : '0',
         width,
         height,
         transition: 'all 0.2s ease-in-out',
@@ -125,8 +125,10 @@ export default function OSWindow({
   ]);
 
   useEffect(() => {
-    setPrevCustomWindow(customWindow);
-  }, [customWindow]);
+    if (JSON.stringify(prevCustomWindow) !== JSON.stringify(customWindow)) {
+      setPrevCustomWindow(customWindow);
+    }
+  }, [customWindow, prevCustomWindow]);
 
   return (
     <div

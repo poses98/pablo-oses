@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react';
 import styles from './osprojectrenderer.module.css';
 import { useWindowsContext } from '@/providers/WindowsProvider';
 import ImageShowcase from './ImageShowcase/ImageShowcase';
@@ -20,15 +19,6 @@ const components = {
 };
 
 export default function OSProjectRenderer({ contentTree, style }) {
-  const { windows } = useWindowsContext();
-
-  const projectRendererRef = useRef(null);
-
-  useEffect(() => {
-    if (projectRendererRef.current && windows.length > 0)
-      projectRendererRef.current.scrollTo(0, 0);
-  }, [windows]);
-
   return (
     <div
       style={{
@@ -37,7 +27,6 @@ export default function OSProjectRenderer({ contentTree, style }) {
         padding: '30px',
         overflow: 'scroll',
       }}
-      ref={projectRendererRef}
     >
       <div className={styles.container}>
         {contentTree.map((item, index) => {
