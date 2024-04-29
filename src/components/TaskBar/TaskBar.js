@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import styles from './taskbar.module.css';
 import { Roboto_Mono } from 'next/font/google';
 import { useWindowsContext } from '@/providers/WindowsProvider';
@@ -11,6 +11,7 @@ const robotoMono = Roboto_Mono({ subsets: ['latin'] });
 export default function TaskBar() {
   const { windows, setActiveWindowId, activeWindowId, handleWindowDeMinimize } =
     useWindowsContext();
+  const [contextMenuVisible, setContextMenuVisible] = useState(false);
   const [hourSet, setHourSet] = useState(false);
   const [hour, setHour] = useState(0);
   const [minutes, setMinutes] = useState(0);
@@ -28,10 +29,32 @@ export default function TaskBar() {
     return () => clearInterval(interval);
   }, []);
 
+  const contextualMenuRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        contextualMenuRef.current &&
+        !contextualMenuRef.current.contains(event.target)
+      ) {
+        setContextMenuVisible(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
     <>
+      {contextMenuVisible && <ContextualMenu ref={contextualMenuRef} />}
       <div className={styles.container}>
-        <div className={styles.homeButton}>
+        <div
+          className={styles.homeButton}
+          onClick={() => setContextMenuVisible((prevState) => !prevState)}
+        >
           <p>P</p>
         </div>
         <div className={styles.tabBar}>
