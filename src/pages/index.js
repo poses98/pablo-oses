@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import OSDesktop from '@/components/OSDesktop/OSDesktop';
 import BasicLayout from '@/layouts/BasicLayout';
 import OSWindow from '@/components/OSWindow/OSWindow';
