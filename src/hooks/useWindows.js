@@ -7,6 +7,11 @@ export function useWindows() {
   const [openedBrowser, setOpenedBrowser] = useState(null);
   const [activeBrowserTab, setActiveBrowserTab] = useState(-1);
 
+  useEffect(() => {
+    handleBrowserActiveTabChange(activeBrowserTab);
+    return () => {};
+  }, [activeBrowserTab]);
+
   const spawnWindow = useCallback(
     (node) => {
       const windowContent = {
@@ -209,11 +214,6 @@ export function useWindows() {
     },
     [setActiveWindowId]
   );
-
-  useEffect(() => {
-    handleBrowserActiveTabChange(activeBrowserTab);
-    return () => {};
-  }, [activeBrowserTab, handleBrowserActiveTabChange]);
 
   return {
     windows,

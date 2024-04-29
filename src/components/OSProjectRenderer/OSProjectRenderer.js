@@ -1,5 +1,5 @@
+import { useEffect } from 'react';
 import styles from './osprojectrenderer.module.css';
-import { useWindowsContext } from '@/providers/WindowsProvider';
 import ImageShowcase from './ImageShowcase/ImageShowcase';
 import ProjectHeader from './ProjectHeader/ProjectHeader';
 import ProjectParagraph from './ProjectParagraph/ProjectParagraph';
