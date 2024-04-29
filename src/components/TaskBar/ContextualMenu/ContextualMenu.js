@@ -7,11 +7,17 @@ const ContextualMenu = React.forwardRef((props, ref) => {
     {
       socialMediaName: 'linkedin',
       url: 'https://www.linkedin.com/in/poses98/',
+      text: 'Connect in LinkedIn',
     },
-    { socialMediaName: 'github', url: 'https://www.github.com/poses98' },
+    {
+      socialMediaName: 'github',
+      url: 'https://www.github.com/poses98',
+      text: 'Check out my GitHub',
+    },
     {
       socialMediaName: 'instagram',
       url: 'https://www.instagram.com/poses.dev',
+      text: 'Follow me on Instagram',
     },
   ];
   return (
@@ -31,9 +37,7 @@ const ContextualMenu = React.forwardRef((props, ref) => {
                 height={30}
                 alt={`${socialMedia.socialMediaName} icon`}
               />
-              <p>
-                {`Let's`} connect in {socialMedia.socialMediaName}
-              </p>
+              <p>{socialMedia.text} </p>
             </div>
           </a>
         );
