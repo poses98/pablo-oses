@@ -2,9 +2,9 @@ import { tree } from '@/resources/tree';
 import { useState, useCallback, useEffect } from 'react';
 
 export function useWindows() {
-  const [windows, setWindows] = useState([tree[0]]);
+  const [windows, setWindows] = useState([{ ...tree[0], id: 0 }]);
   const [activeWindowId, setActiveWindowId] = useState(0);
-  const [nextId, setNextId] = useState(0);
+  const [nextId, setNextId] = useState(1);
   const [openedBrowser, setOpenedBrowser] = useState(null);
   const [activeBrowserTab, setActiveBrowserTab] = useState(-1);
 
