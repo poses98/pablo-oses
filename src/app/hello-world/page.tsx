@@ -1,4 +1,4 @@
-export default async function Help() {
+export default async function HelloWorld() {
   return (
     <div>
       <h1>Hello world!😉</h1>
