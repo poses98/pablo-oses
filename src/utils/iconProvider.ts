@@ -1,5 +1,5 @@
-export const iconProvider = (type) => {
-  let icon = null;
+export const iconProvider = (type: string): string => {
+  let icon: string = '';
   switch (type) {
     case 'folder':
       icon = '/img/icons/folder.svg';
