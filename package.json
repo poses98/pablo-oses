@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@superside-oss/sanity-plugin-copy-paste": "^1.0.3",
     "mongodb": "^6.5.0",
     "next": "14.2.1",
     "next-sanity": "^9.1.0",

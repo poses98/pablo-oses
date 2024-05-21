@@ -1,5 +1,6 @@
 import { tree } from '@/resources/tree';
 import { useState, useCallback, useEffect } from 'react';
+import { getProjects } from '../../sanity/sanity-utils';
 
 export function useWindows() {
   const [windows, setWindows] = useState([{ ...tree[0], id: 0 }]);
