@@ -26,9 +26,7 @@ export const adaptProject = (rawData: any) => {
   project.date = rawData.publishedAt;
   project.icon = rawData.image;
   project.type = 'project';
-
   project.techStack = rawData.technologies.map((tech: any) => tech.name);
-  project.deployment = ['Vercel']; // This seems to be a static value
   project.url = rawData.url;
 
   return project;

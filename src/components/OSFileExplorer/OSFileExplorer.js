@@ -6,13 +6,10 @@ import styles from './osfileexplorer.module.css';
 export default function OSFileExplorer({
   route,
   content,
-  windowId,
   windowContentHeight,
   animated,
 }) {
-  useEffect(() => {
-    console.log(`New height: ${windowContentHeight}`);
-  }, [windowContentHeight]);
+  useEffect(() => {}, [windowContentHeight]);
 
   return (
     <div
