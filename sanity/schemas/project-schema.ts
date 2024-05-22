@@ -27,7 +27,7 @@ const project = {
       title: 'Image',
       type: 'image',
       options: {
-        hotspot: true, // Allows customization in studio
+        hotspot: true,
       },
       fields: [
         {
@@ -35,7 +35,7 @@ const project = {
           title: 'Alternative text',
           type: 'string',
           options: {
-            isHighlighted: true, // Highlight this field when editing
+            isHighlighted: true,
           },
         },
       ],

@@ -1,5 +1,5 @@
-import { Project } from '@/types/Project';
-import { Page } from '@/types/Page';
+import { Project } from '../src/types/Project';
+import { Page } from '../src/types/Page';
 import { createClient, groq } from 'next-sanity';
 import { sanityFetch } from './sanity.client';
 
