@@ -10,19 +10,20 @@ export default function OSDesktop({ icons }) {
   const { spawnWindow } = useWindowsContext();
   const [root, setRoot] = useState([]);
   useEffect(() => {
-    const project = async () =>
-      getFolders().then((projects) => {
-        setRoot(adaptRoot(projects));
-      });
-
+    const project = async () => {
+      const projects = await getFolders();
+      const adaptedProjects = await adaptRoot(projects);
+      setRoot(adaptedProjects);
+    };
     project();
   }, []);
   useEffect(() => {
     console.log('projects', root);
+    console.log('folders length', root.length);
   }, [root]);
   return (
     <div className={styles.container}>
-      {root &&
+      {root.length > 0 &&
         root.map((element, index) => {
           return (
             <OSIcon

@@ -15,18 +15,6 @@ export function useWindows() {
     return () => {};
   }, [activeBrowserTab]);
 
-  useEffect(() => {
-    const project = async () =>
-      getFolders().then((projects) => {
-        adaptRoot(projects);
-      });
-
-    project();
-  }, []);
-  useEffect(() => {
-    console.log('projects', projects);
-  }, [projects]);
-
   const spawnWindow = useCallback(
     (node) => {
       const windowContent = {
