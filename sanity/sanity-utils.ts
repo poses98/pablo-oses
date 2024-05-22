@@ -31,7 +31,14 @@ export async function getProjects(): Promise<Project[]> {
     "slug":slug.current,
     "image":image.asset->url,
     url,
-    content
+    content,
+    publishedAt,
+    technologies[]->{
+      name,
+      "slug":slug.current,
+      "image":image.asset->url,
+      description
+    }
 }`;
 
   return await sanityFetch<Project[]>({ query: query, tags: ['project'] });
@@ -45,7 +52,7 @@ export async function getProject(slug: string): Promise<Project> {
       "slug":slug.current,
       "image":image.asset->url,
       url,
-      content
+      content,
   }`;
 
   return await sanityFetch<Project>({
@@ -80,4 +87,72 @@ export async function getPage(slug: string): Promise<Page> {
     qParams: { slug },
     tags: ['page'],
   });
+}
+
+export async function getFolder(slug: string): Promise<any> {
+  const query = groq`*[_type=="folder" && slug.current == $slug][0]{
+  _id,
+  _createdAt,
+  name,
+  "slug":slug.current,
+  category,
+  projects[]->{
+    _id,
+    name,
+    "slug":slug.current,
+    "image":image.asset->url,
+    url,
+    content,
+    publishedAt,
+    technologies[]->{
+      name,
+      "slug":slug.current,
+      "image":image.asset->url,
+      description
+    }
+  },
+  image{
+    asset->{
+      url
+    }
+  }
+}`;
+  // params go with $param and declared in the second attr of the fetch
+  return await sanityFetch<any>({
+    query: query,
+    qParams: { slug },
+    tags: ['folder'],
+  });
+}
+
+export async function getFolders(): Promise<any> {
+  const query = groq`*[_type=="folder"]{
+  _id,
+  _createdAt,
+  name,
+  "slug":slug.current,
+  category,
+  image{
+    asset->{
+      url
+    }
+  },
+  projects[]->{
+    _id,
+    name,
+    "slug":slug.current,
+    "image":image.asset->url,
+    url,
+    content,
+    publishedAt,
+    technologies[]->{
+      name,
+      "slug":slug.current,
+      "image":image.asset->url,
+      description
+    }
+  }
+
+}`;
+  return await sanityFetch<any[]>({ query: query, tags: ['folder'] });
 }

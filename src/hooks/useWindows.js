@@ -1,6 +1,7 @@
 import { tree } from '@/resources/tree';
 import { useState, useCallback, useEffect } from 'react';
-import { getProjects } from '../../sanity/sanity-utils';
+import { getFolders, getProjects } from '../../sanity/sanity-utils';
+import { adaptRoot } from '@/utils/adapters';
 
 export function useWindows() {
   const [windows, setWindows] = useState([{ ...tree[0], id: 0 }]);
@@ -8,11 +9,23 @@ export function useWindows() {
   const [nextId, setNextId] = useState(1);
   const [openedBrowser, setOpenedBrowser] = useState(null);
   const [activeBrowserTab, setActiveBrowserTab] = useState(-1);
-
+  const [projects, setProjects] = useState([]);
   useEffect(() => {
     handleBrowserActiveTabChange(activeBrowserTab);
     return () => {};
   }, [activeBrowserTab]);
+
+  useEffect(() => {
+    const project = async () =>
+      getFolders().then((projects) => {
+        adaptRoot(projects);
+      });
+
+    project();
+  }, []);
+  useEffect(() => {
+    console.log('projects', projects);
+  }, [projects]);
 
   const spawnWindow = useCallback(
     (node) => {
