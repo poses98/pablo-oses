@@ -6,7 +6,6 @@ export default function App({ Component, pageProps }) {
   return (
     <WindowsProvider>
       <GoogleTagManager gtmId="G-40TDHEKVV5" />
-
       <Component {...pageProps} />
     </WindowsProvider>
   );

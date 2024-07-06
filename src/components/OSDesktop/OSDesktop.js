@@ -1,6 +1,7 @@
 import OSIcon from '../OSIcon/OSIcon';
 import styles from './osdesktop.module.css';
 import { useWindowsContext } from '@/providers/WindowsProvider';
+import { sendGAEvent } from '@next/third-parties/google';
 import { tree } from '@/resources/tree';
 
 export default function OSDesktop({ icons }) {
@@ -13,7 +14,10 @@ export default function OSDesktop({ icons }) {
             key={index}
             name={element.name}
             type={element.type}
-            onClick={() => spawnWindow(element)}
+            onClick={() => {
+              sendGAEvent({ event: 'dektop_icon_opened', value: element.name });
+              spawnWindow(element);
+            }}
           />
         );
       })}

@@ -1,5 +1,6 @@
 import OSIcon from '../../OSIcon/OSIcon';
 import styles from './osfileexplorercontent.module.css';
+import { sendGAEvent } from '@next/third-parties/google';
 import { useWindowsContext } from '@/providers/WindowsProvider';
 
 export default function OSFileExplorerContent({ content }) {
@@ -14,6 +15,7 @@ export default function OSFileExplorerContent({ content }) {
               icon={e.icon}
               name={e.name}
               onClick={() => {
+                sendGAEvent({ event: 'project_opened', value: e.name });
                 spawnWindow(e);
               }}
             />
