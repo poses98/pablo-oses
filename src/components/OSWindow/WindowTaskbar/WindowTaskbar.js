@@ -17,7 +17,13 @@ export default function WindowTaskbar({ name, type, handleClose, id }) {
     <div className={styles.container}>
       <div className={styles.windowHeader}>
         {windowIcon && (
-          <Image width={17} height={17} src={windowIcon} alt={'icon'} />
+          <Image
+            priority
+            width={17}
+            height={17}
+            src={windowIcon}
+            alt={'icon'}
+          />
         )}
         <p className={styles.windowTitle}>{name}</p>
       </div>
@@ -37,6 +43,7 @@ export default function WindowTaskbar({ name, type, handleClose, id }) {
         </div>
         <div className={styles.windowCloseButton} onClick={handleClose}>
           <Image
+            priority
             width={17}
             height={17}
             src={'/img/icons/close.svg'}

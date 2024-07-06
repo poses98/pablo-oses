@@ -1,8 +1,11 @@
 import { Html, Head, Main, NextScript } from 'next/document';
+import { GoogleTagManager } from '@next/third-parties/google';
 
 export default function Document() {
   return (
     <Html lang="en">
+      <GoogleTagManager gtmId="G-40TDHEKVV5" />
+
       <Head>
         <meta
           name="description"
