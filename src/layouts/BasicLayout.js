@@ -62,7 +62,7 @@ export default function BasicLayout({ children }) {
           }}
         >
           <p>Activate Windows?</p>
-          <p ref={licenseRef}>Go Ahead and Change to Linux 🐧😜</p>
+          <p ref={licenseRef}>Go Ahead and Change to Linux</p>
         </div>
 
         {children}
