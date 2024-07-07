@@ -21,7 +21,7 @@ export default function PowerOnOff({ handleClick }) {
         <>
           <h1 className={styles.vintageText}>Greetings, esteemed visitor!</h1>
           <h2 className={`${styles.flickerText} ${styles.vintageText}`}>
-            Click the screen to commence
+            Click or touch the screen to continue
           </h2>
         </>
       )}
@@ -29,8 +29,9 @@ export default function PowerOnOff({ handleClick }) {
       {screenTouched && (
         <div className={styles.loading}>
           <h2 className={`${styles.loadingText} ${styles.vintageText}`}>
-            {loaded ? 'Loading accomplished.' : 'Loading...'}
+            {loaded ? 'Loading completed!' : 'Loading...'}
           </h2>
+
           <div className={styles.loadingBox}>
             <div className={styles.loadingBar} />
           </div>
