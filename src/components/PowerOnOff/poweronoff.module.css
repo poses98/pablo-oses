@@ -45,12 +45,15 @@
   width: 0;
   height: 100%;
   background-color: greenyellow;
-  animation: loading 2s linear forwards;
+  animation: loading 2s ease-in forwards;
 }
 
 @keyframes loading {
   0% {
     width: 0;
+  }
+  50% {
+    width: 30%;
   }
   100% {
     width: 100%;
