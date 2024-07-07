@@ -28,8 +28,9 @@ export default function Home() {
           <OSDesktop />
         </BasicLayout>
       )}
-
-      <PowerOnOff handleClick={() => setAnimationPlayed(true)} />
+      {!animationPlayed && (
+        <PowerOnOff handleClick={() => setAnimationPlayed(true)} />
+      )}
     </>
   );
 }
