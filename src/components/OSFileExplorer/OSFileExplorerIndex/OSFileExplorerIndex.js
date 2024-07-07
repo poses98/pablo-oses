@@ -8,10 +8,6 @@ const RenderTree = ({ node, level = 0, route }) => {
   const { handleWindowContentChange, spawnWindow } = useWindowsContext();
   const indent = 20;
 
-  const handleOnClick = (node) => {
-    spawnWindow(node);
-  };
-
   if (node.type === 'folder') {
     let sameRoute = route === node.route;
     return (
@@ -50,7 +46,14 @@ const RenderTree = ({ node, level = 0, route }) => {
   ) {
     return (
       <div style={{ paddingLeft: `${level * indent}px` }}>
-        <div className={styles.indexItem} onClick={() => spawnWindow(node)}>
+        <div
+          className={styles.indexItem}
+          onClick={() =>
+            setTimeout(() => {
+              spawnWindow(node);
+            }, 20)
+          }
+        >
           <Image
             width={15}
             height={15}
@@ -65,7 +68,14 @@ const RenderTree = ({ node, level = 0, route }) => {
   } else {
     return (
       <div style={{ paddingLeft: `${level * indent}px` }}>
-        <div className={styles.indexItem} onClick={() => spawnWindow(node)}>
+        <div
+          className={styles.indexItem}
+          onClick={() =>
+            setTimeout(() => {
+              spawnWindow(node);
+            }, 20)
+          }
+        >
           <Image
             width={15}
             height={15}
