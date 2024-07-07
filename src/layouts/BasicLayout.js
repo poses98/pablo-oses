@@ -2,12 +2,15 @@ import TaskBar from '@/components/TaskBar/TaskBar';
 import Head from 'next/head';
 import styles from './basiclayout.module.css';
 import { Inter } from 'next/font/google';
-import { useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export default function BasicLayout({ children }) {
   const [innerHeight, setInnerHeight] = useState('100vh');
+
+  const taskbarRef = useRef(null);
+  const licenseRef = useRef(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -17,6 +20,19 @@ export default function BasicLayout({ children }) {
     handleResize();
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  useEffect(() => {
+    if (taskbarRef.current) {
+      const taskbarHeight = taskbarRef.current.offsetHeight;
+      console.log(taskbarHeight);
+    }
+  }, [taskbarRef]);
+  useEffect(() => {
+    if (licenseRef.current) {
+      const licenseWidth = licenseRef.current.offsetWidth;
+      console.log(licenseWidth);
+    }
+  }, [licenseRef]);
 
   return (
     <>
@@ -37,13 +53,21 @@ export default function BasicLayout({ children }) {
           <h1>Pablo Osés Andía</h1>
           <h2>Full-Stack Developer</h2>
         </div>
-        {/*         <div className={styles.backgroundLicense}>
+
+        <div
+          className={styles.backgroundLicense}
+          style={{
+            bottom: `${taskbarRef?.current?.offsetHeight + 10}px`,
+            left: `calc(100% - ${licenseRef?.current?.offsetWidth + 25}px)`,
+          }}
+        >
           <p>Activate Windows?</p>
-          <p>Go Ahead and Change to Linux 🐧😜</p>
-        </div> */}
+          <p ref={licenseRef}>Go Ahead and Change to Linux 🐧😜</p>
+        </div>
+
         {children}
 
-        <TaskBar />
+        <TaskBar ref={taskbarRef} />
       </main>
     </>
   );
