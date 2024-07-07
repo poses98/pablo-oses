@@ -1,14 +1,16 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, forwardRef } from 'react';
 import styles from './taskbar.module.css';
 import { Roboto_Mono } from 'next/font/google';
 import { useWindowsContext } from '@/providers/WindowsProvider';
 import { iconProvider } from '@/utils/iconProvider';
 import Image from 'next/image';
 import ContextualMenu from './ContextualMenu/ContextualMenu';
+import exp from 'constants';
 
 const robotoMono = Roboto_Mono({ subsets: ['latin'] });
 
-export default function TaskBar() {
+const TaskBar = forwardRef((props, ref) => {
+  TaskBar.displayName = 'TaskBar';
   const { windows, setActiveWindowId, activeWindowId, handleWindowDeMinimize } =
     useWindowsContext();
   const [contextMenuVisible, setContextMenuVisible] = useState(false);
@@ -50,7 +52,7 @@ export default function TaskBar() {
   return (
     <>
       {contextMenuVisible && <ContextualMenu ref={contextualMenuRef} />}
-      <div className={styles.container}>
+      <div className={styles.container} ref={ref}>
         <div
           className={styles.homeButton}
           onClick={() => setContextMenuVisible((prevState) => !prevState)}
@@ -93,4 +95,6 @@ export default function TaskBar() {
       </div>
     </>
   );
-}
+});
+
+export default TaskBar;
