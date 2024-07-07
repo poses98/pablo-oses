@@ -37,6 +37,10 @@ export default function BasicLayout({ children }) {
           <h1>Pablo Osés Andía</h1>
           <h2>Full-Stack Developer</h2>
         </div>
+        {/*         <div className={styles.backgroundLicense}>
+          <p>Activate Windows?</p>
+          <p>Go Ahead and Change to Linux 🐧😜</p>
+        </div> */}
         {children}
 
         <TaskBar />
