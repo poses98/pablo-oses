@@ -524,6 +524,305 @@ export const tree = [
           },
         ],
       },
+      {
+        name: 'Couplat',
+        date: 'January 2025',
+        icon: '/img/icons/couplat.png',
+        type: 'project',
+        content: [
+          {
+            type: 'ProjectHeader',
+            text: 'Couplat - Digital Vouchers for Restaurants',
+            logo: '/img/icons/couplat.png',
+            date: 'January 2025 - Today',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'Digital Voucher System for McDonald’s Franchises',
+          },
+          {
+            type: 'Paragraph',
+            text: 'Couplat is a hybrid web application developed to digitize and secure the management of promotions in restaurants belonging to a McDonald’s franchise. The main goal was to eliminate losses caused by duplicate paper vouchers and enable efficient distribution of unique digital vouchers using cryptographically signed QR codes.',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'Context and Objective',
+          },
+          {
+            type: 'Paragraph',
+            text: 'The system was created for a franchisee with six restaurants (five in Navarra and one in the Basque Country), with future scalability in mind for similar businesses. Official McDonald’s systems did not support this kind of customized promotion.',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'Architecture and Functionality',
+          },
+          {
+            type: 'Paragraph',
+            text: '• Digital vouchers are generated as images with unique QR codes.<br/>• Each voucher is validated using a digital signature to ensure uniqueness.<br/>• Backend built with Express and MongoDB ensures secure control and traceability.<br/>• Responsive frontend built with React (Vite) and TypeScript.<br/>• Internal API for validation at redemption points in the restaurants.',
+          },
+          {
+            type: 'TechStack',
+            stack: [
+              {
+                type: 'TechCard',
+                tech: 'MongoDB',
+                text: 'NoSQL database for storing vouchers, usage logs, and validations.',
+              },
+              {
+                type: 'TechCard',
+                tech: 'Express.js',
+                text: 'RESTful server for managing vouchers and cryptographic verification.',
+              },
+              {
+                type: 'TechCard',
+                tech: 'React',
+                text: 'Agile management interface, accessible from mobile and desktop devices.',
+              },
+            ],
+          },
+          {
+            type: 'SectionHeader',
+            text: 'Results and Business Value',
+          },
+          {
+            type: 'Paragraph',
+            text: '• Elimination of fraud from duplicate vouchers.<br/>• Centralized control of personalized promotions.<br/>• Enhanced customer experience with fast and secure vouchers.<br/>• Scalable design for expansion to more franchises.',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'Current Status and Next Steps',
+          },
+          {
+            type: 'Paragraph',
+            text: '• Integration testing completed in January 2025.<br/>• Deployed in all six client restaurants.<br/>• Maintenance phase begins, with new features to be added on demand.',
+          },
+          {
+            type: 'Paragraph',
+            text: 'Couplat represents a complete solution, built from scratch to fill a real business need in the fast-food sector. The system is in production and ready to scale.',
+          },
+        ],
+        techStack: ['MongoDB', 'Express', 'React'],
+        deployment: ['Heroku', 'Netlify'],
+        url: 'none',
+      },
+      {
+        name: 'Glutestop E-commerce',
+        date: 'January 2025 - March 2025',
+        icon: '/img/icons/glutestop.png',
+        type: 'project',
+        content: [
+          {
+            type: 'ProjectHeader',
+            text: 'Glutestop E-commerce',
+            logo: '/img/icons/glutestop.png',
+            date: 'January 2025 - March 2025',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'Building an Online Store for a Gluten-Free Brand',
+          },
+          {
+            type: 'Paragraph',
+            text: 'I developed and launched a full-featured e-commerce website for Glutestop, a company specializing in gluten-free baking mixes for both bakeries and individual customers. The main goal was to quickly establish a modern and professional online presence that could scale with the company’s future growth.',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'Technical Approach',
+          },
+          {
+            type: 'Paragraph',
+            text: 'To deliver the project efficiently and within budget, I used WordPress combined with WooCommerce. This allowed for rapid development and deployment while retaining flexibility for customizations and third-party integrations.',
+          },
+          {
+            type: 'TechStack',
+            stack: [
+              {
+                type: 'TechCard',
+                tech: 'WordPress',
+                text: 'Served as the foundation for building an easily manageable content-driven platform.',
+              },
+              {
+                type: 'TechCard',
+                tech: 'WooCommerce',
+                text: 'Handled the product catalog, shopping cart, and secure checkout system.',
+              },
+            ],
+          },
+          {
+            type: 'SectionHeader',
+            text: 'Deployment and Handoff',
+          },
+          {
+            type: 'Paragraph',
+            text: 'The website was deployed on the client’s existing hosting provider to ensure continuity and minimize operational disruptions. The transition included configuring domains, security certificates, and optimized caching strategies.',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'Impact and Results',
+          },
+          {
+            type: 'Paragraph',
+            text: 'The e-commerce platform now provides Glutestop with a professional digital storefront, enabling them to reach a wider audience in the gluten-free market. The solution supports both B2C and B2B sales workflows and lays the groundwork for future marketing efforts.',
+          },
+          {
+            type: 'Link',
+            url: 'https://glutestop.com',
+          },
+        ],
+        techStack: ['WordPress', 'WooCommerce'],
+        deployment: ['Custom Hosting'],
+        url: 'https://glutestop.com',
+      },
+    ],
+  },
+  {
+    name: 'Side Projects',
+    type: 'folder',
+    route: 'side-projects',
+    content: [
+      {
+        name: 'Gym Routine Optimizer',
+        date: 'February 2025',
+        icon: '/img/icons/gymroutine.png',
+        type: 'project',
+        content: [
+          {
+            type: 'ProjectHeader',
+            text: 'Optimizer - Genetic Algorithm for Gym Routines',
+            logo: '/img/icons/gymroutine.png',
+            date: 'February 2025',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'AI-Based Optimization of Workout Plans',
+          },
+          {
+            type: 'Paragraph',
+            text: 'Optimizer is a side project designed to generate optimal weekly gym routines using a multi-objective genetic algorithm. The goal is to adapt workouts to user profile data (experience, goals, availability, injuries, equipment) and optimize muscle group balance, time efficiency, and variety.',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'Key Features',
+          },
+          {
+            type: 'Paragraph',
+            text: '• Input: user profile (level, objective, sex, available days).<br/>• Output: weekly plan with detailed exercises.<br/>• Fitness function includes muscle coverage, difficulty matching, equipment availability, and no-repetition penalties.',
+          },
+          {
+            type: 'TechStack',
+            stack: [
+              {
+                type: 'TechCard',
+                tech: 'Python',
+                text: 'Core logic and fitness evaluation implemented with Python and NumPy.',
+              },
+            ],
+          },
+          {
+            type: 'SectionHeader',
+            text: 'The Result',
+          },
+          {
+            type: 'Paragraph',
+            text: 'The system generates tailored and realistic workout plans for users, and serves as a base for future integration into a full fitness coaching app.',
+          },
+        ],
+        techStack: ['Python', 'Inspyred', 'Pandas'],
+        deployment: ['Local'],
+        url: 'none',
+      },
+      {
+        name: 'Pong RL Environment',
+        date: 'May 2025',
+        icon: '/img/icons/pong.png',
+        type: 'project',
+        content: [
+          {
+            type: 'ProjectHeader',
+            text: 'Pong RL Environment',
+            logo: '/img/icons/pong.png',
+            date: 'May 2025',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'Custom Reinforcement Learning Environment with Gymnasium',
+          },
+          {
+            type: 'Paragraph',
+            text: 'This project involved creating a custom Pong environment using Gymnasium and Pygame for training AI agents with reinforcement learning. It was used to experiment with PPO algorithms from Stable Baselines3.',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'Features',
+          },
+          {
+            type: 'Paragraph',
+            text: '• 1D or 2D observation modes.<br/>• Discrete actions: left, right, stay.<br/>• Ball speed scaling and reward shaping.<br/>• Custom rendering and human playable mode.',
+          },
+          {
+            type: 'TechStack',
+            stack: [
+              {
+                type: 'TechCard',
+                tech: 'Python',
+                text: 'Provided environment structure, compatibility with RL frameworks.',
+              },
+            ],
+          },
+          {
+            type: 'SectionHeader',
+            text: 'The Result',
+          },
+          {
+            type: 'Paragraph',
+            text: 'The environment is fully functional and extensible. It supports human interaction, visual debugging, and batch training for benchmarking algorithms.',
+          },
+        ],
+        techStack: ['Gymnasium', 'Pygame', 'Stable Baselines3'],
+        deployment: ['Local'],
+        url: 'none',
+      },
+      {
+        name: 'CAPTCHA OCR',
+        date: 'May 2025',
+        icon: '/img/icons/ocrcaptcha.png',
+        type: 'project',
+        content: [
+          {
+            type: 'ProjectHeader',
+            text: 'CAPTCHA OCR',
+            logo: '/img/icons/ocrcaptcha.png',
+            date: 'May 2025',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'OCR System for Noisy Multi-Digit CAPTCHAs',
+          },
+          {
+            type: 'Paragraph',
+            text: 'This project focused on building an OCR model to solve noisy multi-digit CAPTCHAs using convolutional layers, bidirectional LSTM, and CTC loss. The input images were noisy and colorized, simulating real-world challenges.',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'Architecture and Training',
+          },
+          {
+            type: 'Paragraph',
+            text: '• Preprocessing: grayscale, resizing, noise reduction.<br/>• CNN feature extractor + BiLSTM sequence decoder.<br/>• Loss: CTC (Connectionist Temporal Classification).<br/>• Training with TensorFlow and live prediction previews.',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'The Result',
+          },
+          {
+            type: 'Paragraph',
+            text: 'The model was able to generalize to unseen CAPTCHA examples with high accuracy, and serves as a foundation for production-ready OCR on noisy visual input.',
+          },
+        ],
+        techStack: ['TensorFlow', 'CTC Loss', 'Matplotlib'],
+        deployment: ['Local'],
+        url: 'none',
+      },
     ],
   },
   {

@@ -45,7 +45,7 @@
   width: 0;
   height: 100%;
   background-color: greenyellow;
-  animation: loading 2s ease-in forwards;
+  animation: loading 0.5s ease-in forwards;
 }
 
 @keyframes loading {

@@ -13,8 +13,8 @@ export default function PowerOnOff({ handleClick }) {
           setLoaded(true);
           setTimeout(() => {
             handleClick();
-          }, 2000);
-        }, 2000);
+          }, 500);
+        }, 500);
       }}
     >
       {!screenTouched && (

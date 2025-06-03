@@ -40,6 +40,15 @@ export const iconProvider = (type: string): string => {
     case 'Node.js':
       icon = '/img/tech/nodejs.svg';
       break;
+    case 'WordPress':
+      icon = '/img/tech/wordpress.svg';
+      break;
+    case 'WooCommerce':
+      icon = '/img/tech/woocommerce.svg';
+      break;
+    case 'Python':
+      icon = '/img/tech/python.svg';
+      break;
     default:
       icon = '/img/icons/close.svg';
       break;
