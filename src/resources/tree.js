@@ -5,6 +5,169 @@ export const tree = [
     route: 'web-applications',
     content: [
       {
+        name: 'Couplat',
+        date: 'January 2025',
+        icon: '/img/icons/couplat.png',
+        type: 'project',
+        content: [
+          {
+            type: 'ProjectHeader',
+            text: 'Couplat - Digital Vouchers for Restaurants',
+            logo: '/img/icons/couplat.png',
+            date: 'January 2025 - Today',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'Digital Voucher System for McDonald’s Franchises',
+          },
+          {
+            type: 'Paragraph',
+            text: 'Couplat is a hybrid web application developed to digitize and secure the management of promotions in restaurants belonging to a McDonald’s franchise. The main goal was to eliminate losses caused by duplicate paper vouchers and enable efficient distribution of unique digital vouchers using cryptographically signed QR codes.',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'Context and Objective',
+          },
+          {
+            type: 'Paragraph',
+            text: 'The system was created for a franchisee with six restaurants (five in Navarra and one in the Basque Country), with future scalability in mind for similar businesses. Official McDonald’s systems did not support this kind of customized promotion.',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'Architecture and Functionality',
+          },
+          {
+            type: 'Paragraph',
+            text: '• Digital vouchers are generated as images with unique QR codes.<br/>• Each voucher is validated using a digital signature to ensure uniqueness.<br/>• Backend built with Express and MongoDB ensures secure control and traceability.<br/>• Responsive frontend built with React (Vite) and TypeScript.<br/>• Internal API for validation at redemption points in the restaurants.',
+          },
+          {
+            type: 'TechStack',
+            stack: [
+              {
+                type: 'TechCard',
+                tech: 'MongoDB',
+                text: 'NoSQL database for storing vouchers, usage logs, and validations.',
+              },
+              {
+                type: 'TechCard',
+                tech: 'Express.js',
+                text: 'RESTful server for managing vouchers and cryptographic verification.',
+              },
+              {
+                type: 'TechCard',
+                tech: 'React',
+                text: 'Agile management interface, accessible from mobile and desktop devices.',
+              },
+            ],
+          },
+          {
+            type: 'SectionHeader',
+            text: 'Results and Business Value',
+          },
+          {
+            type: 'Paragraph',
+            text: '• Elimination of fraud from duplicate vouchers.<br/>• Centralized control of personalized promotions.<br/>• Enhanced customer experience with fast and secure vouchers.<br/>• Scalable design for expansion to more franchises.',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'Current Status and Next Steps',
+          },
+          {
+            type: 'Paragraph',
+            text: '• Integration testing completed in January 2025.<br/>• Deployed in all six client restaurants.<br/>• Maintenance phase begins, with new features to be added on demand.',
+          },
+          {
+            type: 'Paragraph',
+            text: 'Couplat represents a complete solution, built from scratch to fill a real business need in the fast-food sector. The system is in production and ready to scale.',
+          },
+        ],
+        techStack: ['MongoDB', 'Express', 'React'],
+        deployment: ['Heroku', 'Netlify'],
+        url: 'none',
+      },
+      {
+        name: 'Fernando Mugica Portfolio',
+        date: 'March 2025',
+        icon: '/img/icons/mugikshot.png',
+        type: 'project',
+        content: [
+          {
+            type: 'ProjectHeader',
+            text: 'Fernando Mugica - Photography Portfolio',
+            logo: '/img/icons/mugikshot.png',
+            date: 'May 2025 - Today',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'Photography Portfolio Website for a Visual Storyteller',
+          },
+          {
+            type: 'Paragraph',
+            text: 'Fernando Mugica is a professional photographer focused on capturing striking portraits and picturesque landscapes. I developed a custom portfolio site to showcase his work with a focus on visual storytelling and performance.',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'Context and Objective',
+          },
+          {
+            type: 'Paragraph',
+            text: 'The goal was to provide Fernando with a fast, elegant, and fully responsive platform where he could display his photographic projects. The design needed to highlight his visual work while remaining minimalist and distraction-free.',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'Architecture and Functionality',
+          },
+          {
+            type: 'Paragraph',
+            text: '• Fully responsive single-page application built in React.<br/>• Dynamic gallery system integrated with Sanity as CMS.<br/>• Image layout adapts to all screen sizes and aspect ratios using CSS grid and animations.<br/>• Minimalist UI emphasizing full-screen images and distraction-free navigation.',
+          },
+          {
+            type: 'TechStack',
+            stack: [
+              {
+                type: 'TechCard',
+                tech: 'React',
+                text: 'Built with reusable functional components and hooks for responsive, dynamic rendering.',
+              },
+              {
+                type: 'TechCard',
+                tech: 'Sanity',
+                text: 'Headless CMS providing Fernando with control over photo uploads, captions, and categorization.',
+              },
+              {
+                type: 'TechCard',
+                tech: 'Vite',
+                text: 'Used for fast builds and a modern development environment optimized for performance.',
+              },
+            ],
+          },
+          {
+            type: 'SectionHeader',
+            text: 'Results and Visual Impact',
+          },
+          {
+            type: 'Paragraph',
+            text: '• Fernando can now present his portfolio in an immersive, elegant format.<br/>• Optimized for high-resolution photo display and mobile performance.<br/>• Easily maintainable thanks to a decoupled CMS and reusable component architecture.',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'Current Status and Next Steps',
+          },
+          {
+            type: 'Paragraph',
+            text: '• Possible improvements include gallery filtering, print ordering, and a blog section.',
+          },
+          {
+            type: 'Paragraph',
+            text: 'This project blends modern frontend engineering with artistic presentation, providing a reliable and beautiful showcase for a talented visual storyteller.',
+          },
+          { type: 'Link', url: 'https://www.mugikshot.com' },
+        ],
+        techStack: ['React', 'Sanity', 'Vite'],
+        deployment: ['Netlify'],
+        url: 'https://mugikshot.com',
+      },
+      {
         name: 'Wedding RSVP',
         date: 'July 2021',
         icon: '/img/icons/wedding.jpg',
@@ -523,87 +686,6 @@ export const tree = [
             url: 'https://pablooses.com',
           },
         ],
-      },
-      {
-        name: 'Couplat',
-        date: 'January 2025',
-        icon: '/img/icons/couplat.png',
-        type: 'project',
-        content: [
-          {
-            type: 'ProjectHeader',
-            text: 'Couplat - Digital Vouchers for Restaurants',
-            logo: '/img/icons/couplat.png',
-            date: 'January 2025 - Today',
-          },
-          {
-            type: 'SectionHeader',
-            text: 'Digital Voucher System for McDonald’s Franchises',
-          },
-          {
-            type: 'Paragraph',
-            text: 'Couplat is a hybrid web application developed to digitize and secure the management of promotions in restaurants belonging to a McDonald’s franchise. The main goal was to eliminate losses caused by duplicate paper vouchers and enable efficient distribution of unique digital vouchers using cryptographically signed QR codes.',
-          },
-          {
-            type: 'SectionHeader',
-            text: 'Context and Objective',
-          },
-          {
-            type: 'Paragraph',
-            text: 'The system was created for a franchisee with six restaurants (five in Navarra and one in the Basque Country), with future scalability in mind for similar businesses. Official McDonald’s systems did not support this kind of customized promotion.',
-          },
-          {
-            type: 'SectionHeader',
-            text: 'Architecture and Functionality',
-          },
-          {
-            type: 'Paragraph',
-            text: '• Digital vouchers are generated as images with unique QR codes.<br/>• Each voucher is validated using a digital signature to ensure uniqueness.<br/>• Backend built with Express and MongoDB ensures secure control and traceability.<br/>• Responsive frontend built with React (Vite) and TypeScript.<br/>• Internal API for validation at redemption points in the restaurants.',
-          },
-          {
-            type: 'TechStack',
-            stack: [
-              {
-                type: 'TechCard',
-                tech: 'MongoDB',
-                text: 'NoSQL database for storing vouchers, usage logs, and validations.',
-              },
-              {
-                type: 'TechCard',
-                tech: 'Express.js',
-                text: 'RESTful server for managing vouchers and cryptographic verification.',
-              },
-              {
-                type: 'TechCard',
-                tech: 'React',
-                text: 'Agile management interface, accessible from mobile and desktop devices.',
-              },
-            ],
-          },
-          {
-            type: 'SectionHeader',
-            text: 'Results and Business Value',
-          },
-          {
-            type: 'Paragraph',
-            text: '• Elimination of fraud from duplicate vouchers.<br/>• Centralized control of personalized promotions.<br/>• Enhanced customer experience with fast and secure vouchers.<br/>• Scalable design for expansion to more franchises.',
-          },
-          {
-            type: 'SectionHeader',
-            text: 'Current Status and Next Steps',
-          },
-          {
-            type: 'Paragraph',
-            text: '• Integration testing completed in January 2025.<br/>• Deployed in all six client restaurants.<br/>• Maintenance phase begins, with new features to be added on demand.',
-          },
-          {
-            type: 'Paragraph',
-            text: 'Couplat represents a complete solution, built from scratch to fill a real business need in the fast-food sector. The system is in production and ready to scale.',
-          },
-        ],
-        techStack: ['MongoDB', 'Express', 'React'],
-        deployment: ['Heroku', 'Netlify'],
-        url: 'none',
       },
       {
         name: 'Glutestop E-commerce',

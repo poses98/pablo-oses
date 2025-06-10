@@ -49,6 +49,12 @@ export const iconProvider = (type: string): string => {
     case 'Python':
       icon = '/img/tech/python.svg';
       break;
+    case 'Sanity':
+      icon = '/img/tech/sanity.png';
+      break;
+    case 'Vite':
+      icon = '/img/tech/vite.svg';
+      break;
     default:
       icon = '/img/icons/close.svg';
       break;
