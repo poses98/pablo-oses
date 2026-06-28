@@ -5,7 +5,7 @@ import Script from 'next/script';
 
 export default function App({ Component, pageProps }) {
   return (
-    <WindowsProvider>
+    <WindowsProvider initialTree={pageProps.tree}>
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-40TDHEKVV5"
         strategy="afterInteractive"

@@ -1,21 +1,21 @@
+// Documento de proyecto. El contenido se modela con los bloques tipados
+// (sanity/schemas/blocks/*) que se corresponden 1:1 con los componentes del
+// renderer (src/components/OSProjectRenderer). La query getTree() en
+// sanity/sanity-utils.ts traduce estos documentos al mismo shape que usa
+// el árbol estático src/resources/tree.js.
 const project = {
   name: 'project',
-  title: 'Projects',
+  title: 'Proyectos',
   type: 'document',
   fields: [
     {
       name: 'name',
-      title: 'Name',
+      title: 'Nombre',
       type: 'string',
     },
     {
-      name: 'publishedAt',
-      title: 'Published at',
-      type: 'datetime',
-    },
-    {
       name: 'slug',
-      title: 'Slug',
+      title: 'Slug (para enlaces ?open=...)',
       type: 'slug',
       options: {
         source: 'name',
@@ -23,91 +23,61 @@ const project = {
       },
     },
     {
-      name: 'image',
-      title: 'Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        {
-          name: 'alt',
-          title: 'Alternative text',
-          type: 'string',
-          options: {
-            isHighlighted: true,
-          },
-        },
-      ],
+      name: 'date',
+      title: 'Fecha (texto, ej. "January 2025")',
+      type: 'string',
+    },
+    {
+      name: 'icon',
+      title: 'Icono (ruta /img/icons/... o URL)',
+      type: 'string',
+    },
+    {
+      name: 'category',
+      title: 'Carpeta',
+      type: 'reference',
+      to: [{ type: 'folder' }],
+    },
+    {
+      name: 'order',
+      title: 'Orden dentro de la carpeta',
+      type: 'number',
     },
     {
       name: 'url',
-      title: 'URL',
-      type: 'url',
+      title: 'URL del proyecto en vivo',
+      type: 'string',
     },
     {
       name: 'content',
-      title: 'Content',
+      title: 'Contenido',
       type: 'array',
       of: [
-        {
-          type: 'block',
-        },
-        {
-          type: 'image',
-        },
+        { type: 'projectHeader' },
+        { type: 'sectionHeader' },
+        { type: 'subsectionHeader' },
+        { type: 'paragraph' },
+        { type: 'techStack' },
+        { type: 'projectImages' },
+        { type: 'link' },
       ],
     },
     {
-      name: 'technologies',
-      title: 'Technologies',
+      name: 'techStack',
+      title: 'Tecnologías (etiquetas)',
       type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [
-            {
-              type: 'technology',
-            },
-          ],
-        },
-      ],
+      of: [{ type: 'string' }],
     },
     {
-      name: 'productImages',
-      title: 'Product Images',
+      name: 'deployment',
+      title: 'Despliegue (etiquetas)',
       type: 'array',
-      of: [
-        {
-          type: 'image',
-          fields: [
-            {
-              name: 'caption',
-              type: 'string',
-              title: 'Caption',
-            },
-            {
-              name: 'attribution',
-              type: 'string',
-              title: 'Attribution',
-            },
-          ],
-        },
-      ],
-      options: {
-        layout: 'grid',
-      },
-    },
-    {
-      name: 'tags',
-      title: 'Tags',
-      type: 'array',
-      of: [
-        {
-          type: 'string',
-        },
-      ],
+      of: [{ type: 'string' }],
     },
   ],
+  preview: {
+    select: { title: 'name', subtitle: 'date', media: 'icon' },
+  },
 };
+
 export default project;

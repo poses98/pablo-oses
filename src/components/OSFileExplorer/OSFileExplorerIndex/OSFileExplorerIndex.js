@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import styles from './osfileexplorerindex.module.css';
-import { tree } from '@/resources/tree';
+import { tree as staticTree } from '@/resources/tree';
 import { iconProvider } from '@/utils/iconProvider';
 import { useWindowsContext } from '@/providers/WindowsProvider';
 
@@ -91,10 +91,12 @@ const RenderTree = ({ node, level = 0, route }) => {
 };
 
 export default function OSFileExplorerIndex({ route }) {
+  const { tree } = useWindowsContext();
+  const nodes = tree && tree.length > 0 ? tree : staticTree;
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        {tree.map((node, index) => (
+        {nodes.map((node, index) => (
           <RenderTree key={index} node={node} route={route} />
         ))}
       </div>

@@ -3,8 +3,9 @@ import { useWindows } from '@/hooks/useWindows';
 
 const WindowsContext = createContext();
 
-export function WindowsProvider({ children }) {
+export function WindowsProvider({ children, initialTree }) {
   const {
+    tree,
     windows,
     activeWindowId,
     spawnWindow,
@@ -22,10 +23,11 @@ export function WindowsProvider({ children }) {
     handleWindowSnap,
     handleBrowserFocus,
     handleTabClose,
-  } = useWindows();
+  } = useWindows(initialTree);
   return (
     <WindowsContext.Provider
       value={{
+        tree,
         windows,
         activeWindowId,
         spawnWindow,

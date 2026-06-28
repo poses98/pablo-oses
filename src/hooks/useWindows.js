@@ -1,6 +1,7 @@
-import { tree } from '@/resources/tree';
+import { tree as staticTree } from '@/resources/tree';
 import { useState, useCallback, useEffect } from 'react';
-import { getProjects } from '../../sanity/sanity-utils';
+import { useRouter } from 'next/router';
+import { nodeSlug, isOpenable } from '@/utils/treeNav';
 
 // Height reserved at the bottom for the floating dock/taskbar.
 export const DOCK_RESERVED = 72;
@@ -65,7 +66,36 @@ function computeSnapGeometry(zone) {
   }
 }
 
-export function useWindows() {
+export function useWindows(initialTree) {
+  // El árbol de contenido proviene de Sanity (getTree) cuando está disponible;
+  // si llega vacío o no se pasa, se usa src/resources/tree.js como fallback.
+  const tree =
+    Array.isArray(initialTree) && initialTree.length > 0
+      ? initialTree
+      : staticTree;
+
+  const router = useRouter();
+
+  // Refleja en la URL (?open=<slug>) el nodo actualmente abierto/activo, usando
+  // shallow routing para no relanzar la carga de datos. Pasar null lo limpia.
+  const setOpenQuery = useCallback(
+    (slug) => {
+      if (!router || !router.isReady) return;
+      const next = { ...router.query };
+      if (slug) {
+        if (next.open === slug) return;
+        next.open = slug;
+      } else {
+        if (!('open' in next)) return;
+        delete next.open;
+      }
+      router.replace({ pathname: router.pathname, query: next }, undefined, {
+        shallow: true,
+      });
+    },
+    [router]
+  );
+
   const [windows, setWindows] = useState([
     {
       ...tree[0],
@@ -89,6 +119,10 @@ export function useWindows() {
   const spawnWindow = useCallback(
     (node) => {
       const newZ = topZ + 1;
+      // Refleja el nodo abierto en la URL para que el enlace sea compartible.
+      if (isOpenable(node)) {
+        setOpenQuery(nodeSlug(node));
+      }
       const windowContent = {
         name: node.name,
         type: node.type,
@@ -151,19 +185,29 @@ export function useWindows() {
         setNextId(nextId + 1);
       }
     },
-    [nextId, openedBrowser, topZ]
+    [nextId, openedBrowser, topZ, setOpenQuery]
   );
 
-  const handleWindowClose = useCallback((id) => {
-    setWindows((prevWindows) => {
-      const newWindows = prevWindows.filter((window) => window.id !== id);
-      const isBrowser = newWindows.some((window) => window.type === 'browser');
-      if (!isBrowser) {
-        setOpenedBrowser(null);
-      }
-      return newWindows;
-    });
-  }, []);
+  const handleWindowClose = useCallback(
+    (id) => {
+      setWindows((prevWindows) => {
+        const newWindows = prevWindows.filter((window) => window.id !== id);
+        const isBrowser = newWindows.some((window) => window.type === 'browser');
+        if (!isBrowser) {
+          setOpenedBrowser(null);
+        }
+        // Si ya no queda ninguna ventana enlazable abierta, limpia ?open.
+        const stillOpen = newWindows.some(
+          (window) => window.type === 'browser' || isOpenable(window)
+        );
+        if (!stillOpen) {
+          setOpenQuery(null);
+        }
+        return newWindows;
+      });
+    },
+    [setOpenQuery]
+  );
 
   const handleWindowMinimize = useCallback((id) => {
     setWindows((prevWindows) => {
@@ -300,6 +344,12 @@ export function useWindows() {
 
   const handleBrowserActiveTabChange = useCallback(
     (id) => {
+      // Refleja en la URL la pestaña ahora activa del navegador.
+      const browser = windows.find((win) => win.id === openedBrowser);
+      const tab = browser?.content?.find((item) => item.id === id);
+      if (tab) {
+        setOpenQuery(nodeSlug(tab));
+      }
       setWindows((prevWindows) =>
         prevWindows.map((window) => {
           if (window.id === openedBrowser) {
@@ -312,7 +362,7 @@ export function useWindows() {
         })
       );
     },
-    [setWindows, openedBrowser]
+    [setWindows, openedBrowser, windows, setOpenQuery]
   );
 
   const handleTabClose = useCallback(
@@ -389,6 +439,7 @@ export function useWindows() {
   );
 
   return {
+    tree,
     windows,
     activeWindowId,
     spawnWindow,

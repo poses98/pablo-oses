@@ -2,13 +2,14 @@ import OSIcon from '../OSIcon/OSIcon';
 import styles from './osdesktop.module.css';
 import { useWindowsContext } from '@/providers/WindowsProvider';
 import { sendGAEvent } from '@next/third-parties/google';
-import { tree } from '@/resources/tree';
+import { tree as staticTree } from '@/resources/tree';
 
 export default function OSDesktop({ icons }) {
-  const { spawnWindow } = useWindowsContext();
+  const { spawnWindow, tree } = useWindowsContext();
+  const nodes = tree && tree.length > 0 ? tree : staticTree;
   return (
     <div className={styles.container}>
-      {tree.map((element, index) => {
+      {nodes.map((element, index) => {
         return (
           <OSIcon
             key={index}
