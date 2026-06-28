@@ -1,42 +1,46 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './poweronoff.module.css';
 
 export default function PowerOnOff({ handleClick }) {
-  const [screenTouched, setScreenTouched] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const finished = useRef(false);
+
+  // Auto-play a brief, elegant boot then reveal the desktop.
+  useEffect(() => {
+    const t1 = setTimeout(() => setLoaded(true), 1400);
+    const t2 = setTimeout(() => finish(), 1900);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const finish = () => {
+    if (finished.current) return;
+    finished.current = true;
+    handleClick();
+  };
+
   return (
     <div
-      className={`${styles.container} ${loaded ? styles.powerOnAnimation : ''}`}
+      className={`${styles.container} ${loaded ? styles.fadeOut : ''}`}
       onClick={() => {
-        setScreenTouched(true);
-        setTimeout(() => {
-          setLoaded(true);
-          setTimeout(() => {
-            handleClick();
-          }, 500);
-        }, 500);
+        setLoaded(true);
+        setTimeout(finish, 250);
       }}
     >
-      {!screenTouched && (
-        <>
-          <h1 className={styles.vintageText}>Welcome to my portfolio</h1>
-          <h2 className={`${styles.flickerText} ${styles.vintageText}`}>
-            Click or touch the screen to continue
-          </h2>
-        </>
-      )}
+      <div className={styles.content}>
+        <div className={styles.logo}>PO</div>
+        <h1 className={styles.name}>Pablo Osés</h1>
+        <p className={styles.subtitle}>Software Engineer</p>
 
-      {screenTouched && (
-        <div className={styles.loading}>
-          <h2 className={`${styles.loadingText} ${styles.vintageText}`}>
-            {loaded ? 'Loading completed!' : 'Loading portfolio...'}
-          </h2>
-
-          <div className={styles.loadingBox}>
-            <div className={styles.loadingBar} />
-          </div>
+        <div className={styles.progressTrack}>
+          <div className={styles.progressBar} />
         </div>
-      )}
+      </div>
+
+      <p className={styles.skipHint}>click to skip</p>
     </div>
   );
 }

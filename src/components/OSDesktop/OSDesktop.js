@@ -14,6 +14,7 @@ export default function OSDesktop({ icons }) {
             key={index}
             name={element.name}
             type={element.type}
+            containerStyle={{ animationDelay: `${0.4 + index * 0.07}s` }}
             onClick={() => {
               sendGAEvent({ event: 'dektop_icon_opened', value: element.name });
               spawnWindow(element);

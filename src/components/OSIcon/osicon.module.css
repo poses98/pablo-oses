@@ -3,19 +3,48 @@
   flex-direction: column;
   text-align: center;
   align-items: center;
-  padding-top: 5px;
+  gap: 6px;
+  padding: 10px 6px 6px;
   height: 110px;
-  margin-bottom: 10px;
-  width: 90px;
+  margin-bottom: 6px;
+  width: 92px;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
   cursor: pointer;
   z-index: 6;
+  transition: background-color 0.15s ease, border-color 0.15s ease,
+    transform 0.15s var(--ease-spring);
+  animation: iconIn 0.5s var(--ease-out) backwards;
 }
 
 .container:hover {
-  background-color: rgba(81, 186, 255, 0.2);
-  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: var(--hairline);
+  transform: translateY(-3px);
+}
+
+.container:active {
+  transform: scale(0.95);
+}
+
+.container img {
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.35));
 }
 
 .iconName {
-  font-size: 0.9em;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+  line-height: 1.2;
+}
+
+@keyframes iconIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }

@@ -1,30 +1,64 @@
 .container {
-  height: 300px;
-  background-color: rgba(28, 28, 28);
-  width: 300px;
-  z-index: 10;
-  position: absolute;
-  bottom: 0;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  position: fixed;
+  bottom: 78px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 320px;
+  padding: 10px;
+  background: var(--surface);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+  border: var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-window-active);
+  z-index: 16;
+  animation: menuIn 0.22s var(--ease-spring) both;
+}
+
+@keyframes menuIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
 }
 
 .menuItem {
-  color: #fff;
-  min-height: max-content;
+  color: var(--text);
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: 14px;
   font-size: 0.9em;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  padding-left: 20px;
+  padding: 13px 14px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
-}
-
-.menuItem p {
-  margin-left: 20px;
+  transition: background-color 0.15s ease, transform 0.12s ease;
 }
 
 .menuItem:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--surface-hover);
+  transform: translateX(2px);
+}
+
+@media only screen and (max-width: 600px) {
+  .container {
+    left: 12px;
+    transform: none;
+    width: calc(100vw - 24px);
+    bottom: 64px;
+  }
+  @keyframes menuIn {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }

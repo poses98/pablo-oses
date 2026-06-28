@@ -1,68 +1,125 @@
 .container {
-  width: 100%;
   position: relative;
-  background-image: linear-gradient(
-    to left top,
-    rgba(18, 194, 233, 1) 0%,
-    rgba(196, 113, 237, 1) 50%,
-    rgba(246, 79, 89, 1) 100%
-  );
-  background-size: auto;
-  background-position: 0% 0%;
-  background-repeat: repeat;
-  background-color: rgba(0, 0, 0, 0);
+  width: 100%;
   overflow: hidden;
   user-select: none;
+  background-color: #0b0b12;
+  background-image: radial-gradient(
+      at 18% 22%,
+      rgba(99, 102, 241, 0.55) 0px,
+      transparent 50%
+    ),
+    radial-gradient(at 82% 18%, rgba(34, 211, 238, 0.42) 0px, transparent 50%),
+    radial-gradient(at 75% 82%, rgba(168, 85, 247, 0.45) 0px, transparent 55%),
+    radial-gradient(at 25% 88%, rgba(244, 63, 94, 0.32) 0px, transparent 50%);
+  background-attachment: fixed;
+  animation: desktopReveal 0.7s var(--ease-out) both;
+}
+
+/* Subtle noise/vignette layer for depth. */
+.container::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    120% 120% at 50% 40%,
+    transparent 55%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
+  z-index: 0;
+}
+
+@keyframes desktopReveal {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
 }
 
 .backgroundLettering {
   position: absolute;
-  top: 50%;
+  top: 46%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
-  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   pointer-events: none;
-  opacity: 0.8;
+  z-index: 1;
+  animation: letteringIn 1s var(--ease-out) 0.15s both;
 }
 
 .backgroundLettering h1,
 .backgroundLettering h2 {
   text-align: center;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.35);
 }
+
 .backgroundLettering h1 {
-  font-size: 3em;
-  font-weight: bolder;
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
 .backgroundLettering h2 {
-  font-size: 2.5em;
+  margin-top: 6px;
+  font-size: clamp(1.1rem, 2.4vw, 1.7rem);
   font-weight: 300;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.62);
 }
 
-.backgroundLicense {
+@keyframes letteringIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -42%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.backgroundSignature {
   position: absolute;
-  bottom: 0;
-
-  z-index: 10;
-  width: 100%;
-  height: auto;
+  bottom: calc(var(--dock-reserved, 72px) + 14px);
+  right: 22px;
+  z-index: 1;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+  align-items: center;
+  gap: 8px;
   pointer-events: none;
-  opacity: 0.5;
+  opacity: 0.55;
 }
 
-.backgroundLicense p {
-  font-size: 1em;
-  color: #2e2e2e;
-  width: fit-content;
-  font-weight: 300;
-  text-align: left;
+.backgroundSignature p {
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.signatureDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-gradient);
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.8);
+}
+
+@media only screen and (max-width: 600px) {
+  .backgroundSignature {
+    display: none;
+  }
 }

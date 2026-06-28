@@ -5,6 +5,9 @@ import OSFileExplorer from '../OSFileExplorer/OSFileExplorer';
 import OSNotepad from '../OSNotepad/OSNotepad';
 import { useWindowsContext } from '@/providers/WindowsProvider';
 import OSBrowser from '../OSBrowser/OSBrowser';
+import { useWindowDrag } from '@/hooks/useWindowDrag';
+
+const RESIZE_DIRS = ['n', 's', 'e', 'w', 'ne', 'nw', 'se', 'sw'];
 
 export default function OSWindow({
   name,
@@ -15,159 +18,142 @@ export default function OSWindow({
   handleClose,
   customWindow,
 }) {
-  const { handleWindowFocus, activeWindowId, windows } = useWindowsContext();
-  const [prevCustomWindow, setPrevCustomWindow] = useState(customWindow);
-  const [windowContentHeight, setWindowContentHeight] = useState(0);
-  const [initialWindow, setInitialWindow] = useState({ width: 0, height: 0 });
+  const {
+    handleWindowFocus,
+    activeWindowId,
+    handleWindowMove,
+    handleWindowResize,
+    handleWindowSnap,
+    handleWindowMaximize,
+  } = useWindowsContext();
+
+  const [headerHeight, setHeaderHeight] = useState(40);
+  const [isMobile, setIsMobile] = useState(false);
   const windowRef = useRef();
   const windowHeaderRef = useRef();
 
-  useLayoutEffect(() => {
-    if (windowRef.current && windowHeaderRef.current) {
-      const vw = Math.max(
-        document.documentElement.clientWidth || 0,
-        window.innerWidth || 0
-      );
-      const vh = Math.max(
-        document.documentElement.clientHeight || 0,
-        window.innerHeight || 0
-      );
+  const geometry = customWindow.geometry || { x: 80, y: 80, width: 720, height: 520 };
+  const isMaximized = customWindow.maximize || customWindow.snap === 'maximize';
+  const interactive = !isMobile && !customWindow.minimize;
 
-      let x, y, width, height, opacity;
-
-      if (type !== 'browser' && !customWindow.maximize) {
-        if (vw <= 600) {
-          width = '100vw';
-        } else {
-          width = initialWindow.width || `${windowRef.current.offsetWidth}px`;
-        }
-        height = initialWindow.height || `${windowRef.current.offsetHeight}px`;
-        x =
-          initialWindow.x ||
-          `${
-            vw / 2.5 -
-            parseInt(width) / 2 +
-            (id % 6) * windowHeaderRef.current.offsetHeight
-          }px`;
-        y =
-          initialWindow.y ||
-          `${
-            vh / 2.5 -
-            parseInt(height) / 2 +
-            (id % 6) * windowHeaderRef.current.offsetHeight
-          }px`;
-
-        setInitialWindow({ width, height, x, y });
-      } else if (type === 'browser' || customWindow.maximize) {
-        x = '0';
-        y = '0';
-        width = `${vw}px`;
-        height = `${vh - 40}px`;
-      }
-
-      if (customWindow.minimize) {
-        y = `${vh}px`;
-        x = '0';
-        width = '0px';
-        height = '0px';
-        opacity = '0';
-      } else if (customWindow.maximize) {
-        y = '0';
-        x = '0';
-        width = `${vw}px`;
-        height = `${vh - 40}px`;
-        opacity = '1';
-      } else if (prevCustomWindow.minimize && !customWindow.minimize) {
-        y = initialWindow.y;
-        x = initialWindow.x;
-        width = initialWindow.width;
-        height = initialWindow.height;
-        opacity = '1';
-      } else if (prevCustomWindow.maximize && !customWindow.maximize) {
-        y = initialWindow.y;
-        x = initialWindow.x;
-        width = initialWindow.width;
-        height = initialWindow.height;
-        opacity = '1';
-      }
-
-      Object.assign(windowRef.current.style, {
-        top: y,
-        left: vw > 600 ? x : '0',
-        width,
-        height,
-        transition: 'all 0.2s ease-in-out',
-        opacity,
-      });
-      customWindow.animated = true;
-      setTimeout(() => {
-        if (windowRef.current && windowHeaderRef.current) {
-          const availableContentHeight =
-            windowRef.current.offsetHeight -
-            windowHeaderRef.current.offsetHeight;
-          setWindowContentHeight(availableContentHeight);
-          customWindow.animated = false;
-        }
-      }, 200);
-    }
-    return () => {};
-  }, [
-    windowRef,
-    id,
-    type,
-    customWindow,
-    initialWindow.width,
-    initialWindow.height,
-    prevCustomWindow.maximize,
-    initialWindow.x,
-    initialWindow.y,
-    prevCustomWindow.minimize,
-  ]);
-
+  // Detect small / touch viewports where free-floating windows don't make sense.
   useEffect(() => {
-    if (JSON.stringify(prevCustomWindow) !== JSON.stringify(customWindow)) {
-      setPrevCustomWindow(customWindow);
+    const check = () => {
+      const touch =
+        typeof window !== 'undefined' &&
+        (window.matchMedia('(pointer: coarse)').matches ||
+          window.innerWidth <= 768);
+      setIsMobile(touch);
+    };
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
+  // Measure the title bar so content areas can size their scroll regions.
+  useLayoutEffect(() => {
+    if (windowHeaderRef.current) {
+      setHeaderHeight(windowHeaderRef.current.offsetHeight || 40);
     }
-  }, [customWindow, prevCustomWindow]);
+  }, [geometry.height, name]);
+
+  const { startDrag, startResize, snapPreview } = useWindowDrag({
+    windowRef,
+    geometry,
+    enabled: interactive,
+    onMove: (x, y) => handleWindowMove(id, x, y),
+    onResize: (geo) => handleWindowResize(id, geo),
+    onSnap: (zone) => handleWindowSnap(id, zone),
+    onFocus: () => handleWindowFocus(id),
+  });
+
+  const windowContentHeight = Math.max(
+    (isMobile ? window?.innerHeight - 56 : geometry.height) - headerHeight,
+    0
+  );
+
+  // Inline geometry: free-floating on desktop, full-bleed on mobile.
+  const style = isMobile
+    ? { zIndex: customWindow.zIndex || 10 }
+    : {
+        transform: `translate3d(${geometry.x}px, ${geometry.y}px, 0)`,
+        width: `${geometry.width}px`,
+        height: `${geometry.height}px`,
+        zIndex: customWindow.zIndex || 10,
+      };
+
+  const containerClass = [
+    styles.container,
+    activeWindowId === id ? styles.activeWindow : '',
+    isMobile ? styles.mobile : '',
+    customWindow.minimize ? styles.minimized : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   return (
-    <div
-      className={`${styles.container} ${
-        activeWindowId === id ? styles.activeWindow : ''
-      }`}
-      ref={windowRef}
-      onClick={() => handleWindowFocus(id)}
-    >
-      <div ref={windowHeaderRef}>
-        <WindowTaskbar
-          name={name}
-          type={type}
-          handleClose={handleClose}
-          id={id}
+    <>
+      {snapPreview && (
+        <div
+          className={`${styles.snapPreview} ${styles[`snap-${snapPreview}`]}`}
         />
-      </div>
+      )}
       <div
-        className={styles.windowContent}
-        style={{ height: `${windowContentHeight}px` }}
+        className={containerClass}
+        ref={windowRef}
+        style={style}
+        onPointerDown={() => handleWindowFocus(id)}
       >
-        {type === 'folder' && (
-          <OSFileExplorer
-            route={route}
-            content={content}
-            windowContentHeight={windowContentHeight}
-            animated={customWindow.animated}
+        <div
+          ref={windowHeaderRef}
+          className={styles.header}
+          onPointerDown={interactive && !isMaximized ? startDrag : undefined}
+          onDoubleClick={
+            interactive ? () => handleWindowMaximize(id) : undefined
+          }
+        >
+          <WindowTaskbar
+            name={name}
+            type={type}
+            handleClose={handleClose}
+            id={id}
           />
-        )}
-        {type === 'text' && (
-          <OSNotepad
-            content={content}
-            windowContentHeight={windowContentHeight}
-          />
-        )}
-        {type === 'browser' && (
-          <OSBrowser windowContentHeight={windowContentHeight} />
+        </div>
+        <div
+          className={styles.windowContent}
+          style={{ height: `${windowContentHeight}px` }}
+        >
+          {type === 'folder' && (
+            <OSFileExplorer
+              route={route}
+              content={content}
+              windowContentHeight={windowContentHeight}
+              animated={false}
+            />
+          )}
+          {type === 'text' && (
+            <OSNotepad
+              content={content}
+              windowContentHeight={windowContentHeight}
+            />
+          )}
+          {type === 'browser' && (
+            <OSBrowser windowContentHeight={windowContentHeight} />
+          )}
+        </div>
+
+        {interactive && !isMaximized && (
+          <div className={styles.resizeHandles}>
+            {RESIZE_DIRS.map((dir) => (
+              <div
+                key={dir}
+                className={`${styles.resizeHandle} ${styles[`resize-${dir}`]}`}
+                onPointerDown={(e) => startResize(e, dir)}
+              />
+            ))}
+          </div>
         )}
       </div>
-    </div>
+    </>
   );
 }

@@ -1,11 +1,12 @@
 .container {
-  color: #fafafa;
+  color: var(--text);
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+  gap: 14px;
   width: 100%;
   padding: 20px;
-  font-size: 0.7em;
+  font-size: 0.74rem;
+  overflow: auto;
 }
 
 .elementContainer {

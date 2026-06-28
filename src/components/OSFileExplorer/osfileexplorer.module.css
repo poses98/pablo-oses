@@ -10,11 +10,13 @@
 
 .explorerRouteField {
   width: 100%;
-  background-color: #292929;
-  border: #dbdbdb59 solid 1px;
-  color: #dbdbdb;
-  padding: 3px;
-  font-size: 0.7em;
+  background-color: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-sm);
+  color: var(--text-dim);
+  padding: 7px 12px;
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
 }
 
 .explorerContentContainer {
@@ -28,10 +30,10 @@
 
 .explorerIndex {
   width: 30%;
-  border-right: 1px solid #dbdbdb1f;
+  border-right: 1px solid var(--hairline);
   height: 100%;
   z-index: 3;
-  overflow-x: scroll;
+  overflow: auto;
 }
 
 .explorerShowcase {

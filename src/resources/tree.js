@@ -126,7 +126,7 @@ export const tree = [
             stack: [
               {
                 type: 'TechCard',
-                tech: 'React',
+                tech: 'Next.js',
                 text: 'Built with reusable functional components and hooks for responsive, dynamic rendering.',
               },
               {
@@ -163,7 +163,7 @@ export const tree = [
           },
           { type: 'Link', url: 'https://www.fermugica.com' },
         ],
-        techStack: ['React', 'Sanity', 'Vite'],
+        techStack: ['Next.js', 'Sanity', 'Vite'],
         deployment: ['Netlify'],
         url: 'https://mugikshot.com',
       },

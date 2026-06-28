@@ -2,10 +2,82 @@ import { tree } from '@/resources/tree';
 import { useState, useCallback, useEffect } from 'react';
 import { getProjects } from '../../sanity/sanity-utils';
 
+// Height reserved at the bottom for the floating dock/taskbar.
+export const DOCK_RESERVED = 72;
+const MIN_W = 360;
+const MIN_H = 280;
+
+// Viewport helpers (client-side only; spawn/snap run on user interaction).
+function viewport() {
+  const vw = Math.max(
+    document.documentElement.clientWidth || 0,
+    window.innerWidth || 0
+  );
+  const vh = Math.max(
+    document.documentElement.clientHeight || 0,
+    window.innerHeight || 0
+  );
+  return { vw, vh };
+}
+
+// Geometry for a freshly spawned window: a comfortable size centred with a
+// cascade offset so stacked windows don't perfectly overlap.
+function computeInitialGeometry(id, type) {
+  if (typeof window === 'undefined') {
+    return { x: 80, y: 80, width: 720, height: 520 };
+  }
+  const { vw, vh } = viewport();
+  if (type === 'browser') {
+    return { x: 0, y: 0, width: vw, height: vh - DOCK_RESERVED };
+  }
+  const width = Math.round(Math.min(Math.max(vw * 0.46, MIN_W), 860));
+  const height = Math.round(Math.min(Math.max(vh * 0.62, MIN_H), 720));
+  const cascade = (id % 6) * 34;
+  const x = Math.round(
+    Math.min(Math.max(vw / 2 - width / 2 + cascade, 16), vw - width - 16)
+  );
+  const y = Math.round(
+    Math.min(
+      Math.max(vh / 2 - height / 2 - 20 + cascade, 16),
+      vh - DOCK_RESERVED - height - 16
+    )
+  );
+  return { x, y, width, height };
+}
+
+// Geometry for a snap zone: half-screen left/right, or full maximize.
+function computeSnapGeometry(zone) {
+  const { vw, vh } = viewport();
+  const usableH = vh - DOCK_RESERVED;
+  switch (zone) {
+    case 'left':
+      return { x: 0, y: 0, width: Math.round(vw / 2), height: usableH };
+    case 'right':
+      return {
+        x: Math.round(vw / 2),
+        y: 0,
+        width: Math.round(vw / 2),
+        height: usableH,
+      };
+    case 'maximize':
+    default:
+      return { x: 0, y: 0, width: vw, height: usableH };
+  }
+}
+
 export function useWindows() {
-  const [windows, setWindows] = useState([{ ...tree[0], id: 0 }]);
+  const [windows, setWindows] = useState([
+    {
+      ...tree[0],
+      id: 0,
+      geometry: computeInitialGeometry(0, tree[0].type),
+      zIndex: 10,
+      snap: null,
+    },
+  ]);
   const [activeWindowId, setActiveWindowId] = useState(0);
   const [nextId, setNextId] = useState(1);
+  const [topZ, setTopZ] = useState(10);
   const [openedBrowser, setOpenedBrowser] = useState(null);
   const [activeBrowserTab, setActiveBrowserTab] = useState(-1);
 
@@ -16,6 +88,7 @@ export function useWindows() {
 
   const spawnWindow = useCallback(
     (node) => {
+      const newZ = topZ + 1;
       const windowContent = {
         name: node.name,
         type: node.type,
@@ -33,9 +106,13 @@ export function useWindows() {
           content: [{ id: 0, ...windowContent }],
           activeTabId: 0,
           maximize: true,
+          geometry: computeInitialGeometry(nextId, 'browser'),
+          zIndex: newZ,
+          snap: 'maximize',
         };
         if (openedBrowser === null) {
           setOpenedBrowser(nextId);
+          setTopZ(newZ);
           setWindows((prevWindows) => [...prevWindows, browserItem]);
           // Timeout to setActiveWindow avoiding window click active window setting
           setTimeout(() => {
@@ -61,13 +138,20 @@ export function useWindows() {
       } else {
         setWindows((prevWindows) => [
           ...prevWindows,
-          { id: nextId, ...windowContent },
+          {
+            id: nextId,
+            ...windowContent,
+            geometry: computeInitialGeometry(nextId, node.type),
+            zIndex: newZ,
+            snap: null,
+          },
         ]);
+        setTopZ(newZ);
         setActiveWindowId(nextId);
         setNextId(nextId + 1);
       }
     },
-    [nextId, openedBrowser]
+    [nextId, openedBrowser, topZ]
   );
 
   const handleWindowClose = useCallback((id) => {
@@ -112,14 +196,84 @@ export function useWindows() {
 
   const handleWindowMaximize = useCallback((id) => {
     setWindows((prevWindows) =>
-      prevWindows.map((window) => {
-        if (window.id === id) {
+      prevWindows.map((win) => {
+        if (win.id !== id) return win;
+        // Already maximized/snapped -> restore previous floating geometry.
+        if (win.snap) {
           return {
-            ...window,
-            maximize: !window.maximize,
+            ...win,
+            maximize: false,
+            snap: null,
+            geometry: win.geometryBeforeSnap || win.geometry,
+            geometryBeforeSnap: undefined,
           };
         }
-        return window;
+        return {
+          ...win,
+          maximize: true,
+          snap: 'maximize',
+          geometryBeforeSnap: win.geometry,
+          geometry: computeSnapGeometry('maximize'),
+        };
+      })
+    );
+  }, []);
+
+  // Commit a new position after dragging the title bar.
+  const handleWindowMove = useCallback((id, x, y) => {
+    setWindows((prevWindows) =>
+      prevWindows.map((win) =>
+        win.id === id
+          ? {
+              ...win,
+              geometry: { ...win.geometry, x, y },
+              snap: null,
+              maximize: false,
+              geometryBeforeSnap: undefined,
+            }
+          : win
+      )
+    );
+  }, []);
+
+  // Commit a new geometry after resizing from an edge/corner.
+  const handleWindowResize = useCallback((id, geometry) => {
+    setWindows((prevWindows) =>
+      prevWindows.map((win) =>
+        win.id === id
+          ? {
+              ...win,
+              geometry,
+              snap: null,
+              maximize: false,
+              geometryBeforeSnap: undefined,
+            }
+          : win
+      )
+    );
+  }, []);
+
+  // Snap to a screen zone (left/right half or maximize), or restore.
+  const handleWindowSnap = useCallback((id, zone) => {
+    setWindows((prevWindows) =>
+      prevWindows.map((win) => {
+        if (win.id !== id) return win;
+        if (zone === 'restore') {
+          return {
+            ...win,
+            snap: null,
+            maximize: false,
+            geometry: win.geometryBeforeSnap || win.geometry,
+            geometryBeforeSnap: undefined,
+          };
+        }
+        return {
+          ...win,
+          snap: zone,
+          maximize: zone === 'maximize',
+          geometryBeforeSnap: win.geometryBeforeSnap || win.geometry,
+          geometry: computeSnapGeometry(zone),
+        };
       })
     );
   }, []);
@@ -213,6 +367,15 @@ export function useWindows() {
   const handleWindowFocus = useCallback(
     (id) => {
       setActiveWindowId(id);
+      setTopZ((prevZ) => {
+        const newZ = prevZ + 1;
+        setWindows((prevWindows) =>
+          prevWindows.map((win) =>
+            win.id === id ? { ...win, zIndex: newZ } : win
+          )
+        );
+        return newZ;
+      });
     },
     [setActiveWindowId]
   );
@@ -230,6 +393,9 @@ export function useWindows() {
     handleWindowMinimize,
     handleWindowMaximize,
     handleWindowDeMinimize,
+    handleWindowMove,
+    handleWindowResize,
+    handleWindowSnap,
     handleBrowserFocus,
     handleTabClose,
   };

@@ -1,85 +1,142 @@
 .container {
+  position: fixed;
+  inset: 0;
   height: 100vh;
-  z-index: 10;
-  background-color: black;
+  z-index: 100;
   display: flex;
-  color: greenyellow;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: 'Courier New', Courier, monospace;
-  text-transform: uppercase;
-  padding: 30px;
   cursor: pointer;
+  background-color: #0b0b12;
+  background-image: radial-gradient(
+      at 30% 20%,
+      rgba(99, 102, 241, 0.35) 0px,
+      transparent 55%
+    ),
+    radial-gradient(at 75% 80%, rgba(34, 211, 238, 0.28) 0px, transparent 55%);
+  color: var(--text);
+  transition: opacity 0.5s ease, transform 0.5s var(--ease-out),
+    filter 0.5s ease;
+}
+
+.fadeOut {
+  opacity: 0;
+  transform: scale(1.05);
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+.content {
+  display: flex;
   flex-direction: column;
-}
-
-.container h1 {
-  font-size: 2.5em;
-  margin-bottom: 20px;
+  align-items: center;
   text-align: center;
+  animation: bootIn 0.8s var(--ease-out) both;
 }
 
-.flickerText {
-  animation: flicker 1.5s infinite;
-  text-align: center;
+.logo {
+  width: 84px;
+  height: 84px;
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #fff;
+  background: var(--accent-gradient);
+  box-shadow: 0 10px 40px rgba(99, 102, 241, 0.5);
+  margin-bottom: 26px;
+  animation: logoPulse 2s ease-in-out infinite;
 }
 
-.powerOnAnimation {
-  background-color: #000;
-  animation: background 2s linear;
+.name {
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
-.loadingText {
-  margin-top: 20px;
-  font-size: 1.5em;
+.subtitle {
+  margin-top: 6px;
+  font-size: 0.9rem;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text-dim);
 }
 
-.loadingBox {
-  width: 300px;
-  height: 50px;
-  border: 4px solid greenyellow;
-  padding: 3px;
+.progressTrack {
+  position: relative;
+  margin-top: 34px;
+  width: 200px;
+  height: 3px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
 }
 
-.loadingBar {
-  width: 0;
-  height: 100%;
-  background-color: greenyellow;
-  animation: loading 0.5s ease-in forwards;
+.progressBar {
+  position: absolute;
+  inset: 0;
+  width: 40%;
+  border-radius: 3px;
+  background: var(--accent-gradient);
+  animation: progressSlide 1.4s var(--ease-out) forwards;
 }
 
-@keyframes loading {
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 100%;
-  }
+.skipHint {
+  position: absolute;
+  bottom: 32px;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  animation: hintFlicker 2.4s ease-in-out infinite;
 }
 
-@keyframes background {
-  0% {
-    background-color: #000;
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-  100% {
-    background-color: #fff;
+@keyframes bootIn {
+  from {
     opacity: 0;
-    display: none;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@keyframes flicker {
-  0% {
-    opacity: 1;
+@keyframes logoPulse {
+  0%,
+  100% {
+    box-shadow: 0 10px 40px rgba(99, 102, 241, 0.5);
   }
   50% {
-    opacity: 0.1;
+    box-shadow: 0 10px 56px rgba(34, 211, 238, 0.6);
+  }
+}
+
+@keyframes progressSlide {
+  0% {
+    left: -40%;
+    width: 40%;
+  }
+  60% {
+    width: 70%;
   }
   100% {
-    opacity: 1;
+    left: 100%;
+    width: 40%;
+  }
+}
+
+@keyframes hintFlicker {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.15;
   }
 }

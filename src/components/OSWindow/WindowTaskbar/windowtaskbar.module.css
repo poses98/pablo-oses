@@ -1,46 +1,74 @@
 .container {
-  color: #ffffff;
+  color: var(--text);
   display: flex;
-  width: 100%;
   flex-direction: row;
   align-items: center;
-  padding: 7px 10px;
-  min-height: 15px;
-  font-size: 0.8em;
+  width: 100%;
+  padding: 0 8px 0 14px;
+  min-height: 40px;
+  font-size: 0.82em;
+  position: relative;
 }
 
 .windowHeader {
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: 9px;
+  overflow: hidden;
+  flex: 1 1 auto;
 }
 
 .windowTitle {
-  margin-left: 5px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text);
 }
 
 .windowActions {
-  position: absolute;
   display: flex;
   flex-direction: row;
-  right: 0;
-  top: 0;
+  align-items: center;
+  gap: 2px;
+  margin-left: 8px;
 }
 
 .windowCloseButton,
 .windowButton {
   width: 30px;
   height: 30px;
+  border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  color: var(--text-dim);
+  transition: background-color 0.15s ease, color 0.15s ease,
+    transform 0.12s ease;
 }
 
-.windowCloseButton:hover {
-  background-color: #b00020;
+.windowButton svg {
+  width: 12px;
+  height: 12px;
 }
 
 .windowButton:hover {
-  background-color: #383838;
+  background-color: var(--surface-hover);
+  color: var(--text);
+}
+
+.windowButton:active,
+.windowCloseButton:active {
+  transform: scale(0.92);
+}
+
+.windowCloseButton:hover {
+  background-color: #e5484d;
+}
+
+.windowCloseButton:hover :global(img) {
+  filter: brightness(0) invert(1);
 }

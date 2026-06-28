@@ -3,7 +3,14 @@ import Image from 'next/image';
 import styles from './osicon.module.css';
 import { iconProvider } from '@/utils/iconProvider';
 
-export default function OSIcon({ name, icon, type, onClick, nameStyles }) {
+export default function OSIcon({
+  name,
+  icon,
+  type,
+  onClick,
+  nameStyles,
+  containerStyle,
+}) {
   const [defaultIcon, setDefaultIcon] = useState(null);
   const iconSize = 70;
 
@@ -16,7 +23,7 @@ export default function OSIcon({ name, icon, type, onClick, nameStyles }) {
   }, [type, icon]);
 
   return (
-    <div className={styles.container} onClick={onClick}>
+    <div className={styles.container} onClick={onClick} style={containerStyle}>
       {defaultIcon && (
         <Image
           src={defaultIcon}

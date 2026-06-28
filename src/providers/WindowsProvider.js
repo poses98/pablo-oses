@@ -17,6 +17,9 @@ export function WindowsProvider({ children }) {
     handleWindowMinimize,
     handleWindowMaximize,
     handleWindowDeMinimize,
+    handleWindowMove,
+    handleWindowResize,
+    handleWindowSnap,
     handleBrowserFocus,
     handleTabClose,
   } = useWindows();
@@ -35,6 +38,9 @@ export function WindowsProvider({ children }) {
         handleWindowMinimize,
         handleWindowMaximize,
         handleWindowDeMinimize,
+        handleWindowMove,
+        handleWindowResize,
+        handleWindowSnap,
         handleBrowserFocus,
         handleTabClose,
       }}

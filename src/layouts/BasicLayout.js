@@ -10,7 +10,6 @@ export default function BasicLayout({ children }) {
   const [innerHeight, setInnerHeight] = useState('100vh');
 
   const taskbarRef = useRef(null);
-  const licenseRef = useRef(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -20,19 +19,6 @@ export default function BasicLayout({ children }) {
     handleResize();
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
-  useEffect(() => {
-    if (taskbarRef.current) {
-      const taskbarHeight = taskbarRef.current.offsetHeight;
-      console.log(taskbarHeight);
-    }
-  }, [taskbarRef]);
-  useEffect(() => {
-    if (licenseRef.current) {
-      const licenseWidth = licenseRef.current.offsetWidth;
-      console.log(licenseWidth);
-    }
-  }, [licenseRef]);
 
   return (
     <>
@@ -54,15 +40,9 @@ export default function BasicLayout({ children }) {
           <h2>Software Engineer</h2>
         </div>
 
-        <div
-          className={styles.backgroundLicense}
-          style={{
-            bottom: `${taskbarRef?.current?.offsetHeight + 10}px`,
-            left: `calc(100% - ${licenseRef?.current?.offsetWidth + 25}px)`,
-          }}
-        >
-          <p>Activate Windows?</p>
-          <p ref={licenseRef}>Go Ahead and Change to Linux</p>
+        <div className={styles.backgroundSignature}>
+          <span className={styles.signatureDot} />
+          <p>crafted by Pablo Osés · {new Date().getFullYear()}</p>
         </div>
 
         {children}

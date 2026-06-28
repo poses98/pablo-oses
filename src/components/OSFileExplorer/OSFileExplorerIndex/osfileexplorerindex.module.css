@@ -1,13 +1,19 @@
 .content {
-  color: #fafafa;
-  font-size: 0.7em;
+  color: var(--text);
+  font-size: 0.74rem;
+  padding: 6px;
 }
 
 .indexItem {
   display: flex;
   flex-direction: row;
   align-items: center;
-  min-height: 35px;
+  gap: 8px;
+  min-height: 36px;
+  padding: 0 10px;
+  border-radius: var(--radius-sm);
+  color: var(--text-dim);
+  transition: background-color 0.14s ease, color 0.14s ease;
 }
 
 .indexTitle {
@@ -16,9 +22,15 @@
   text-overflow: ellipsis;
 }
 
-.indexItem:hover,
+.indexItem:hover {
+  background-color: var(--surface-hover);
+  color: var(--text);
+  cursor: pointer;
+}
+
 .sameRoute {
-  background-color: rgba(81, 186, 255, 0.2);
+  background-color: var(--accent-soft);
+  color: var(--text);
   cursor: pointer;
 }
 

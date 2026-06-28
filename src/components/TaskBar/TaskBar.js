@@ -5,7 +5,6 @@ import { useWindowsContext } from '@/providers/WindowsProvider';
 import { iconProvider } from '@/utils/iconProvider';
 import Image from 'next/image';
 import ContextualMenu from './ContextualMenu/ContextualMenu';
-import exp from 'constants';
 
 const robotoMono = Roboto_Mono({ subsets: ['latin'] });
 
