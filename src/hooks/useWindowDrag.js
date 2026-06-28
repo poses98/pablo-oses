@@ -55,6 +55,13 @@ export function useWindowDrag({
   const geometryRef = useRef(geometry);
   geometryRef.current = geometry;
 
+  // Keep the latest (volatile) callbacks in a ref so the gesture handlers stay
+  // stable across renders. Without this, the inline callbacks from OSWindow make
+  // `endGesture`/`begin` change every render, and the focus-triggered re-render
+  // at the start of a gesture would tear down the active pointer listeners.
+  const cbRef = useRef({ onMove, onResize, onSnap, onFocus, enabled });
+  cbRef.current = { onMove, onResize, onSnap, onFocus, enabled };
+
   const writeStyle = useCallback(
     (geo) => {
       const el = windowRef.current;
@@ -135,10 +142,19 @@ export function useWindowDrag({
     window.removeEventListener('pointerup', endGesture);
     window.removeEventListener('pointercancel', endGesture);
 
+    if (s.captureEl && s.pointerId != null) {
+      try {
+        s.captureEl.releasePointerCapture(s.pointerId);
+      } catch (_) {
+        // capture may have already been lost; ignore
+      }
+    }
+
     const el = windowRef.current;
     if (el) el.classList.remove('dragging');
     document.body.style.userSelect = '';
 
+    const { onMove, onResize, onSnap } = cbRef.current;
     if (s.mode === 'drag' && s.zone) {
       setSnapPreview(null);
       onSnap(s.zone);
@@ -148,17 +164,26 @@ export function useWindowDrag({
       onResize(s.next);
     }
     stateRef.current = null;
-  }, [onPointerMove, onMove, onResize, onSnap, windowRef]);
+  }, [onPointerMove, windowRef]);
 
   const begin = useCallback(
     (e, mode, dir) => {
-      if (!enabled) return;
+      if (!cbRef.current.enabled) return;
       if (e.button !== undefined && e.button !== 0) return;
       e.preventDefault();
-      onFocus?.();
+      cbRef.current.onFocus?.();
       const el = windowRef.current;
       if (el) el.classList.add('dragging');
       document.body.style.userSelect = 'none';
+
+      // Capture the pointer so fast moves / leaving the window don't drop events.
+      const captureEl = e.currentTarget;
+      try {
+        captureEl.setPointerCapture?.(e.pointerId);
+      } catch (_) {
+        // setPointerCapture is best-effort; ignore failures
+      }
+
       stateRef.current = {
         mode,
         dir,
@@ -167,12 +192,14 @@ export function useWindowDrag({
         orig: { ...geometryRef.current },
         next: { ...geometryRef.current },
         zone: null,
+        captureEl,
+        pointerId: e.pointerId,
       };
       window.addEventListener('pointermove', onPointerMove);
       window.addEventListener('pointerup', endGesture);
       window.addEventListener('pointercancel', endGesture);
     },
-    [enabled, onFocus, onPointerMove, endGesture, windowRef]
+    [onPointerMove, endGesture, windowRef]
   );
 
   const startDrag = useCallback((e) => begin(e, 'drag'), [begin]);
