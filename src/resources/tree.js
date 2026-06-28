@@ -161,7 +161,7 @@ export const tree = [
             type: 'Paragraph',
             text: 'This project blends modern frontend engineering with artistic presentation, providing a reliable and beautiful showcase for a talented visual storyteller.',
           },
-          { type: 'Link', url: 'https://www.mugikshot.com' },
+          { type: 'Link', url: 'https://www.fermugica.com' },
         ],
         techStack: ['React', 'Sanity', 'Vite'],
         deployment: ['Netlify'],
