@@ -66,20 +66,28 @@ function computeSnapGeometry(zone) {
 }
 
 export function useWindows() {
-  const [windows, setWindows] = useState([
-    {
-      ...tree[0],
-      id: 0,
-      geometry: computeInitialGeometry(0, tree[0].type),
-      zIndex: 10,
-      snap: null,
-    },
-  ]);
-  const [activeWindowId, setActiveWindowId] = useState(0);
-  const [nextId, setNextId] = useState(1);
+  const [windows, setWindows] = useState([]);
+  const [activeWindowId, setActiveWindowId] = useState(null);
+  const [nextId, setNextId] = useState(0);
   const [topZ, setTopZ] = useState(10);
   const [openedBrowser, setOpenedBrowser] = useState(null);
   const [activeBrowserTab, setActiveBrowserTab] = useState(-1);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.innerWidth >= 768) {
+      setWindows([
+        {
+          ...tree[0],
+          id: 0,
+          geometry: computeInitialGeometry(0, tree[0].type),
+          zIndex: 10,
+          snap: null,
+        },
+      ]);
+      setActiveWindowId(0);
+      setNextId(1);
+    }
+  }, []);
 
   useEffect(() => {
     handleBrowserActiveTabChange(activeBrowserTab);
