@@ -317,6 +317,14 @@ export function useWindows() {
 
   const handleTabClose = useCallback(
     (id) => {
+      // Closing the last tab closes the whole browser window.
+      const browser = windows.find((win) => win.id === openedBrowser);
+      if (browser && browser.content.length <= 1) {
+        handleWindowClose(openedBrowser);
+        setActiveBrowserTab(-1);
+        return;
+      }
+
       let nextTab = -1;
       setWindows((prevWindow) =>
         prevWindow.map((win) => {
@@ -354,7 +362,7 @@ export function useWindows() {
         })
       );
     },
-    [openedBrowser, handleBrowserActiveTabChange]
+    [openedBrowser, windows, handleWindowClose]
   );
 
   const handleBrowserFocus = useCallback(() => {
