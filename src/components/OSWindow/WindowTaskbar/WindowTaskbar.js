@@ -28,7 +28,7 @@ export default function WindowTaskbar({ name, type, handleClose, id }) {
         <p className={styles.windowTitle}>{name}</p>
       </div>
 
-      <div className={styles.windowActions}>
+      <div className={styles.windowActions} data-no-drag>
         <div
           className={styles.windowButton}
           onClick={() => handleWindowMinimize(id)}

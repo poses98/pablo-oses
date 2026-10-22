@@ -170,6 +170,10 @@ export function useWindowDrag({
     (e, mode, dir) => {
       if (!cbRef.current.enabled) return;
       if (e.button !== undefined && e.button !== 0) return;
+      // Controls inside the title bar (minimize/maximize/close) must keep their
+      // own click: capturing the pointer on the bar would redirect the click
+      // to it and the buttons would never fire.
+      if (e.target?.closest?.('[data-no-drag]')) return;
       e.preventDefault();
       cbRef.current.onFocus?.();
       const el = windowRef.current;

@@ -109,7 +109,13 @@ export default function OSWindow({
           className={styles.header}
           onPointerDown={interactive && !isMaximized ? startDrag : undefined}
           onDoubleClick={
-            interactive ? () => handleWindowMaximize(id) : undefined
+            interactive
+              ? (e) => {
+                  // A double click on a control must not also maximize.
+                  if (e.target.closest('[data-no-drag]')) return;
+                  handleWindowMaximize(id);
+                }
+              : undefined
           }
         >
           <WindowTaskbar
