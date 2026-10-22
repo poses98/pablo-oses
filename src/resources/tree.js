@@ -755,6 +755,293 @@ export const tree = [
         deployment: ['Custom Hosting'],
         url: 'https://glutestop.com',
       },
+      {
+        name: 'wavvs',
+        date: 'March 2026 - Today',
+        icon: '/img/icons/wavvs.jpg',
+        type: 'project',
+        content: [
+          {
+            type: 'ProjectHeader',
+            text: 'wavvs - Websites for Small Businesses',
+            logo: '/img/icons/wavvs.jpg',
+            date: 'March 2026 - Today',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'A Platform to Launch and Run Multi-Tenant Business Websites',
+          },
+          {
+            type: 'Paragraph',
+            text: 'wavvs is an agency platform that creates and runs websites for small businesses such as restaurants, veterinary clinics and physiotherapy centers. The agency onboards clients, each client edits their own content, and the public sites render straight from that data.',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'The Challenge',
+          },
+          {
+            type: 'Paragraph',
+            text: 'Small businesses need a **fast**, **professional** website they can keep up to date without a developer, plus real tools to run the business: table bookings, takeaway orders, payments and content. Doing it one-off for every client does not scale, so everything had to be **multi-tenant** from day one.',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'The Solution',
+          },
+          {
+            type: 'Paragraph',
+            text: 'A **Turborepo monorepo** with a marketing site, an agency dashboard, a client panel, a billing app and one public template per niche. There is one deployment per niche, and each request resolves which client to render from the host, so content changes need no deploy.',
+          },
+          {
+            type: 'TechStack',
+            stack: [
+              {
+                type: 'TechCard',
+                tech: 'Next.js',
+                text: 'Next.js 16 with the App Router powers every app: server-rendered multi-tenant sites, server actions in the panels and ISR for the blog.',
+              },
+              {
+                type: 'TechCard',
+                tech: 'React',
+                text: 'React 19 for the client panel, including a visual section editor that shows the real site in an iframe and updates it as the client edits.',
+              },
+              {
+                type: 'TechCard',
+                tech: 'TypeScript',
+                text: 'Strict typing across the whole monorepo. The module catalog, the section registry and the design contracts are typed so that forgetting a case fails the build.',
+              },
+              {
+                type: 'TechCard',
+                tech: 'Supabase',
+                text: 'Postgres, Auth, Storage and Realtime in one project. Row Level Security keeps every client’s data apart and Realtime broadcasts keep the kitchen screens live.',
+              },
+              {
+                type: 'TechCard',
+                tech: 'Stripe',
+                text: 'Subscriptions for the modular plans and Stripe Connect so restaurants can charge online for their takeaway orders.',
+              },
+              {
+                type: 'TechCard',
+                tech: 'Turborepo',
+                text: 'Orchestrates the builds of every app and shared package, so the apps and their common libraries are built in the right order and cached.',
+              },
+              {
+                type: 'TechCard',
+                tech: 'Tailwind CSS',
+                text: 'Utility-first styling with theme variables, so each client’s colors and fonts apply to their site without extra code.',
+              },
+            ],
+          },
+          {
+            type: 'SubsectionHeader',
+            text: 'What It Includes',
+          },
+          {
+            type: 'Paragraph',
+            text: '• Table bookings with shifts, waiting list and transactional emails.<br/>• Takeaway orders with pickup slots, daily stock and a kitchen and counter view updated in real time.<br/>• Stripe billing with modular plans: a base website plus the modules each client chooses, per location.<br/>• AI-assisted content and an automatic blog that researches, writes and reviews articles.<br/>• Several interchangeable designs per niche, plus roles, tablets for staff and per-location menus.',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'The Result',
+          },
+          {
+            type: 'Paragraph',
+            text: 'A single codebase that lets one person launch, bill and maintain many business websites, with every module the client has not contracted simply hidden instead of shown as noise.',
+          },
+          {
+            type: 'Link',
+            url: 'https://www.wavvs.com',
+          },
+        ],
+        techStack: [
+          'Next.js',
+          'React',
+          'TypeScript',
+          'Supabase',
+          'Stripe',
+          'Turborepo',
+          'Tailwind CSS',
+        ],
+        deployment: ['Vercel'],
+        url: 'https://www.wavvs.com',
+      },
+      {
+        name: 'SMOF',
+        date: 'August 2026 - Today',
+        icon: '/img/icons/smof.svg',
+        type: 'project',
+        content: [
+          {
+            type: 'ProjectHeader',
+            text: 'SMOF - Artist Portfolio and Catalog',
+            logo: '/img/icons/smof.svg',
+            date: 'August 2026 - Today',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'A Website for an Artist and Designer from Pamplona',
+          },
+          {
+            type: 'Paragraph',
+            text: 'SMOF is the online home of an artist and designer based in Pamplona. It works as a portfolio, a catalog of pieces, an archive of exhibitions and a way to get in touch about a specific piece. There is no online store: the contact form carries the reference of the piece you are interested in.',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'The Solution',
+          },
+          {
+            type: 'Paragraph',
+            text: 'The site is built with **Next.js** and a **headless CMS**, so the artist can manage pieces, collections and exhibitions on their own, while pages stay **fast** thanks to static generation and revalidation on every change.',
+          },
+          {
+            type: 'TechStack',
+            stack: [
+              {
+                type: 'TechCard',
+                tech: 'Next.js',
+                text: 'App Router with static generation and on-demand revalidation triggered by a CMS webhook, plus animated page transitions.',
+              },
+              {
+                type: 'TechCard',
+                tech: 'Sanity',
+                text: 'The Studio is embedded in the site itself. Content is typed end to end and queried with GROQ.',
+              },
+              {
+                type: 'TechCard',
+                tech: 'TypeScript',
+                text: 'Types generated from the CMS schema, so a query that does not match the content model is caught before it reaches the browser.',
+              },
+              {
+                type: 'TechCard',
+                tech: 'Tailwind CSS',
+                text: 'Tailwind 4 for the layout and the visual identity of the site.',
+              },
+              {
+                type: 'TechCard',
+                tech: 'Mux',
+                text: 'Hosts and streams the looping videos with adaptive quality, so they stay light on any connection.',
+              },
+            ],
+          },
+          {
+            type: 'SubsectionHeader',
+            text: 'Highlights',
+          },
+          {
+            type: 'Paragraph',
+            text: '• Pieces and portfolio organized by line of work.<br/>• An outfit builder to combine pieces of a collection.<br/>• Looping videos streamed with adaptive quality.<br/>• A hand-drawn animated mascot that guides the navigation.',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'The Result',
+          },
+          {
+            type: 'Paragraph',
+            text: 'A site with a distinct visual identity that the artist can update without touching code. It is currently in development ahead of its launch.',
+          },
+        ],
+        techStack: ['Next.js', 'TypeScript', 'Sanity', 'Tailwind CSS', 'Mux'],
+        deployment: ['Vercel'],
+        url: 'none',
+      },
+      {
+        name: 'OpsFlow',
+        date: 'July 2026 - Today',
+        icon: '/img/icons/opsflow.png',
+        type: 'project',
+        content: [
+          {
+            type: 'ProjectHeader',
+            text: 'OpsFlow - Back-Office Automation for a Franchisee',
+            logo: '/img/icons/opsflow.png',
+            date: 'July 2026 - Today',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'Replacing a Manual Spreadsheet Process',
+          },
+          {
+            type: 'Paragraph',
+            text: 'OpsFlow is a back-office suite for restaurant franchises. Its first module automates the **daily cash reconciliation** of a McDonald’s franchisee, a task that used to be done by hand in Excel, and it is designed as a multi-organization platform that can grow with new modules.',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'The Challenge',
+          },
+          {
+            type: 'Paragraph',
+            text: 'Every day, each restaurant produces a cash sheet in PDF and the cash-in-transit company reports its own transactions. Checking by hand that both match is **slow** and **error-prone**, especially when deposits are attributed to the wrong day.',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'The Solution',
+          },
+          {
+            type: 'Paragraph',
+            text: 'A **FastAPI** backend parses the PDF cash sheets and runs the reconciliation checks, while a **React** frontend lets managers upload files in batches, review each day and correct it with manual adjustments.',
+          },
+          {
+            type: 'TechStack',
+            stack: [
+              {
+                type: 'TechCard',
+                tech: 'FastAPI',
+                text: 'The backend: it parses the PDF cash sheets, runs the reconciliation checks and validates every request with Pydantic.',
+              },
+              {
+                type: 'TechCard',
+                tech: 'React',
+                text: 'Typed React frontend with TanStack Router, Query and Form, and shadcn/ui for the interface.',
+              },
+              {
+                type: 'TechCard',
+                tech: 'Vite',
+                text: 'Fast development and build tooling for the single-page frontend.',
+              },
+              {
+                type: 'TechCard',
+                tech: 'TypeScript',
+                text: 'Strict typing in the frontend, so the shapes returned by the API are checked at compile time.',
+              },
+              {
+                type: 'TechCard',
+                tech: 'Supabase',
+                text: 'Authentication with JWT verified in the API and Row Level Security, so each organization only sees its own data.',
+              },
+              {
+                type: 'TechCard',
+                tech: 'PostgreSQL',
+                text: 'Stores restaurants, cash sheets, deposits and the audit log. The period summary is computed in a Postgres function.',
+              },
+            ],
+          },
+          {
+            type: 'SubsectionHeader',
+            text: 'What It Does',
+          },
+          {
+            type: 'Paragraph',
+            text: '• Reads the PDF cash sheets and checks that they add up.<br/>• Batch upload with duplicate detection.<br/>• Reconciles every deposit against the transaction file of the cash-in-transit company.<br/>• Manual adjustments per day, with alerts for late deposits and money still in transit.<br/>• Multiple organizations with admin, owner and manager roles, enforced in the API and in the database, and an audit log.',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'The Result',
+          },
+          {
+            type: 'Paragraph',
+            text: 'A reconciliation that used to be a spreadsheet exercise is now automatic and traceable. The core flow is implemented and the project is in development, with polishing and the production rollout still ahead.',
+          },
+        ],
+        techStack: [
+          'FastAPI',
+          'React',
+          'TypeScript',
+          'Vite',
+          'Supabase',
+          'PostgreSQL',
+        ],
+        deployment: ['Vercel'],
+        url: 'none',
+      },
     ],
   },
   {
@@ -902,6 +1189,144 @@ export const tree = [
           },
         ],
         techStack: ['TensorFlow', 'CTC Loss', 'Matplotlib'],
+        deployment: ['Local'],
+        url: 'none',
+      },
+      {
+        name: 'Book Translator',
+        date: 'March 2026',
+        icon: '/img/icons/booktranslator.png',
+        type: 'project',
+        content: [
+          {
+            type: 'ProjectHeader',
+            text: 'Book Translator - Literary Translation with an LLM',
+            logo: '/img/icons/booktranslator.png',
+            date: 'March 2026',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'Translating Whole Books with Claude',
+          },
+          {
+            type: 'Paragraph',
+            text: 'Book Translator is a command-line tool that translates EPUB and PDF books from English into another language using the Claude API, keeping a literary style and, above all, **consistency across chapters**.',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'How It Works',
+          },
+          {
+            type: 'Paragraph',
+            text: '• An automatic glossary of character and place names is built and reused in every chunk.<br/>• Each chapter is summarized with a smaller model so later chapters know what happened before.<br/>• Style instructions are tuned per target language, with specific support for Spanish.<br/>• The translated book is written back in the same format, along with a separate glossary file.<br/>• The cost of each translation is estimated before it runs.',
+          },
+          {
+            type: 'TechStack',
+            stack: [
+              {
+                type: 'TechCard',
+                tech: 'Python',
+                text: 'The whole pipeline: reading EPUB and PDF files, splitting the text, calling the model and rebuilding the book.',
+              },
+              {
+                type: 'TechCard',
+                tech: 'Anthropic',
+                text: 'Claude Sonnet does the translation and Claude Haiku writes the chapter summaries, so the expensive model is only used where quality matters.',
+              },
+              {
+                type: 'TechCard',
+                tech: 'MongoDB',
+                text: 'Optional cache of translated passages keyed by a hash of the text and language, so repeated runs do not pay twice. Without it the tool works the same, just without cache.',
+              },
+            ],
+          },
+          {
+            type: 'SectionHeader',
+            text: 'The Result',
+          },
+          {
+            type: 'Paragraph',
+            text: 'A personal tool that produces coherent translations of full-length books at a predictable cost.',
+          },
+        ],
+        techStack: ['Python', 'Anthropic API', 'MongoDB', 'ebooklib', 'ReportLab'],
+        deployment: ['Local'],
+        url: 'none',
+      },
+      {
+        name: 'Lead Search',
+        date: 'August 2026',
+        icon: '/img/icons/leadsearch.png',
+        type: 'project',
+        content: [
+          {
+            type: 'ProjectHeader',
+            text: 'Lead Search - Prospecting Tool for Web Design',
+            logo: '/img/icons/leadsearch.png',
+            date: 'August 2026',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'Finding Businesses That Need a Better Website',
+          },
+          {
+            type: 'Paragraph',
+            text: 'Lead Search is a Windows desktop app I built to prospect clients for wavvs. It searches Google Maps for businesses by city and type, for example hairdressers in Logroño, audits the website of each one and exports a spreadsheet sorted by opportunity.',
+          },
+          {
+            type: 'SectionHeader',
+            text: 'What It Analyzes',
+          },
+          {
+            type: 'Paragraph',
+            text: '• SEO basics, mobile friendliness, HTTPS and the technology the site is built with.<br/>• Optional Lighthouse audit: performance, accessibility and Core Web Vitals.<br/>• An opportunity score from 0 to 100 with a priority, the reasons behind it and a sales angle to open the phone call.<br/>• A CSV ready for Excel with phone, email and website.',
+          },
+          {
+            type: 'TechStack',
+            stack: [
+              {
+                type: 'TechCard',
+                tech: 'Electron',
+                text: 'Packages the tool as a Windows desktop app with an installer and a portable version, Chromium included.',
+              },
+              {
+                type: 'TechCard',
+                tech: 'Node.js',
+                text: 'Runs the search, the website analysis and the scoring. Plain JavaScript, with no database: results go to a CSV file.',
+              },
+              {
+                type: 'TechCard',
+                tech: 'Puppeteer',
+                text: 'Opens each business website in a real browser to check mobile layout, animations, contact details and the technology it is built with.',
+              },
+              {
+                type: 'TechCard',
+                tech: 'Lighthouse',
+                text: 'Optional audit of performance, SEO and accessibility, run in parallel across the results.',
+              },
+              {
+                type: 'TechCard',
+                tech: 'Google Maps',
+                text: 'The Places API provides the businesses, their website and phone number for a given city and type.',
+              },
+            ],
+          },
+          {
+            type: 'SectionHeader',
+            text: 'The Result',
+          },
+          {
+            type: 'Paragraph',
+            text: 'It turns hours of manually browsing Google Maps into a ranked list of leads with a reason to call each one. It ships as an installer and a portable version.',
+          },
+        ],
+        techStack: [
+          'Electron',
+          'Node.js',
+          'Puppeteer',
+          'Lighthouse',
+          'Google Places API',
+        ],
         deployment: ['Local'],
         url: 'none',
       },

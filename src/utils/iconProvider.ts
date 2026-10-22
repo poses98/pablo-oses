@@ -55,6 +55,45 @@ export const iconProvider = (type: string): string => {
     case 'Vite':
       icon = '/img/tech/vite.svg';
       break;
+    case 'TypeScript':
+      icon = '/img/tech/typescript.svg';
+      break;
+    case 'Tailwind CSS':
+      icon = '/img/tech/tailwind-css.svg';
+      break;
+    case 'Supabase':
+      icon = '/img/tech/supabase.svg';
+      break;
+    case 'Stripe':
+      icon = '/img/tech/stripe.svg';
+      break;
+    case 'Turborepo':
+      icon = '/img/tech/turborepo.svg';
+      break;
+    case 'Mux':
+      icon = '/img/tech/mux.svg';
+      break;
+    case 'FastAPI':
+      icon = '/img/tech/fastapi.svg';
+      break;
+    case 'PostgreSQL':
+      icon = '/img/tech/postgresql.svg';
+      break;
+    case 'Anthropic':
+      icon = '/img/tech/anthropic.svg';
+      break;
+    case 'Electron':
+      icon = '/img/tech/electron.svg';
+      break;
+    case 'Puppeteer':
+      icon = '/img/tech/puppeteer.svg';
+      break;
+    case 'Lighthouse':
+      icon = '/img/tech/lighthouse.svg';
+      break;
+    case 'Google Maps':
+      icon = '/img/tech/google-maps.svg';
+      break;
     default:
       icon = '/img/icons/close.svg';
       break;
