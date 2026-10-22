@@ -1,8 +1,58 @@
 .container {
   width: 100%;
+  margin-bottom: 16px;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #3a3f4d;
 }
 
-.container p {
-  font-weight: 200;
-  color: #616161;
+.container p + p,
+.container p + .list,
+.container .list + p {
+  margin-top: 12px;
+}
+
+.container b {
+  font-weight: 600;
+  color: #111827;
+}
+
+.lead {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: #262b38;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+}
+
+.list li {
+  position: relative;
+  padding-left: 22px;
+}
+
+.list li::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 0.68em;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--accent-gradient);
+}
+
+@media (max-width: 480px) {
+  .container {
+    font-size: 0.97rem;
+    line-height: 1.7;
+  }
+
+  .lead {
+    font-size: 1.05rem;
+  }
 }

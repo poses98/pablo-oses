@@ -105,6 +105,11 @@ export function useWindows() {
         icon: node.icon,
         maximize: false,
         style: node.style,
+        // Project metadata shown in the browser's address bar and hero.
+        date: node.date,
+        techStack: node.techStack,
+        deployment: node.deployment,
+        url: node.url,
       };
       if (node.type === 'pdf' || node.type === 'project') {
         const browserItem = {
@@ -373,13 +378,6 @@ export function useWindows() {
     [openedBrowser, windows, handleWindowClose]
   );
 
-  const handleBrowserFocus = useCallback(() => {
-    setTimeout(() => {
-      setActiveWindowId(openedBrowser);
-      handleWindowDeMinimize(openedBrowser);
-    }, 50);
-  }, [openedBrowser, handleWindowDeMinimize]);
-
   const handleWindowFocus = useCallback(
     (id) => {
       setActiveWindowId(id);
@@ -395,6 +393,15 @@ export function useWindows() {
     },
     [setActiveWindowId]
   );
+
+  // Bring the browser to the front (raising its z-index, not just marking it
+  // active) so a project opened from a folder isn't left behind that folder.
+  const handleBrowserFocus = useCallback(() => {
+    setTimeout(() => {
+      handleWindowFocus(openedBrowser);
+      handleWindowDeMinimize(openedBrowser);
+    }, 50);
+  }, [openedBrowser, handleWindowFocus, handleWindowDeMinimize]);
 
   return {
     windows,

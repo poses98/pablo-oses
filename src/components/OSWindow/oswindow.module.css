@@ -179,6 +179,10 @@
   border-radius: 0;
   transform: none !important;
   border: none;
+  /* Stacked full-screen windows: a translucent one shows the one beneath. */
+  background: var(--surface-solid);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 
 .mobile .resizeHandles {

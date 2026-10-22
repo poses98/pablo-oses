@@ -2,6 +2,9 @@
   position: relative;
   width: 100%;
   overflow: hidden;
+  /* clip, unlike hidden, can't be scrolled by focus/scrollIntoView: on a phone
+     a desktop icon overflowing by a few px shifted every window sideways. */
+  overflow: clip;
   user-select: none;
   background-color: #0b0b12;
   background-image: radial-gradient(

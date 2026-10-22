@@ -10,7 +10,7 @@ const robotoMono = Roboto_Mono({ subsets: ['latin'] });
 
 const TaskBar = forwardRef((props, ref) => {
   TaskBar.displayName = 'TaskBar';
-  const { windows, setActiveWindowId, activeWindowId, handleWindowDeMinimize } =
+  const { windows, handleWindowFocus, activeWindowId, handleWindowDeMinimize } =
     useWindowsContext();
   const [contextMenuVisible, setContextMenuVisible] = useState(false);
   const [hourSet, setHourSet] = useState(false);
@@ -69,7 +69,8 @@ const TaskBar = forwardRef((props, ref) => {
                 }`}
                 key={index}
                 onClick={() => {
-                  setActiveWindowId(window.id);
+                  // Focus raises the z-index too, so the window comes to the front.
+                  handleWindowFocus(window.id);
                   handleWindowDeMinimize(window.id);
                 }}
               >

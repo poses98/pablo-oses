@@ -1,11 +1,109 @@
-.container {
-  width: 60%;
-  margin-left: 20%;
+.scroller {
+  position: relative;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  background-color: #f7f7f8;
+  color: #1f2330;
+  /* The desktop disables selection; a reader should be able to copy text. */
+  user-select: text;
 }
 
-@media only screen and (max-width: 1024px) {
-  .container {
-    width: 95%;
-    margin-left: 2.5%;
+.progress {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  height: 3px;
+  margin-bottom: -3px;
+  background: var(--accent-gradient);
+  transform-origin: left center;
+  transition: transform 0.08s linear;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 720px) 260px;
+  grid-template-areas: 'article aside';
+  justify-content: center;
+  gap: 56px;
+  padding: 40px 32px 72px;
+}
+
+.article {
+  grid-area: article;
+  min-width: 0;
+}
+
+.aside {
+  grid-area: aside;
+  align-self: start;
+  position: sticky;
+  top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.asideTitle {
+  margin-bottom: 10px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6b7080;
+}
+
+.toc ul {
+  list-style: none;
+  border-left: 1px solid #e3e4e8;
+}
+
+.toc button {
+  display: block;
+  width: 100%;
+  padding: 6px 0 6px 14px;
+  margin-left: -1px;
+  border: 0;
+  border-left: 2px solid transparent;
+  background: none;
+  color: #4b5060;
+  font: inherit;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.toc button:hover {
+  color: var(--accent);
+  border-left-color: var(--accent);
+}
+
+@media (max-width: 1024px) {
+  .layout {
+    grid-template-columns: minmax(0, 720px);
+    grid-template-areas:
+      'aside'
+      'article';
+    gap: 28px;
+    padding: 24px 20px 56px;
+  }
+
+  .aside {
+    position: static;
+  }
+
+  /* On narrow screens the article is short enough to just scroll. */
+  .toc {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .layout {
+    padding: 20px 16px 48px;
   }
 }

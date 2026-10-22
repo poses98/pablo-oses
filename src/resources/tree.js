@@ -936,12 +936,16 @@ export const tree = [
           },
           {
             type: 'Paragraph',
-            text: 'A site with a distinct visual identity that the artist can update without touching code. It is currently in development ahead of its launch.',
+            text: 'A site with a distinct visual identity that the artist can update without touching code.',
+          },
+          {
+            type: 'Link',
+            url: 'https://smof.es',
           },
         ],
         techStack: ['Next.js', 'TypeScript', 'Sanity', 'Tailwind CSS', 'Mux'],
         deployment: ['Vercel'],
-        url: 'none',
+        url: 'https://smof.es',
       },
       {
         name: 'OpsFlow',

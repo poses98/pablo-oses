@@ -100,3 +100,17 @@ export const iconProvider = (type: string): string => {
   }
   return icon;
 };
+
+// Short names used in project metadata that map to an existing icon.
+const TECH_ALIASES: Record<string, string> = {
+  Express: 'Express.js',
+  Node: 'Node.js',
+  'Anthropic API': 'Anthropic',
+};
+
+// Icon for a technology, or null when there is none (iconProvider falls back
+// to a close "X", which reads as an error next to a tech name).
+export const techIcon = (tech: string): string | null => {
+  const icon = iconProvider(TECH_ALIASES[tech] || tech);
+  return icon === '/img/icons/close.svg' ? null : icon;
+};

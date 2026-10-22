@@ -1,31 +1,54 @@
 .techCard {
-  min-width: 300px;
-  width: 30%;
-  border: 1px rgb(184, 184, 184) solid;
-  -webkit-box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.432);
-  box-shadow: 0px 4px 5px 2px rgba(0, 0, 0, 0.432);
-  border-radius: 5px;
-  margin: 20px;
-  flex-wrap: wrap;
-  padding: 25px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  color: #616161;
+  gap: 10px;
+  padding: 16px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #e6e7eb;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-.cardImage {
-  margin-bottom: 10px;
+.techCard:hover {
+  border-color: rgba(99, 102, 241, 0.35);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+}
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.iconTile {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  background: #f1f2f6;
+}
+
+.initial {
+  font-weight: 700;
+  color: var(--accent);
 }
 
 .cardTitle {
-  font-size: 1.2em;
-  margin-bottom: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #111827;
 }
 
-@media (max-width: 700px) {
-  .techCard {
-    width: 80%;
-    margin: 20px 0;
-  }
+.cardText {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: #4b5060;
+}
+
+.cardText b {
+  font-weight: 600;
+  color: #1f2330;
 }
